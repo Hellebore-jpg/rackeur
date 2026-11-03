@@ -2,8 +2,6 @@
 
 # 03/11/2026
 
-## Analyse du CDC (Cahier Des Charges)
-
 ## Organisation
 - [x] Rôles dans le groupe - **Tout le monde**
     >`Hellebore-jpg` : 
@@ -17,4 +15,4 @@
     >- Explications du fonctionnement de venv à tout le monde et setup sur tout les PCs
 
 ## Autre
-- [x] 1er livrable - **Tout le monde**
+- [ ] 1er livrable - **Tout le monde**
