@@ -32,7 +32,7 @@ class Catalogue:
     def UPDATE(self, item:object|list[object], coords:int|list[int] = 0):
         if isinstance(coords, int) and isinstance(item, list):
             self.BODY[coords] = [self.csv_format(i) for i in item]
-        elif isinstance(coords, list):
+        elif isinstance(coords, list) and not isinstance(item, list):
             self.BODY[coords[0]][coords[1]] = self.csv_format(item)
         else:
             print('Error : Cannot add a single item to replace an entire line.')
