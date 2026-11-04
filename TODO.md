@@ -37,7 +37,8 @@
 
 ## -- Base de Données SQLite -- 
 - [ ] Recherches, analyses, et synthèse autour du SGBD SQLite pour le passage CSV a SQLite. - **ylavallee-prog**
-- [ ] Création manuelle du catalogue de produits sous la forme d'une table SQLite. ( Premire BDD SQLite ) - **ylavallee-prog**
+- [ ] Création manuelle du catalogue de produits sous la forme d’une table SQLite.( Premeire BD SQLite ). - **ylavallee-prog**
+- [ ] Passage du CSV a SQLite. - **ylavallee-prog**
 
 ## -- Authentification et Permision -- 
 - [x] Définition de l'entité « utilisateur » avec prise en compte des différents rôles. - **Hellebore-jpg**
