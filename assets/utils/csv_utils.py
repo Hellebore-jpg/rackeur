@@ -26,13 +26,12 @@ def CREATE_FILE(path: str | Path = 'catalogue.csv', header: list[str] | None = N
         FileExistsError: Si le fichier existe déjà et que overwrite vaut False.
     """
     full_path: Path = Path(DATA_DIR, path)
-    if full_path.exists():
+    if full_path.exists() and not overwrite: # Arrête si le fichier existe déjà et que l'écrasement est désactivé
         return full_path
-    else:
-        full_path.parent.mkdir(parents=True, exist_ok=True) # Crée les dossiers manquants
-        with open(full_path, 'w' if overwrite else 'x', newline='', encoding='utf-8') as f: # 'x' échoue si le fichier existe déjà
-            if header:
-                csv.writer(f, delimiter=delimeter).writerow(header)
+    full_path.parent.mkdir(parents=True, exist_ok=True) # Crée les dossiers manquants
+    with open(full_path, 'w', newline='', encoding='utf-8') as f:
+        if header:
+            csv.writer(f, delimiter=delimeter).writerow(header)
     return full_path
 
 class Catalogue:
