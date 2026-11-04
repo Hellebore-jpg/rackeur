@@ -2,7 +2,7 @@ from assets.utils.csv_utils import Catalogue, Catalogue_Reader, CREATE_CSV
 
 if __name__ == '__main__':
     header_type: list[type] = [str, str, int]
-    CREATE_CSV(header=['test1', 'test2', 'test3'], overwrite=True)
+    CREATE_CSV(header=['test1', 'test2', 'test3'])
     catalogue = Catalogue()
     catalogue.CREATE(['a', 'b', 'c'])
     catalogue.SAVE_CSV()
