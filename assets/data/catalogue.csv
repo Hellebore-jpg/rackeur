@@ -1,5 +1,5 @@
-Name_Product, Price, Description, Stock, Quality_State
-"Guitare Fender", 100, "Guitare électrique Fender Stratocaster, modèle classique avec un son riche et polyvalent.", 15, "Neuf"
-"Batterie Pearl", 500, "Batterie acoustique Pearl, modèle classique avec un son riche et polyvalent.", 15, "Bon état"
-"Basse Ibanez", 500, "Basse électrique Ibanez, modèle classique avec un son riche et polyvalent.", 15, "Correcte"
-"Contre-Basse", 500, "Contre-basse acoustique, modèle classique avec un son riche et polyvalent.", 15, "Bon état"
+product, price, description, stock, quality
+"Guitare Fender", 100," Guitare électrique Fender Stratocaster, modèle classique avec un son riche et polyvalent.",15,"Neuf"
+"Batterie Pearl", 500," Batterie acoustique Pearl, modèle classique avec un son riche et polyvalent.",15,"Bon état"
+"Basse Ibanez", 500,"Basse électrique Ibanez, modèle classique avec un son riche et polyvalent.",15,"Correcte"
+"Contre-Basse", 500,"Contre-basse acoustique, modèle classique avec un son riche et polyvalent.",15,"Bon état"

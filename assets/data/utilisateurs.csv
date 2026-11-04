@@ -1,0 +1,4 @@
+username,password,role,permissions
+"admin",123456789, admin,15
+"rat-degou",123456789,editor,6
+"remitatouille",123456789,visitor,2

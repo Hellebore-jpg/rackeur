@@ -1,10 +1,9 @@
-from assets.utils.csv_utils import Catalogue, Catalogue_Reader, CREATE_CSV
+from assets.utils.csv_utils import Catalogue, Catalogue_Reader, CREATE_FILE
 
 if __name__ == '__main__':
     header_type: list[type] = [str, str, int]
-    CREATE_CSV(header=['test1', 'test2', 'test3'])
+    CREATE_FILE(header=['product', 'price', 'description', 'stock', 'quality'])
     catalogue = Catalogue()
-    catalogue.CREATE(['a', 'b', 'c'])
-    catalogue.SAVE_CSV()
+    catalogue.SAVE_FILE()
     reader = Catalogue_Reader(catalogue)
-    reader.PRINT_CSV()
+    reader.PRINT_TABLE()
