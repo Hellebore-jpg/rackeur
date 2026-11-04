@@ -10,7 +10,7 @@ class CSVTable(TypedDict):
     
 DATA_DIR: Path = Path('assets/data/') # Dossier des fichiers CSV
 
-def CREATE_CSV(path: str | Path = 'catalogue.csv', header: list[str] | None = None, delimeter: str = ',', overwrite: bool = False) -> Path:
+def CREATE_FILE(path: str | Path = 'catalogue.csv', header: list[str] | None = None, delimeter: str = ',', overwrite: bool = False) -> Path:
     """Crée un fichier CSV vide (avec l'entête si elle est fournie) dans "assets/data/".
 
     Args:
@@ -26,13 +26,12 @@ def CREATE_CSV(path: str | Path = 'catalogue.csv', header: list[str] | None = No
         FileExistsError: Si le fichier existe déjà et que overwrite vaut False.
     """
     full_path: Path = Path(DATA_DIR, path)
-    if full_path.exists():
+    if full_path.exists() and not overwrite: # Arrête si le fichier existe déjà et que l'écrasement est désactivé
         return full_path
-    else:
-        full_path.parent.mkdir(parents=True, exist_ok=True) # Crée les dossiers manquants
-        with open(full_path, 'w' if overwrite else 'x', newline='', encoding='utf-8') as f: # 'x' échoue si le fichier existe déjà
-            if header:
-                csv.writer(f, delimiter=delimeter).writerow(header)
+    full_path.parent.mkdir(parents=True, exist_ok=True) # Crée les dossiers manquants
+    with open(full_path, 'w', newline='', encoding='utf-8') as f:
+        if header:
+            csv.writer(f, delimiter=delimeter).writerow(header)
     return full_path
 
 class Catalogue:
@@ -63,7 +62,7 @@ class Catalogue:
                 return {'header': [], 'body': []}
             return {'header': table[0], 'body': table[1:]}
 
-    def SAVE_CSV(self):
+    def SAVE_FILE(self):
         """Sauvegarde les modifications apportées dans la classe dans le fichier CSV.
         """
         with open(self.PATH, 'w', newline='', encoding='utf-8') as f:
@@ -293,7 +292,7 @@ class Catalogue_Reader:
             return converted[0] # Ligne simple
         return converted # Liste de lignes
     
-    def PRINT_CSV(self, pretty: bool = True) -> None:
+    def PRINT_TABLE(self, pretty: bool = True) -> None:
         """Affiche une entête et un corps dans le terminal comme un tableau CSV.
 
         Args:
