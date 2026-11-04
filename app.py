@@ -1,8 +1,4 @@
-from assets.utils.csv_utils import Catalogue, CREATE_BLANK_CSV, PRINT_CSV
+from assets.utils.csv_utils import Catalogue, Catalogue_Reader, CREATE_CSV
 
 if __name__ == '__main__':
     catalogue = Catalogue()
-    
-    # Todo :
-    # tests
-    # blank csv maker
