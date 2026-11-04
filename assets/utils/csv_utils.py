@@ -232,7 +232,7 @@ class Catalogue_Reader:
         self.BODY = [row for _, row in numeric] + others # Retire la colonne de la valeur numérique des lignes du résultat pour les reformater
         return self.BODY
         
-    def SEARCH(self, query: str, columns: list[int] = [-1]) -> list[list[str]]:
+    def SEARCH(self, query: str, columns: list[int] = [-1], exact: bool = False) -> list[list[str]]:
         """Renvoie une partie du segment du fichier CSV séléctionné qui correspond à la recherche entrée sur la colonne {column} et met à jour le corp du lecteur.
 
         Args:
@@ -255,6 +255,7 @@ class Catalogue_Reader:
                 bool: Correspondance.
             """
             cells: list[str] = row if all_columns else [_cell(row, c) for c in columns]
+            if exact: return all(needle in _normalize(cell) for cell in cells)
             return any(needle in _normalize(cell) for cell in cells) # Renvoie vrai si n'importe quelle case observée de la ligne correspond.
 
         self.BODY = [row for row in self.BODY if matches(row)]
