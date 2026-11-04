@@ -45,6 +45,7 @@ commande, via une ou plusieurs options. ( C U D ) - **Hellebore-jpg**
 ## -- BD SQLite -- 
 - [ ] Recherches, analyses, et synthèse autour du SGBD SQLite pour le passage CSV a SQLite. - **ylavallee-prog**
 - [ ] Création manuelle du catalogue de produits sous la forme d’une table SQLite.( Premeire BD SQLite ). - **ylavallee-prog**
+- [ ] Passage du CSV a SQLite. - **ylavallee-prog**
 
 ## -- Authentification et Permision -- 
 - [ ] Définition de l'entité « utilisateur » avec prise en compte des différents rôles. - **Hellebore-jpg**
