@@ -8,7 +8,7 @@ class CSVTable(TypedDict):
     header: list[str]
     body: list[list[str]]
     
-DATA_DIR: Path = Path('assets/data/')  # Dossier des fichiers CSV
+DATA_DIR: Path = Path('assets/data/') # Dossier des fichiers CSV
 
 def CREATE_CSV(path: str | Path = 'catalogue.csv', header: list[str] | None = None, delimeter: str = ',', overwrite: bool = False) -> Path:
     """Crée un fichier CSV vide (avec l'entête si elle est fournie) dans "assets/data/".
@@ -26,8 +26,8 @@ def CREATE_CSV(path: str | Path = 'catalogue.csv', header: list[str] | None = No
         FileExistsError: Si le fichier existe déjà et que overwrite vaut False.
     """
     full_path: Path = Path(DATA_DIR, path)
-    full_path.parent.mkdir(parents=True, exist_ok=True)  # Crée les dossiers manquants
-    with open(full_path, 'w' if overwrite else 'x', newline='', encoding='utf-8') as f:  # 'x' échoue si le fichier existe déjà
+    full_path.parent.mkdir(parents=True, exist_ok=True) # Crée les dossiers manquants
+    with open(full_path, 'w' if overwrite else 'x', newline='', encoding='utf-8') as f: # 'x' échoue si le fichier existe déjà
         if header:
             csv.writer(f, delimiter=delimeter).writerow(header)
     return full_path
@@ -56,11 +56,11 @@ class Catalogue:
         """
         with open(self.PATH, 'r', encoding='utf-8', newline='') as f:
             table: list[list[str]] = list(csv.reader(f, delimiter=self.DELIMETER))
-            if not table:  # Fichier totalement vide
+            if not table: # Fichier totalement vide
                 return {'header': [], 'body': []}
             return {'header': table[0], 'body': table[1:]}
 
-    def write_csv(self):
+    def SAVE_CSV(self):
         """Sauvegarde les modifications apportées dans la classe dans le fichier CSV.
         """
         with open(self.PATH, 'w', newline='', encoding='utf-8') as f:
@@ -109,7 +109,6 @@ class Catalogue:
         elif isinstance(item, str) and isinstance(index, int):
             self.HEAD[index] = item
             
-
     # CRU(D)
     def DELETE(self, index: int = -1) -> list[str]:
         """Supprime et renvoit une ligne du fichier CSV.
@@ -162,8 +161,7 @@ def _to_float(text: str) -> float | None:
     return None if math.isnan(value) else value # Check que la valeur renvoyée soit valide et pas NaN (Not a Number)
 
 # C(R)UD
-class Catalogue_Reader: 
-    # RECHERCHE
+class Catalogue_Reader:
     """Classe regroupant toutes les fonctions permettant d'afficher, de trier ou de rechercher les données d'un tableau CSV.
     """
     def __init__(self, catalogue: Catalogue, start: int = 0, end: int = 0) -> None:
@@ -222,7 +220,7 @@ class Catalogue_Reader:
         for row in self.BODY:
             value: float | None = _to_float(_cell(row, column))
             if value is None:
-                others.append(row)  # Ajoute les valeurs non numériques à la fin de la liste triée
+                others.append(row) # Ajoute les valeurs non numériques à la fin de la liste triée
             else:
                 numeric.append((value, row)) # Ajoute les valeurs détéctée comme numérique malgrès le format non conventionel à la liste
         numeric.sort(key=lambda pair: pair[0], reverse=reverse)
@@ -261,7 +259,7 @@ class Catalogue_Reader:
         return self.BODY
 
     def READ(self, types: list[type] = [str]) -> list[object] | list[list[object]]:
-        """Renvoie la section séléctionnée du fichier CSS avec types par colonnes.
+        """Renvoie la section séléctionnée du fichier CSV avec types par colonnes.
 
         Args:
             types (list[type]): Types utilisés par chaque colonne, se répète en boucle. Defaults to [str].
@@ -282,10 +280,10 @@ class Catalogue_Reader:
             """
             if rtype is str:
                 return item
-            if rtype is bool:  # Cas particulier : bool("False") vaut True, car pour les chaines de caractères la fonction ne regarde que si la chaine est vide ou pas.
+            if rtype is bool: # Cas particulier : bool("False") vaut True, car pour les chaines de caractères la fonction ne regarde que si la chaine est vide ou pas.
                 return item.strip().lower() in ('true', '1', 'yes', 'oui', 'vrai')
             return rtype(item)
-        
+                
         types = types or [str]
         converted = [[to_type(cell, types[i % len(types)]) for i, cell in enumerate(row)] for row in self.BODY]
         if len(converted) == 1:
@@ -300,10 +298,10 @@ class Catalogue_Reader:
         """
         header: list[str] = [str(h) for h in self.HEAD]
 
-        # Transforme toutes les valeurs en texte
+       # Transforme toutes les valeurs en texte
         rows: list[list[str]] = [[str(c) for c in r] for r in self.BODY if isinstance(r, list)]
 
-        # Padding : Calcul de la largeur maximum des éléments de chaque colonnes
+       # Padding : Calcul de la largeur maximum des éléments de chaque colonnes
         n_cols: int = max([len(header)] + [len(r) for r in rows])
         widths: list[int] = [0] * n_cols
         if pretty:
