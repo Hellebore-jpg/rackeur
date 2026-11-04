@@ -23,7 +23,6 @@
     -  [x] Classe Python interaction avec le CSV  - **Hellebore-jpg**
     -  [x] Création du Catalogue / Tableau de données - **Purple-key-0** 
     -  [x] Relécture et analyse du Cahier des Charges  - **chummel-ops** + **Purple-key-0** 
-    -  [ ] 
 
 ## Autre
 - [ ] 1er livrable - **Tout le monde**
@@ -31,9 +30,74 @@
 # 03/11/2026 + 
 
 ## -- Taches restante --  
-- [ ] Tache a finir : 
-    - [ ] 1ère affichage, en ligne de commande, de la liste des produits.
-    - [ ] 1ère affichage, en ligne de commande, via une option, de la liste des  produits, triés par nom, dans l’ordre alphabétique, et alphabétique inverse
-    - [ ] 1ère affichage, en ligne de commande, via une option, de la liste des  produits, triés par prix, dans l’ordre croissant, et décroissant
-    - [ ] 1ère affichage, en ligne de commande, via une option, du ou des produits,  en fonction d’un mot-clé (recherche d’un produit dans le catalogue)
-    - [ ] 
+- [ ] Taches de projet : 
+    ## -- CRUD ( Pour le tableau CSV ) --
+    - [ ] 1ère affichage, en ligne de commande, de la liste des produits.( R )
+    - [ ] 1ère affichage, en ligne de commande, via une option, de la liste des  produits, triés par nom, dans l’ordre alphabétique, et alphabétique inverse. ( R )
+    - [ ] 1ère affichage, en ligne de commande, via une option, de la liste des  produits, triés par prix, dans l’ordre croissant, et décroissant. ( R )
+    - [ ] 1ère affichage, en ligne de commande, via une option, du ou des produits,  en fonction d’un mot-clé (recherche d’un produit dans le catalogue). ( R )
+    - [ ] Ajout, modification, et suppression d’un produit, en ligne de
+    commande, via une ou plusieurs options. ( C U D )
+
+    ## -- Presentation -- 
+    - [ ] Canva de presentation de fin de projet . 
+
+    ## -- BD SQLite -- 
+    - [ ] Recherches, analyses, et synthèse autour du SGBD SQLite pour le passage CSV a SQLite . **ylavallee-prog**
+    - [ ] Création manuelle du catalogue de produits sous la forme d’une table
+    SQLite.( Premeire BD SQLite )
+
+    ## -- Authentification et Permision -- 
+    - [ ] Définition de l'entité « utilisateur » avec prise en compte des différents
+    rôles. **Hellebore-jpg**
+    - [x] Création manuelle d’un jeu d’essais dans la table « utilisateur ».( Données de tests ) **Hellebore-jpg**
+    - [ ] Implémentation du mécanisme d’authentification ( Code page connexion).
+    - [ ] Gestion des autorisations, sur les 4 opérations sur le catalogue de
+    produits, en ligne de commande, via une ou plusieurs options.
+
+    ## -- Securité des Mots Passes 
+    - [ ] Implémentation de la création d’un nouvel utilisateur avec détection
+    de mots de passe compromis et proposition de suggestions pour les
+    renforcer, en ligne de commande, via une ou plusieurs options.
+    - [ ] Implémentation de la création d’un nouvel utilisateur avec détection
+    de mots de passe compromis et proposition de suggestions pour les
+    renforcer, au moyen de l’API RESTful « Have I Been Pwned », en ligne
+    de commande, via une ou plusieurs options.
+    - [ ] Définition des sigles HMI, GUI, UI et UX.
+
+    ## -- Interface Utilisateur ( Recherche et Maquette )
+    - [ ] Recherches, analyses, et synthèse autour des solutions disponibles
+    pour l'interfaçage utilisateur en Python.
+    - [ ] Choix d’une solution pour l'interfaçage utilisateur de l’application de
+    gestion du catalogue de produits.
+    - [ ] Maquette final des pages de l'aplication :
+        - [ ] Création d’un compte utilisateur avec détection de mots de
+        passe compromis et proposition de suggestions pour les
+        renforcer.
+        - [ ] Authentification.
+        - [ ] Gestion de produits :
+            - [ ] Affichage de la liste des produits, avec critères de tri.
+            - [ ] Recherche d’un produit en fonction d’un ou plusieurs
+            mots-clés.
+            - [ ] Ajout d’un produit.
+            - [ ] Modification d’un produit.
+            - [ ] Suppression d’un produit. 
+
+    ## -- Interface Utilisateur ( Rendre fonctionelle ) -- 
+    - [ ] Implémentation des différents composants de l’interface utilisateur :
+        - [ ] Création d’un compte utilisateur avec détection de mots de
+        passe compromis et proposition de suggestions pour les
+        renforcer.
+        - [ ] Authentification.
+        - [ ] Gestion de produits :
+            - [ ] Affichage de la liste des produits, avec critères de tri.
+            - [ ] Recherche d’un produit en fonction d’un ou plusieurs
+            mots-clés.
+            - [ ] Ajout d’un produit.
+            - [ ] Modification d’un produit.
+            - [ ] Suppression d’un produit. 
+
+    ## -- Bonus -- 
+    - [ ] Implémentation d’un système de notification ou d'alerte par
+    envoi de mail en cas de nouveaux compromis détectés pour un
+    utilisateur.
