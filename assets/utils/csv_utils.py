@@ -7,6 +7,30 @@ import csv # Gère la lecture et l'écriture de fichiers CSV
 class CSVTable(TypedDict):
     header: list[str]
     body: list[list[str]]
+    
+DATA_DIR: Path = Path('assets/data/')  # Dossier des fichiers CSV
+
+def CREATE_CSV(path: str | Path = 'catalogue.csv', header: list[str] | None = None, delimeter: str = ',', overwrite: bool = False) -> Path:
+    """Crée un fichier CSV vide (avec l'entête si elle est fournie) dans "assets/data/".
+
+    Args:
+        path (str | Path, optional): Chemin du fichier dans "assets/data/". Defaults to 'catalogue.csv'.
+        header (list[str] | None, optional): Entête du tableau, None crée un fichier totalement vide. Defaults to None.
+        delimeter (str, optional): Délimitation utilisée par le fichier CSV. Defaults to ','.
+        overwrite (bool, optional): Autorise l'écrasement d'un fichier existant. Defaults to False.
+
+    Returns:
+        Path: Chemin complet du fichier créé.
+
+    Raises:
+        FileExistsError: Si le fichier existe déjà et que overwrite vaut False.
+    """
+    full_path: Path = Path(DATA_DIR, path)
+    full_path.parent.mkdir(parents=True, exist_ok=True)  # Crée les dossiers manquants
+    with open(full_path, 'w' if overwrite else 'x', newline='', encoding='utf-8') as f:  # 'x' échoue si le fichier existe déjà
+        if header:
+            csv.writer(f, delimiter=delimeter).writerow(header)
+    return full_path
 
 class Catalogue:
     """Classe permetant d'importer et d'interagir facilement avec un fichier CSV.
@@ -18,7 +42,7 @@ class Catalogue:
             path (str | Path, optional): Chemin du fichier catalogue dans "assets/data/". Defaults to 'catalogue.csv'.
             delimeter (str, optional): Délimitation utilisée par le fichier CSV. Defaults to ','.
         """
-        self.PATH: Path = Path('assets/data/', path)
+        self.PATH: Path = Path(DATA_DIR, path)
         self.DELIMETER: str = delimeter
         _csv: CSVTable = self.import_csv()
         self.HEAD: list[str] = _csv['header']
@@ -32,6 +56,8 @@ class Catalogue:
         """
         with open(self.PATH, 'r', encoding='utf-8', newline='') as f:
             table: list[list[str]] = list(csv.reader(f, delimiter=self.DELIMETER))
+            if not table:  # Fichier totalement vide
+                return {'header': [], 'body': []}
             return {'header': table[0], 'body': table[1:]}
 
     def write_csv(self):
@@ -70,6 +96,19 @@ class Catalogue:
             self.BODY[coords[0]][coords[1]] = str(item)
         else:
             print('Error : Cannot add a single item to replace an entire line.')
+
+    def UPDATE_HEADER(self, item: str | list[str], index: int | None =  None) -> None:
+        """Modifie l'entête ou une de ses valeurs.
+
+        Args:
+            item (str | list[str]): Valeur ou entête de remplacement.
+            index (int | None, optional): Index d'une cellule spécifique. Defaults to None.
+        """
+        if isinstance(item, list) and index is None:
+            self.HEAD = item
+        elif isinstance(item, str) and isinstance(index, int):
+            self.HEAD[index] = item
+            
 
     # CRU(D)
     def DELETE(self, index: int = -1) -> list[str]:
@@ -135,8 +174,10 @@ class Catalogue_Reader:
             start (int, optional): Index de la première ligne du segment utilisé. Defaults to 0.
             end (int, optional): Index de la dernière ligne du segment utilisé. Defaults to 0.
         """
+        if end == 0:
+            end = len(catalogue.BODY)
         self.HEAD: list[str] = catalogue.HEAD
-        self.BODY: list[list[str]] = catalogue.BODY if end == 0 else catalogue.BODY[start:end]
+        self.BODY: list[list[str]] = catalogue.BODY[start:end]
         
     def SELECT(self, index: int) -> list[str]:
         """Séléctionne une seule ligne parmi le segment utilisé du fichier CSV et supprime les autres du corps du lecteur.
@@ -228,6 +269,7 @@ class Catalogue_Reader:
         Returns:
             list[list[object]] | list[object]: Ligne ou liste de lignes avec les valeurs converties.
         """
+        
         def to_type(item: str, rtype: type = str) -> object:
             """Converti une chaîne de caractères en valeur d'un autre type.
 
@@ -244,6 +286,7 @@ class Catalogue_Reader:
                 return item.strip().lower() in ('true', '1', 'yes', 'oui', 'vrai')
             return rtype(item)
         
+        types = types or [str]
         converted = [[to_type(cell, types[i % len(types)]) for i, cell in enumerate(row)] for row in self.BODY]
         if len(converted) == 1:
             return converted[0] # Ligne simple
@@ -284,3 +327,9 @@ class Catalogue_Reader:
             print('-+-'.join('-' * w for w in widths)) # Ligne de séparation décorative sous l'entête
         for row in rows:
             print(frmat(row))
+            
+def TESTING():
+    pass
+
+if __name__ == '__main__':
+    TESTING()
