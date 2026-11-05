@@ -35,6 +35,7 @@
 ## -- Presentation -- 
 - [ ] Canva de presentation de fin de projet . - **chummel-ops**
 - [ ] Repartition de la parole pour la presentation. - **chummel-ops**
+- [ ] Rédaction du README.md - **Hellebore-jpg**
 
 ## -- Base de Données SQLite -- 
 - [ ] Recherches, analyses, et synthèse autour du SGBD SQLite pour le passage CSV a SQLite. - **ylavallee-prog**
@@ -46,7 +47,7 @@
 - [x] Création manuelle d'un jeu d'essais ( Données de tests ) dans la table « utilisateur ». - **Hellebore-jpg**
 - [x] Implémentation du mécanisme d'authentification ( Code page connexion). - **Hellebore-jpg**
 - [x] Gestion des autorisations, sur les 4 opérations sur le catalogue de produits, en ligne de commande, via une ou plusieurs options. - **Hellebore-jpg**
-- [ ] Implémentation de la création d'un nouvel utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer, au moyen de l'API RESTful « Have I Been Pwned », en ligne de commande, via une ou plusieurs options. - **Hellebore-jpg**
+- [x] Implémentation de la création d'un nouvel utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer, au moyen de l'API RESTful « Have I Been Pwned », en ligne de commande, via une ou plusieurs options. - **Hellebore-jpg**
 
 ## -- Interface Utilisateur ( Recherche et Maquette ) --
 - [x] Définition des sigles HMI, GUI, UI et UX. - **Hellebore-jpg**

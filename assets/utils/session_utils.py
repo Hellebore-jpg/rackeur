@@ -1,10 +1,26 @@
+from typing import NamedTuple
+
 import bcrypt # Hash des mots de passe (Identique à MySQL)
 
 from csv_utils import *
+from api_utils import *
+
+# Seuls ces classes sont exportés avec "from csv_utils import *", tout le reste est interne au script.
+__all__ = [
+    'PwdCheckResult', 'LOGGED_OUT', 'PERMISSIONS',
+    'Session',
+]
+
+class PwdCheckResult(NamedTuple):
+    leaks: int
+    length_8: bool
+    has_upper: bool
+    has_digit: bool
+    has_special: bool
 
 LOGGED_OUT: list[str] = ['Non Connécté', '*****', 'none', '0000']
-PERMISSSIONS: list[str] = ['CREATE', 'READ', 'UPDATE', 'DELETE']
-NO_PERMS = {e: False for e in PERMISSSIONS}
+PERMISSIONS: list[str] = ['CREATE', 'READ', 'UPDATE', 'DELETE']
+NO_PERMS = {e: False for e in PERMISSIONS}
 
 HEADER_TYPE: list[type] = [str]
 
@@ -74,7 +90,7 @@ class Session:
         id, row = found
         if len(row) < 4 or not _verify(password, row[1]):
             return False
-        perms: dict[str, bool] = {p: row[3][i:i + 1] == '1' for i, p in enumerate(PERMISSSIONS)}
+        perms: dict[str, bool] = {p: row[3][i:i + 1] == '1' for i, p in enumerate(PERMISSIONS)}
         # La session est initialisée
         self.USER_ID = id
         self.USER = row
@@ -114,6 +130,22 @@ class Session:
             bool: Utilisateur autorisé.
         """
         return self.PERMS.get(perm.upper(), False)
+    
+    def SUGGEST_PWD_UPGRADE(self, password: str) -> PwdCheckResult:
+        """Renvoie une liste détaillant la robustesse du mot de passe à appeller avant d'inscrire l'utilisateur ou de changer son mdp pour lui suggérer un mdp plus robuste.
+
+        Args:
+            password (str): Mot de passe en clair.
+
+        Returns:
+            PwdCheckResult: [Nombre de leaks, 8 caractères minimum, Majuscules, Chiffres, Charactères Spéciaux]
+        """
+        leaks = PWNED_COUNT(password)
+        length_8 = len(password) >= 8
+        has_upper = any(char.isupper() for char in password)
+        has_digit = any(c.isdigit() for c in password)
+        has_special = any(not char.isalnum() for char in password)
+        return  PwdCheckResult(leaks, length_8, has_upper, has_digit, has_special)
         
 # --------------------------------------------------------------------------------------
 # Tests
@@ -195,7 +227,7 @@ def TESTING() -> None:
         # 8. Check des permissions
         db.CREATE(['admin', _password('pw-admin'), 'admin', '1111'])
         s.LOG_OUT()
-        check('CHECK_PERM : déconnecté -> tout refusé', [s.CHECK_PERM(p) for p in PERMISSSIONS], [False] * 4)
+        check('CHECK_PERM : déconnecté -> tout refusé', [s.CHECK_PERM(p) for p in PERMISSIONS], [False] * 4)
         s.AUTH('rateau', 'pw-rateau') # Permissions '0100' : lecture seule
         check('CHECK_PERM : permission accordée', s.CHECK_PERM('READ'), True)
         check('CHECK_PERM : permission refusée', s.CHECK_PERM('DELETE'), False)
@@ -203,7 +235,7 @@ def TESTING() -> None:
         check('CHECK_PERM : insensible à la casse', (s.CHECK_PERM('read'), s.CHECK_PERM('Read'), s.CHECK_PERM('rEaD')), (True, True, True))
         check('CHECK_PERM : permission inconnue -> False', s.CHECK_PERM('FLY'), False)
         s.AUTH('admin', 'pw-admin') # Permissions '1111' : tout autorisé
-        check('CHECK_PERM : administrateur autorisé partout', [s.CHECK_PERM(p) for p in PERMISSSIONS], [True] * 4)
+        check('CHECK_PERM : administrateur autorisé partout', [s.CHECK_PERM(p) for p in PERMISSIONS], [True] * 4)
         s.LOG_OUT()
         check('CHECK_PERM : LOG_OUT retire les droits', s.CHECK_PERM('READ'), False)
 
