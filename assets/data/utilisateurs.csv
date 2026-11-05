@@ -1,4 +1,5 @@
 username,password,role,permissions
-"admin",123456789, admin,1111
-"rat-degou",123456789,editor,0110
-"remitatouille",123456789,visitor,0100
+"admin",15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225, admin,1111
+"rat-degou",15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225,editor,0110
+"remitatouille",15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225,visitor,0100
+"rateau",15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225,none,0000

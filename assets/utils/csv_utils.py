@@ -424,10 +424,10 @@ def TESTING() -> None:
     """
     header: list[str] = ['nom', 'prix', 'qte', 'actif']
     rows: list[list[object]] = [
-        ['Guitare',             '2.50', 10, True],   # index réel 0
-        ['Basse',               '1,20', 5,  False],  # index réel 1 (virgule décimale)
-        ['Flûte à bec',         5,      0,  'oui'],  # index réel 2
-        ['Platine',             'abc',  7,  True],   # index réel 3 (prix non numérique)
+        ['Guitare',            '2.50', 10, True],   # index réel 0
+        ['Basse',              '1,20', 5,  False],  # index réel 1 (virgule décimale)
+        ['Flûte à bec',        5,      0,  'oui'],  # index réel 2
+        ['Platine',            'abc',  7,  True],   # index réel 3 (prix non numérique)
         ['Guitare éléctrique', '3.10', 4,  True],   # index réel 4
     ]
     types: list[type] = [str, float, int, bool]
