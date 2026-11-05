@@ -45,7 +45,8 @@
 ## -- Authentification et Permision -- 
 - [x] Définition de l'entité « utilisateur » avec prise en compte des différents rôles. - **Hellebore-jpg**
 - [x] Création manuelle d'un jeu d'essais ( Données de tests ) dans la table « utilisateur ». - **Hellebore-jpg**
-- [x] Implémentation du mécanisme d'authentification ( Code page connexion). - **Hellebore-jpg**
+- [x] Implémentation du mécanisme d'authentification ( Code page connexion & inscription). - **Hellebore-jpg**
+- [x] Hash des mots de passe en Bcrypt dans la base de données. - **Hellebore-jpg**
 - [x] Gestion des autorisations, sur les 4 opérations sur le catalogue de produits, en ligne de commande, via une ou plusieurs options. - **Hellebore-jpg**
 - [x] Implémentation de la création d'un nouvel utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer, au moyen de l'API RESTful « Have I Been Pwned », en ligne de commande, via une ou plusieurs options. - **Hellebore-jpg**
 
