@@ -5,7 +5,7 @@ import bcrypt # Hash des mots de passe (Identique à MySQL)
 from .csv_utils import *
 from .api_utils import *
 
-# Seuls ces classes sont exportés avec "from csv_utils import *", tout le reste est interne au script.
+# Seuls ces classes sont exportés avec "from session_utils import *", tout le reste est interne au script.
 __all__ = [
     'PwdCheckResult', 'LOGGED_OUT', 'PERMISSIONS',
     'Session',

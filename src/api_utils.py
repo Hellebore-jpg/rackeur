@@ -42,6 +42,8 @@ def TESTING() -> None:
     # 1. Have I Been Pwned
     n = PWNED_COUNT("password123")
     print(f"Found {n} times in breaches" if n else "Not found in known breaches")
+    n = PWNED_COUNT("uildgbvylordywbvlwbyufvrydwrvgfuwdry")
+    print(f"Found {n} times in breaches" if n else "Not found in known breaches")
 
 if __name__ == "__main__":
     TESTING()

@@ -81,3 +81,11 @@
 
 ## -- Bonus -- 
 - [ ] Implémentation d'un système de notification ou d'alerte par envoi de mail en cas de nouveaux compromis détectés pour un utilisateur. - **chummel-ops** 
+- [ ] Navigation par catégories dans l'interface
+- [ ] Panel de gestion des utilisateurs admins et de leur permissions
+- [ ] Jeu de données de test à installer optionellement pendant le setup de l'application - **Hellebore-jpg**
+- [ ] Animations et autres améliorations graphiques
+- [ ] Faux popup pour un "Abonnement Premium" gratuit
+    - [ ] Interface Web
+    - [ ] Base de données MySQL en ligne
+    - [ ] Système de commandes des produits

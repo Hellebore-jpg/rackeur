@@ -12,8 +12,8 @@ from PyQt6.QtWidgets import (QApplication, QMainWindow,
 from PyQt6.QtCore import QSize, Qt, QRect, QPropertyAnimation
 from PyQt6.QtGui import QAction, QColor, QPalette
 import sys
-from assets.utils import api_utils, csv_utils, session_utils
-from assets.utils.session_utils import Session
+from src import api_utils, csv_utils, session_utils
+from src.session_utils import Session
 from random import choice
 from layout_colorwidget import Color
 
