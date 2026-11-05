@@ -1,4 +1,4 @@
-from csv_utils import Catalogue, Catalogue_Reader, CREATE_FILE
+from csv_utils import Database, DB_Reader, CREATE_FILE
 
 PERMISSSIONS: list[str] = [
     'Create', 'Read', 'Update', 'Delete'
@@ -10,7 +10,7 @@ class Session:
     def __init__(self) -> None:
         """Crée une session vide, prête pour la connexion ou l'inscription.
         """
-        self.DB: Catalogue = Catalogue('utilisateurs.csv')
+        self.DB: Database = Database('utilisateurs.csv')
         
         self.USER: str = 'Non Connécté'
         self.ID = -1
@@ -26,7 +26,7 @@ class Session:
         Returns:
             bool: Succès de l'autentification.
         """
-        reader: Catalogue_Reader = Catalogue_Reader(self.DB)
+        reader: DB_Reader = DB_Reader(self.DB)
         reader.SEARCH(username, [0], True)
         reader.SELECT(0)
         user: list = reader.READ()

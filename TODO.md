@@ -11,6 +11,7 @@
     >- Ajout des collaborateurs : `Hellebore-jpg (Mathieu)` | `Purple-key-0 (Gabriel)` | `chummel-ops (Charles)` | `ylavallee-prog (Yanis)`
     >- Ajout de l'intervenant : `TheLegacy33`
     >- Explications du fonctionnement de venv à tout le monde et setup sur tout les PCs
+    >- Création du .gitignore et de requirements.txt avec `pip freeze > requirements.txt`
 
 ## Objectifs
 - [x] Taches du premier jour : 
