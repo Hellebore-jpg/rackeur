@@ -48,20 +48,12 @@
 - [x] Gestion des autorisations, sur les 4 opérations sur le catalogue de produits, en ligne de commande, via une ou plusieurs options. - **Hellebore-jpg**
 
 ## -- Securité des Mots Passes --
-- [ ] Implémentation de la création d'un nouvel utilisateur avec détection
-de mots de passe compromis et proposition de suggestions pour les
-renforcer, en ligne de commande, via une ou plusieurs options.
-- [ ] Implémentation de la création d'un nouvel utilisateur avec détection
-de mots de passe compromis et proposition de suggestions pour les
-renforcer, au moyen de l'API RESTful « Have I Been Pwned », en ligne
-de commande, via une ou plusieurs options.
-- [ ] Définition des sigles HMI, GUI, UI et UX.
+- [ ] Implémentation de la création d'un nouvel utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer, au moyen de l'API RESTful « Have I Been Pwned », en ligne de commande, via une ou plusieurs options. - **Hellebore-jpg**
+- [ ] Définition des sigles HMI, GUI, UI et UX. - **Hellebore-jpg**
 
 ## -- Interface Utilisateur ( Recherche et Maquette ) --
-- [ ] Recherches, analyses, et synthèse autour des solutions disponibles
-pour l'interfaçage utilisateur en Python. - **Purple-key-0** 
-- [ ] Choix d'une solution pour l'interfaçage utilisateur de l'application de
-gestion du catalogue de produits.  - **chummel-ops**
+- [ ] Recherches, analyses, et synthèse autour des solutions disponibles pour l'interfaçage utilisateur en Python. - **Purple-key-0** 
+- [ ] Choix d'une solution pour l'interfaçage utilisateur de l'application de gestion du catalogue de produits.  - **chummel-ops**
 - [ ] Maquette final des pages de l'aplication :
     - [ ] Création d'un compte utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer. - **chummel-ops**
     - [ ] Authentification.  - **chummel-ops**
