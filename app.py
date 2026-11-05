@@ -1,4 +1,3 @@
-from assets.utils.csv_utils import Catalogue, Catalogue_Reader, CREATE_CSV
 from PyQt6.QtWidgets import (QApplication, QMainWindow, 
                             QPushButton, QWidget, QPushButton, 
                             QListWidget, QHBoxLayout, QVBoxLayout, 
@@ -13,28 +12,10 @@ from PyQt6.QtWidgets import (QApplication, QMainWindow,
 from PyQt6.QtCore import QSize, Qt, QRect, QPropertyAnimation
 from PyQt6.QtGui import QAction, QColor, QPalette
 import sys
+from assets.utils import api_utils, csv_utils, session_utils
+from assets.utils.session_utils import Session
 from random import choice
 from layout_colorwidget import Color
-
-if __name__ == '__main__':
-    header_type: list[type] = [str, str, int]
-    CREATE_CSV(header=['test1', 'test2', 'test3'])
-    catalogue = Catalogue()
-    catalogue.SAVE_CSV()
-    reader = Catalogue_Reader(catalogue)
-    reader.PRINT_CSV()
-
-window_titles = [
-    'My App',
-    'My App',
-    'Still My App',
-    'Still My App',
-    'What on earth',
-    'What on earth',
-    'This is surprising',
-    'This is surprising',
-    'Something went wrong'
-]
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -51,28 +32,62 @@ class MainWindow(QMainWindow):
         page_layout.addLayout(button_layout)
         page_layout.addLayout(self.stacklayout)
 
+        self.session = Session()
+
+        titre = QLabel("Bienvenue sur Racker !")
+        titre.setStyleSheet("font-size: 24px; font-weight: bold; color: white;")
+        titre.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        connexion_layout.addWidget(titre)
+        label = QLabel("Entrez vos identifiants et mot de passe : ")
+        label.setStyleSheet("font-size: 18px; color: white;")
+        connexion_layout.addWidget(label)
+        self.id = QLineEdit()
+        self.id.setPlaceholderText("Identifiant")
+        self.id.setStyleSheet("font-size: 18px; color: white;")
+        connexion_layout.addWidget(self.id)
+        self.password = QLineEdit()
+        self.password.setPlaceholderText("Mot de passe")
+        self.password.setEchoMode(QLineEdit.EchoMode.Password)
+        self.password.setStyleSheet("font-size: 18px; color: white;")
+        connexion_layout.addWidget(self.password)
+
         connexion = QWidget()
         connexion.setLayout(connexion_layout)
         self.stacklayout.addWidget(connexion)
 
         btn = QPushButton("Se Connecter")
-        btn.pressed.connect(self.activate_tab_acceuil)
+        btn.clicked.connect(self.connexion)
+        btn.setStyleSheet("font-size: 18px; color: white;")
+        btn.pressed.connect(self.connexion)
         connexion_layout.addWidget(btn)
         acceuil = QWidget()
         acceuil.setLayout(acceuil_layout)
         self.stacklayout.addWidget(acceuil)
 
-        container = QWidget()
-        container.setLayout(page_layout)
-        self.setCentralWidget(container)
-
-
-    def activate_tab_connexion(self):
-        self.stacklayout.setCurrentIndex(0)
+        page = QWidget()
+        page.setStyleSheet("background-color: #380059;")
+        page.setLayout(page_layout)
+        self.setCentralWidget(page)
 
     def activate_tab_acceuil(self):
         self.stacklayout.setCurrentIndex(1)
+        print("Transition vers l'acceuil.")
+        return 0
 
+    def connexion(self):
+        id = self.id.text()
+        password = self.password.text()
+        if(self.session.REGISTER(id, password, False) == True):
+            if(self.session.AUTH(id, password) == True):
+                print("Le compte utilisateur a été créé et connecté.")
+                self.activate_tab_acceuil()
+                return 0
+            else :
+                print("ERROR [2] : L'utiliseateur n'a pas été authentifié.")
+                return 2
+        else:
+            print("ERROR [1] : Le compte utilisateur n'a pas été créé.")
+            return 1
 
     def contextMenuEvent(self, e):
         context = QMenu(self)

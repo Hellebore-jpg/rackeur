@@ -1,4 +1,10 @@
 username,password,role,permissions
-"admin",$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe, admin,1111
-"rat-degou",$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe,editor,0110
-"remitatouille",$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe,visitor,0100
+admin,$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe, admin,1111
+rat-degou,$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe,editor,0110
+remitatouille,$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe,visitor,0100
+test,$2b$12$FQQh9SJYuMTPhUgutjHJROid9otOhPQoOTz2OAlRrDyRKiSQ3DGam,visiteur,0100
+test1,$2b$12$gQZanHmhKqJjA3.Z9hYrG.NrSbbfZF77ahX4PNnOZIHZwC.TTxfBy,visiteur,0100
+test2,$2b$12$J3.r89D.Ac/1rYflG931u.k2oblXgxS9TTdhNQOxxZ/p3D.9X9452,visiteur,0100
+test3,$2b$12$19ikB2QHQBoePF2FxE0CxuO68fC6oMVfg.YPWVrFMM9QE1N9pLvL.,visiteur,0100
+test 4,$2b$12$1Igk.og6nyxjSIwR8Za/6..1RfhVUBIBM.ieAbxs98v5YGUpCBnDy,visiteur,0100
+test5,$2b$12$u4TnxbeR4.EfVylgMSEtKuHBqJNwiwYeK0e6VnY1G9ZgymEayHIfS,visiteur,0100
