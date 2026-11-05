@@ -5,5 +5,4 @@ if __name__ == '__main__':
     CREATE_FILE(header=['product', 'price', 'description', 'stock', 'quality'])
     catalogue = Database()
     catalogue.SAVE_FILE()
-    reader = DB_Reader(catalogue)
-    reader.PRINT_TABLE()
+    catalogue.READER().PRINT_TABLE()

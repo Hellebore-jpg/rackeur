@@ -1,7 +1,7 @@
 from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctionsfrom contextlib import contextmanager #
 
 from contextlib import contextmanager # Gère les blocs "with" personnalisés (utilisé pour la BDD temporaire)
-from collections.abc import Generator # 
+from collections.abc import Generator
 from typing import TypedDict # Gère les types de variables, ce script est écrit avec des types stictes
 from pathlib import Path # Gère les chemins de fichiers
 import unicodedata # Gère les actions sur les caractères unicode
@@ -147,7 +147,7 @@ class Database:
         elif isinstance(coords, list) and not isinstance(item, list):
             self.BODY[coords[0]][coords[1]] = str(item)
         else:
-            print('Error : Cannot add a single item to replace an entire line.')
+            raise ValueError('Impossible d\'ajouter un item seul pour remplacer une ligne, ou inversement.')
 
     def UPDATE_HEADER(self, item: str | list[str], index: int | None = None) -> None:
         """Modifie l'entête ou une de ses valeurs.
@@ -172,8 +172,6 @@ class Database:
             list[str]: Ligne supprimée.
         """
         return self.BODY.pop(index)
-
-# Fonctions internes (préfixe "__" + absentes de __all__ : invisibles avec "import *")
 
 def _normalize(text: str) -> str:
     """Renvoie les caractères en minuscules sans accents, ex :"Guitare" -> "guitare".
@@ -207,7 +205,7 @@ def _to_float(text: str) -> float | None:
 
     Returns:
         float | None: Texte converti en nombre décimal.
-    """
+    """    
     try:
         value: float = float(text.strip().replace(' ', '').replace(',', '.')) # Met le texte en forme pour une plus grande souplesse
     except ValueError:
@@ -259,11 +257,11 @@ class DB_Reader:
         self.HEAD: list[str] = database.HEAD
         self.BODY: list[IndexedRow] = [(i, database.BODY[i]) for i in real_ids]
         
-    def SELECT(self, index: int) -> DB_Reader:
+    def SELECT(self, index: int = 0) -> DB_Reader:
         """Séléctionne une seule ligne parmi le segment utilisé du fichier CSV et supprime les autres du corps du lecteur.
 
         Args:
-            index (int): Index relatif au premier index du segment (considéré comme 0).
+            index (int): Index relatif au premier index du segment (considéré comme 0). Defaults to 0.
 
         Returns:
             DB_Reader: Le lecteur, pour enchaîner.
