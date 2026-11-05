@@ -46,12 +46,14 @@
 - [x] Création manuelle d'un jeu d'essais ( Données de tests ) dans la table « utilisateur ». - **Hellebore-jpg**
 - [x] Implémentation du mécanisme d'authentification ( Code page connexion). - **Hellebore-jpg**
 - [x] Gestion des autorisations, sur les 4 opérations sur le catalogue de produits, en ligne de commande, via une ou plusieurs options. - **Hellebore-jpg**
-
-## -- Securité des Mots Passes --
 - [ ] Implémentation de la création d'un nouvel utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer, au moyen de l'API RESTful « Have I Been Pwned », en ligne de commande, via une ou plusieurs options. - **Hellebore-jpg**
-- [ ] Définition des sigles HMI, GUI, UI et UX. - **Hellebore-jpg**
 
 ## -- Interface Utilisateur ( Recherche et Maquette ) --
+- [x] Définition des sigles HMI, GUI, UI et UX. - **Hellebore-jpg**
+    >- HMI (Human-Machine Interface) : Interface homme-machine, souvent industrielle, pour le contrôle de systèmes.
+    >- GUI (Graphical User Interface) : Interface utilisateur graphique, axée sur les éléments visuels et graphiques.
+    >- UI (User Interface) : Interface utilisateur, désignant les éléments visuels et interactifs d'un logiciel.
+    >- UX (User Experience) : Expérience utilisateur, centrée sur la satisfaction et le parcours global de l'utilisateur.
 - [ ] Recherches, analyses, et synthèse autour des solutions disponibles pour l'interfaçage utilisateur en Python. - **Purple-key-0** 
 - [ ] Choix d'une solution pour l'interfaçage utilisateur de l'application de gestion du catalogue de produits.  - **chummel-ops**
 - [ ] Maquette final des pages de l'aplication :
