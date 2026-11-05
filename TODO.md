@@ -44,10 +44,10 @@
 ## -- Authentification et Permision -- 
 - [x] Définition de l'entité « utilisateur » avec prise en compte des différents rôles. - **Hellebore-jpg**
 - [x] Création manuelle d'un jeu d'essais ( Données de tests ) dans la table « utilisateur ». - **Hellebore-jpg**
-- [ ] Implémentation du mécanisme d'authentification ( Code page connexion). - **Hellebore-jpg**
-- [ ] Gestion des autorisations, sur les 4 opérations sur le catalogue de produits, en ligne de commande, via une ou plusieurs options. - **Hellebore-jpg**
+- [x] Implémentation du mécanisme d'authentification ( Code page connexion). - **Hellebore-jpg**
+- [x] Gestion des autorisations, sur les 4 opérations sur le catalogue de produits, en ligne de commande, via une ou plusieurs options. - **Hellebore-jpg**
 
-## -- Securité des Mots Passes 
+## -- Securité des Mots Passes --
 - [ ] Implémentation de la création d'un nouvel utilisateur avec détection
 de mots de passe compromis et proposition de suggestions pour les
 renforcer, en ligne de commande, via une ou plusieurs options.
@@ -57,20 +57,20 @@ renforcer, au moyen de l'API RESTful « Have I Been Pwned », en ligne
 de commande, via une ou plusieurs options.
 - [ ] Définition des sigles HMI, GUI, UI et UX.
 
-## -- Interface Utilisateur ( Recherche et Maquette )
+## -- Interface Utilisateur ( Recherche et Maquette ) --
 - [ ] Recherches, analyses, et synthèse autour des solutions disponibles
 pour l'interfaçage utilisateur en Python. - **Purple-key-0** 
 - [ ] Choix d'une solution pour l'interfaçage utilisateur de l'application de
 gestion du catalogue de produits.  - **chummel-ops**
 - [ ] Maquette final des pages de l'aplication :
-    - [ ] Création d'un compte utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer.  - **chummel-ops**
+    - [ ] Création d'un compte utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer. - **chummel-ops**
     - [ ] Authentification.  - **chummel-ops**
     - [ ] Gestion de produits :
-        - [ ] Affichage de la liste des produits, avec critères de tri.  - **chummel-ops**
+        - [ ] Affichage de la liste des produits, avec critères de tri. - **chummel-ops**
         - [ ] Recherche d'un produit en fonction d'un ou plusieurs mots-clés.  - **chummel-ops**
         - [ ] Ajout d'un produit.  - **chummel-ops**
-        - [ ] Modification d'un produit.  - **chummel-ops**
-        - [ ] Suppression d'un produit.  - **chummel-ops** 
+        - [ ] Modification d'un produit. - **chummel-ops**
+        - [ ] Suppression d'un produit. - **chummel-ops** 
 
 ## -- Interface Utilisateur ( Rendre fonctionelle ) -- 
 - [ ] Implémentation des différents composants de l'interface utilisateur :
