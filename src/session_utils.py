@@ -103,6 +103,7 @@ class Session:
         Args:
             username (str): Nom d'utilisateur.
             password (str): MDP en clair.
+            autoconnect (bool): L'utilisateur se fait connecter tout de suite après l'inscription au lieu de rentrer son mdp à nouveau.
     
         Returns:
             bool: Succès de l'inscription.
