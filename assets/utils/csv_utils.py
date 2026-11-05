@@ -9,7 +9,7 @@ import tempfile # Gère les fichiers et dossiers temporaires
 import math # Gère les fonctions mathématiques
 import csv # Gère la lecture et l'écriture de fichiers CSV
 
-# Seuls ces classes sont exportés avec "from catalogue import *", tout le reste est interne au script.
+# Seuls ces classes sont exportés avec "from csv_utils import *", tout le reste est interne au script.
 __all__ = [
     'CSVTable', 'IndexedRow', 'DATA_DIR',
     'CREATE_FILE', 'TEMP_DB',
