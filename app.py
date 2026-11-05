@@ -1,4 +1,4 @@
-from assets.utils.csv_utils import *
+from src.csv_utils import *
 
 if __name__ == '__main__':
     header_type: list[type] = [str, float, str, int, str]
