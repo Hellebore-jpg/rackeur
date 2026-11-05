@@ -77,17 +77,22 @@ class MainWindow(QMainWindow):
     def connexion(self):
         id = self.id.text()
         password = self.password.text()
-        if(self.session.REGISTER(id, password, False) == True):
-            if(self.session.AUTH(id, password) == True):
+        if(self.session.REGISTER(id, password)): # Il faudra séparer l'inscription de la connexion plus tard si on rajoute les commandes ou d'autres données d'utilisateur. - Math
+            if(self.session.AUTH(id, password)):
                 print("Le compte utilisateur a été créé et connecté.")
                 self.activate_tab_acceuil()
                 return 0
             else :
-                print("ERROR [2] : L'utiliseateur n'a pas été authentifié.")
+                print("ERROR [2] : L'utilisateur n'a pas été authentifié.")
                 return 2
         else:
-            print("ERROR [1] : Le compte utilisateur n'a pas été créé.")
-            return 1
+            if(self.session.AUTH(id, password)): # J'ai rajouté ça ici parce-que tu pouvais pas te connecter si ton compte existait déjà, libre à toi de le suprimmer - Math
+                print("Le compte utilisateur existe et s'est connecté.")
+                self.activate_tab_acceuil()
+                return 0
+            else :
+                print("ERROR [1] : Le compte utilisateur n'a pas été créé.")
+                return 1
 
     def contextMenuEvent(self, e):
         context = QMenu(self)
