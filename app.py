@@ -1,19 +1,21 @@
 from PyQt6.QtWidgets import (QApplication, QMainWindow, 
                             QPushButton, QWidget, QPushButton, 
                             QListWidget, QHBoxLayout, QVBoxLayout, 
-                            QFrame, QLabel, QLineEdit, 
+                            QFrame, QLabel, QLineEdit, QHeaderView,
                             QMenu, QCheckBox, QComboBox,
                             QDateEdit, QDateTimeEdit, QStackedLayout,
                             QDial, QDoubleSpinBox, QFontComboBox,
                             QLabel, QLCDNumber, QLineEdit,
                             QMainWindow, QProgressBar, QPushButton,
                             QRadioButton, QSlider, QSpinBox,
-                            QTimeEdit, QVBoxLayout, QWidget)
+                            QTimeEdit, QVBoxLayout, QWidget, QGridLayout, QTableView)
 from PyQt6.QtCore import QSize, Qt, QRect, QPropertyAnimation
 from PyQt6.QtGui import QAction, QColor, QPalette
 import sys
 from src import api_utils, csv_utils, session_utils
 from src.session_utils import Session
+from src.csv_utils import Database
+from product_model import ProduitModel
 from random import choice
 from layout_colorwidget import Color
 
@@ -27,7 +29,8 @@ class MainWindow(QMainWindow):
         button_layout = QHBoxLayout()
         self.stacklayout = QStackedLayout()
         connexion_layout = QVBoxLayout()
-        acceuil_layout = QVBoxLayout()
+        inscription_layout = QVBoxLayout()
+        catalog_layout = QVBoxLayout()
 
         page_layout.addLayout(button_layout)
         page_layout.addLayout(self.stacklayout)
@@ -41,58 +44,109 @@ class MainWindow(QMainWindow):
         label = QLabel("Entrez vos identifiants et mot de passe : ")
         label.setStyleSheet("font-size: 18px; color: white;")
         connexion_layout.addWidget(label)
-        self.id = QLineEdit()
-        self.id.setPlaceholderText("Identifiant")
-        self.id.setStyleSheet("font-size: 18px; color: white;")
-        connexion_layout.addWidget(self.id)
-        self.password = QLineEdit()
-        self.password.setPlaceholderText("Mot de passe")
-        self.password.setEchoMode(QLineEdit.EchoMode.Password)
-        self.password.setStyleSheet("font-size: 18px; color: white;")
-        connexion_layout.addWidget(self.password)
-
+        self.user_id_connexion = QLineEdit()
+        self.user_id_connexion.setPlaceholderText("Identifiant")
+        self.user_id_connexion.setStyleSheet("font-size: 18px; color: white;")
+        self.user_id_connexion.textChanged.connect(lambda texte: print("Identifiant modifié :", repr(texte)))
+        connexion_layout.addWidget(self.user_id_connexion)
+        self.password_connexion = QLineEdit()
+        self.password_connexion.setPlaceholderText("Mot de passe")
+        self.password_connexion.setEchoMode(QLineEdit.EchoMode.Password)
+        self.password_connexion.setStyleSheet("font-size: 18px; color: white;")
+        self.password_connexion.textChanged.connect(lambda texte: print("Mot de passe modifié :", repr(texte)))
+        connexion_layout.addWidget(self.password_connexion)
+        btn = QPushButton("Se Connecter")
+        btn.setStyleSheet("font-size: 18px; color: white;")
+        btn.clicked.connect(self.connexion)
+        connexion_layout.addWidget(btn)
+        btn = QPushButton("S'inscrire")
+        btn.setStyleSheet("font-size: 18px; color: white;")
+        btn.clicked.connect(self.activate_tab_inscription)
+        connexion_layout.addWidget(btn)
         connexion = QWidget()
         connexion.setLayout(connexion_layout)
         self.stacklayout.addWidget(connexion)
 
-        btn = QPushButton("Se Connecter")
-        btn.clicked.connect(self.connexion)
+        label = QLabel("Entrez vos identifiants et mot de passe pour créé votre compte : ")
+        label.setStyleSheet("font-size: 18px; color: white;")
+        inscription_layout.addWidget(label)
+        self.user_id_inscription = QLineEdit()
+        self.user_id_inscription.setPlaceholderText("Identifiant")
+        self.user_id_inscription.setStyleSheet("font-size: 18px; color: white;")
+        inscription_layout.addWidget(self.user_id_inscription)
+        self.password_inscription = QLineEdit()
+        self.password_inscription.setPlaceholderText("Mot de passe")
+        self.password_inscription.setEchoMode(QLineEdit.EchoMode.Password)
+        self.password_inscription.setStyleSheet("font-size: 18px; color: white;")
+        inscription_layout.addWidget(self.password_inscription)
+        self.password_confirmation = QLineEdit()
+        self.password_confirmation.setPlaceholderText("Confirmation de mot de passe")
+        self.password_confirmation.setEchoMode(QLineEdit.EchoMode.Password)
+        self.password_confirmation.setStyleSheet("font-size: 18px; color: white;")
+        inscription_layout.addWidget(self.password_confirmation)
+        inscription = QWidget()
+        inscription.setLayout(inscription_layout)
+        self.stacklayout.addWidget(inscription)
+        btn = QPushButton("Créer son compte")
+        btn.clicked.connect(self.inscription)
         btn.setStyleSheet("font-size: 18px; color: white;")
-        btn.pressed.connect(self.connexion)
-        connexion_layout.addWidget(btn)
-        acceuil = QWidget()
-        acceuil.setLayout(acceuil_layout)
-        self.stacklayout.addWidget(acceuil)
+        btn.pressed.connect(self.inscription)
+        inscription_layout.addWidget(btn)
+
+        self.catalog_db = Database("catalogue.csv")
+        label = QLabel("Catalogue de nos produits")
+        label.setStyleSheet("font-size: 24px; font-weight: bold; color: white;")
+        label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        catalog_layout.addWidget(label)
+        self.product_model = ProduitModel(self.catalog_db)
+        self.table_catalog = QTableView()
+        self.table_catalog.setModel(self.product_model)
+        self.table_catalog.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        catalog_layout.addWidget(self.table_catalog)
+        catalog = QWidget()
+        catalog.setLayout(catalog_layout)
+        self.stacklayout.addWidget(catalog)
 
         page = QWidget()
         page.setStyleSheet("background-color: #380059;")
         page.setLayout(page_layout)
         self.setCentralWidget(page)
 
-    def activate_tab_acceuil(self):
+
+    def activate_tab_inscription(self):
         self.stacklayout.setCurrentIndex(1)
-        print("Transition vers l'acceuil.")
+        print("Transition vers la page d'inscription")
+        return 0
+
+    def activate_tab_catalog(self):
+        self.stacklayout.setCurrentIndex(2)
+        print("Transition vers catalog.")
         return 0
 
     def connexion(self):
-        id = self.id.text()
-        password = self.password.text()
-        if(self.session.REGISTER(id, password)): # Il faudra séparer l'inscription de la connexion plus tard si on rajoute les commandes ou d'autres données d'utilisateur. - Math
-            if(self.session.AUTH(id, password)):
-                print("Le compte utilisateur a été créé et connecté.")
-                self.activate_tab_acceuil()
-                return 0
-            else :
-                print("ERROR [2] : L'utilisateur n'a pas été authentifié.")
-                return 2
-        else:
-            if(self.session.AUTH(id, password)): # J'ai rajouté ça ici parce-que tu pouvais pas te connecter si ton compte existait déjà, libre à toi de le suprimmer - Math
-                print("Le compte utilisateur existe et s'est connecté.")
-                self.activate_tab_acceuil()
-                return 0
+        user_id = self.user_id_connexion.text()
+        password = self.password_connexion.text()
+        if(self.session.AUTH(user_id, password)):
+            print("L'utilisateur est connecté.")
+            self.activate_tab_catalog()
+            return 0
+        else :
+            print("ERROR [2] : L'utilisateur n'a pas été authentifié.")
+            return 2
+
+    def inscription(self):
+        user_id = self.user_id_inscription.text()
+        password = self.password_inscription.text()
+        confirmation = self.password_confirmation.text()
+        if(password == confirmation):
+            if(self.session.REGISTER(user_id, password)):
+                print("Le compte utilisateur a été créé.")
             else :
                 print("ERROR [1] : Le compte utilisateur n'a pas été créé.")
                 return 1
+        else:
+            print("Les mots de passe ne correspondent pas.")
+            return 1
 
     def contextMenuEvent(self, e):
         context = QMenu(self)
@@ -103,6 +157,8 @@ class MainWindow(QMainWindow):
 
 
 app = QApplication(sys.argv)
+with open("styles.qss", "r", encoding="utf-8") as fichier:
+    app.setStyleSheet(fichier.read())
 window = MainWindow()
 window.show()
 app.exec()
