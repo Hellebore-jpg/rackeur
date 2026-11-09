@@ -58,14 +58,14 @@
 - [ ] Recherches, analyses, et synthèse autour des solutions disponibles pour l'interfaçage utilisateur en Python. - **Purple-key-0** 
 - [ ] Choix d'une solution pour l'interfaçage utilisateur de l'application de gestion du catalogue de produits.  - **chummel-ops**
 - [ ] Maquette final des pages de l'aplication :
-    - [x] Création d'un compte utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer. - **chummel-ops**
-    - [x] Authentification.  - **chummel-ops**
-    - [ ] Gestion de produits :
-        - [ ] Affichage de la liste des produits, avec critères de tri. - **chummel-ops**
-        - [ ] Recherche d'un produit en fonction d'un ou plusieurs mots-clés.  - **chummel-ops**
-        - [ ] Ajout d'un produit.  - **chummel-ops**
-        - [ ] Modification d'un produit. - **chummel-ops**
-        - [ ] Suppression d'un produit. - **chummel-ops** 
+    - [x] Page de création utilisateur. - **chummel-ops**
+    - [x] Page d'Authentification.  - **chummel-ops**
+    - [ ] Page de Gestion de produits :
+        - [ ] Page d'Affichage de la liste des produits, avec critères de tri. - **chummel-ops**
+        - [ ] Page de Recherche d'un produit en fonction d'un ou plusieurs mots-clés.  - **chummel-ops**
+        - [ ] Page d'Ajout d'un produit.  - **chummel-ops**
+        - [ ] Page de Modification d'un produit. - **chummel-ops**
+        - [ ] Page de Suppression d'un produit. - **chummel-ops** 
 
 ## -- Interface Utilisateur ( Rendre fonctionelle ) -- 
 - [ ] Implémentation des différents composants de l'interface utilisateur :
