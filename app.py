@@ -1,10 +1,14 @@
 from __future__ import annotations
 
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QColor, QPainter, QPixmap, QPaintEvent, QResizeEvent
+from PyQt6.QtCore import Qt, QPropertyAnimation, QRectF, QSequentialAnimationGroup
+from PyQt6.QtGui import (
+    QColor, QFont, QFontDatabase, QIcon, QKeyEvent, QPainter, QPainterPath,
+    QPaintEvent, QPixmap, QResizeEvent, QShowEvent,
+)
 from PyQt6.QtWidgets import (
     QApplication, QCheckBox, QComboBox, QDialog, QFrame, QGraphicsDropShadowEffect, QHBoxLayout, QLabel,
-    QLineEdit, QMainWindow, QPushButton, QSizePolicy, QStackedWidget, QVBoxLayout, QWidget, QListView
+    QLineEdit, QMainWindow, QPushButton, QSizePolicy, QStackedWidget, QVBoxLayout, QWidget, QListView,
+    QGraphicsOpacityEffect,
 )
 
 from dataclasses import dataclass
@@ -21,6 +25,12 @@ import src.config as config
 BASE_DIR: Final[Path] = Path(__file__).parent
 STYLESHEET_PATH: Final[Path] = BASE_DIR / "assets/style.qss"
 CARD_WIDTH: Final[int] = 380
+FAVICON_PATH: Final[Path] = BASE_DIR / "assets/img/favicon.png"
+ICON_PATH: Final[Path] = BASE_DIR / "assets/img/icon.png"
+USER_PLACEHOLDER_PATH: Final[Path] = BASE_DIR / "assets/img/user.png"
+BACKGROUND_PATH: Final[Path] = BASE_DIR / "assets/img/background.png"
+BACKGROUND_HOLES_PATH: Final[Path] = BASE_DIR / "assets/img/holes_background.png"
+FONT_PATH: Final[Path] = BASE_DIR / "assets/font/Kablammo/Kablammo-Regular-VariableFont_MORF.ttf"
 
 # CONFIG AUTO DE L'APP
 HEADERT: list[type]
@@ -107,7 +117,37 @@ class BackgroundWidget(QWidget):
         painter.drawPixmap(x, y, self._scaled)
         painter.end()
 
-def make_background(card: QFrame, bg_path: Path) -> QWidget:
+class RoundedImage(QWidget):
+    """Image carrée aux coins arrondis.
+    """
+
+    def __init__(self, image_path: Path, size: int = 120, radius: int = 24) -> None:
+        super().__init__()
+        self.setFixedSize(size, size)
+        self._radius: int = radius
+        self._pixmap: QPixmap = QPixmap(str(image_path))
+        if not self._pixmap.isNull():
+            self._pixmap = self._pixmap.scaled(
+                self.size(),
+                Qt.AspectRatioMode.KeepAspectRatioByExpanding,
+                Qt.TransformationMode.SmoothTransformation,
+            )
+
+    def paintEvent(self, event: QPaintEvent | None) -> None:
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        path = QPainterPath()
+        path.addRoundedRect(QRectF(self.rect()), self._radius, self._radius)
+        painter.setClipPath(path)
+        if self._pixmap.isNull():
+            painter.fillPath(path, QColor("#020202"))  # Noir si il n'y a pas d'image
+        else:
+            x = (self.width() - self._pixmap.width()) // 2
+            y = (self.height() - self._pixmap.height()) // 2
+            painter.drawPixmap(x, y, self._pixmap)
+        painter.end()
+
+def make_background(card: QFrame, header: QWidget | None = None, bg_path: Path = BACKGROUND_PATH) -> QWidget:
     """Crée le widget d'arrière plan avec une carte au centre.
 
     Args:
@@ -122,6 +162,9 @@ def make_background(card: QFrame, bg_path: Path) -> QWidget:
  
     layout = QVBoxLayout(root)
     layout.addStretch()
+    if header is not None:
+        layout.addWidget(header, alignment=Qt.AlignmentFlag.AlignHCenter)
+        layout.addSpacing(20)
     layout.addWidget(card, alignment=Qt.AlignmentFlag.AlignHCenter)
     layout.addStretch()
     return root
@@ -154,7 +197,7 @@ class SourceDialog(QDialog):
         """
         super().__init__()
         self.setWindowTitle("Rackeur | Type de la base de données")
-        self.setFixedSize(480, 420)
+        self.setFixedSize(480, 600)
  
         content = QWidget()
         layout = QVBoxLayout(content)
@@ -192,7 +235,7 @@ class SourceDialog(QDialog):
         self.continue_button.clicked.connect(self.accept)
         layout.addWidget(self.continue_button)
  
-        root = make_background(make_card(content), BASE_DIR / "assets/img/background.png")
+        root = make_background(make_card(content), RoundedImage(USER_PLACEHOLDER_PATH))
         outer = QVBoxLayout(self)
         outer.setContentsMargins(0, 0, 0, 0)
         outer.addWidget(root)
@@ -310,7 +353,7 @@ class MainPage(QMainWindow):
         layout = QVBoxLayout(content)
         layout.addWidget(title)
         layout.addWidget(subtitle)
-        self.setCentralWidget(make_background(make_card(content), BASE_DIR / "assets/img/background.png"))
+        self.setCentralWidget(make_background(make_card(content), RoundedImage(USER_PLACEHOLDER_PATH)))
             
 class AuthWindow(QMainWindow):
     """Crée la fenêtre d'autentification en utilisant le template définit plus haut.
@@ -323,8 +366,8 @@ class AuthWindow(QMainWindow):
         """
         super().__init__()
         self.setWindowTitle("Rackeur | Bienvenue")
-        self.resize(520, 700)
-        self.setMinimumSize(440, 640)
+        self.resize(520, 820)
+        self.setMinimumSize(440, 820)
         self.main_page: MainPage | None = None
  
         self.login_page: FormPage = FormPage(
@@ -355,7 +398,7 @@ class AuthWindow(QMainWindow):
         self.stack.addWidget(self.login_page)
         self.stack.addWidget(self.register_page)
  
-        self.setCentralWidget(make_background(make_card(self.stack), BASE_DIR / "assets/img/background.png"))
+        self.setCentralWidget(make_background(make_card(self.stack), RoundedImage(USER_PLACEHOLDER_PATH)))
  
         self.login_page.switch_button.clicked.connect(
             lambda: self.show_page(self.REGISTER_INDEX)
@@ -434,6 +477,87 @@ class AuthWindow(QMainWindow):
             self.show_page(self.LOGIN_INDEX)
             page.show_message("Compte créé, mais la connexion a échoué. Réessayez.")
 
+class SplashDialog(QDialog):
+    """Écran titre : fondu entrant, pause, fondu sortant (2s), passer en appuyant sur la touche Entrer.
+    """
+    
+    FADE_MS: Final[int] = 500
+    HOLD_MS: Final[int] = 3000
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.setWindowTitle("The Rackeur")
+        self.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.FramelessWindowHint)
+        self.setWindowState(Qt.WindowState.WindowMaximized)
+
+        font_id = QFontDatabase.addApplicationFont(str(FONT_PATH))
+        families = QFontDatabase.applicationFontFamilies(font_id) if font_id != -1 else []
+
+        title = QLabel("The Rackeur")
+        title.setObjectName("splashTitle")
+        title.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        if families:
+            title.setFont(QFont(families[0]))
+
+        icon = QLabel()
+        icon.setPixmap(
+            QPixmap(str(ICON_PATH)).scaled(
+                400, 400,
+                Qt.AspectRatioMode.KeepAspectRatio,
+                Qt.TransformationMode.SmoothTransformation,
+            )
+        )
+        icon.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        content = QWidget()
+        content_layout = QVBoxLayout(content)
+        content_layout.setSpacing(24)
+        content_layout.addWidget(title)
+        content_layout.addWidget(icon)
+
+        self._effect: QGraphicsOpacityEffect = QGraphicsOpacityEffect(content)
+        self._effect.setOpacity(0.0)
+        content.setGraphicsEffect(self._effect)
+
+        root = BackgroundWidget(BACKGROUND_PATH)
+        root_layout = QVBoxLayout(root)
+        root_layout.addStretch()
+        root_layout.addWidget(content, alignment=Qt.AlignmentFlag.AlignHCenter)
+        root_layout.addStretch()
+
+        outer = QVBoxLayout(self)
+        outer.setContentsMargins(0, 0, 0, 0)
+        outer.addWidget(root)
+
+        fade_in = QPropertyAnimation(self._effect, b"opacity", self)
+        fade_in.setDuration(self.FADE_MS)
+        fade_in.setStartValue(0.0)
+        fade_in.setEndValue(1.0)
+
+        fade_out = QPropertyAnimation(self._effect, b"opacity", self)
+        fade_out.setDuration(self.FADE_MS)
+        fade_out.setStartValue(1.0)
+        fade_out.setEndValue(0.0)
+
+        self._anim: QSequentialAnimationGroup = QSequentialAnimationGroup(self)
+        self._anim.addAnimation(fade_in)
+        self._anim.addPause(self.HOLD_MS)
+        self._anim.addAnimation(fade_out)
+        self._anim.finished.connect(self.accept)
+
+    def showEvent(self, event: QShowEvent | None) -> None:
+        super().showEvent(event)
+        self.activateWindow()
+        self.setFocus()
+        self._anim.start()
+
+    def keyPressEvent(self, event: QKeyEvent | None) -> None:
+        if event is not None and event.key() in (Qt.Key.Key_Return, Qt.Key.Key_Enter):
+            self._anim.stop()
+            self.accept()
+            return
+        super().keyPressEvent(event)
+
 #=============================================================================#
 # CHARGEMENT DE LA BASE DE DONNÉES EN FONCTION DU TYPE                        #
 #=============================================================================#
@@ -455,6 +579,7 @@ def load_database() -> None:
 #=============================================================================#
 def main() -> int:
     app = QApplication(sys.argv)
+    app.setWindowIcon(QIcon(str(FAVICON_PATH)))
     app.setStyle("Fusion")
     app.setStyleSheet(load_stylesheet())
  
@@ -466,6 +591,8 @@ def main() -> int:
     # Charger la base de données
     config.CSV = dialog.is_csv()
     load_database()
+    
+    SplashDialog().exec()
  
     # Afficher la fenêtre de connexion
     window = AuthWindow()

@@ -2,8 +2,8 @@ from typing import NamedTuple
 
 import bcrypt # Hash des mots de passe (Identique à MySQL)
 
-from .csv_utils import *
-from .api_utils import *
+from .csv_utils import Database, IndexedRow, TEMP_DB
+from .api_utils import PWNED_COUNT
 from src import config as config
 
 # Seuls ces classes sont exportés avec "from session_utils import *", tout le reste est interne au script.

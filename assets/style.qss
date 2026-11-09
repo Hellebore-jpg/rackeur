@@ -192,3 +192,8 @@ QCheckBox::indicator:checked {
     padding: 10px 12px;
     font-size: 12px;
 }
+
+#splashTitle {
+    color: white;
+    font-size: 84px;
+}
