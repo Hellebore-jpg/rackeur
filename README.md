@@ -80,6 +80,7 @@ rackeur/
 │   ├── img/    → Images
 │   └── style.qss   → Feuille de style PyQt
 ├── src/    → Scripts Python
+│   ├── pages/  → Scripts de fenêtres PyQt
 │   ├── utils/  → Scripts utilitaires
 │   └── config.py   → Configuration globale
 ├── app.py  → Application

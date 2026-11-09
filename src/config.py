@@ -16,7 +16,6 @@ from PyQt6.QtWidgets import (
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Final
 import sys
 import re
 
@@ -28,17 +27,17 @@ from src.utils.session_utils import *
 #=============================================================================#
 
 # VALEURS PERSONALISÉES
-CARD_WIDTH: Final[int] = 380
+CARD_WIDTH: int = 380
 
 # CHEMINS DE FICHIERS
-BASE_DIR: Final[Path] = Path(__file__).parent
-STYLESHEET_PATH: Final[Path] = BASE_DIR / "assets/style.qss"
-FAVICON_PATH: Final[Path] = BASE_DIR / "assets/img/favicon.png"
-ICON_PATH: Final[Path] = BASE_DIR / "assets/img/icon.png"
-USER_PLACEHOLDER_PATH: Final[Path] = BASE_DIR / "assets/img/user.png"
-BACKGROUND_PATH: Final[Path] = BASE_DIR / "assets/img/background.png"
-BACKGROUND_HOLES_PATH: Final[Path] = BASE_DIR / "assets/img/holes_background.png"
-FONT_PATH: Final[Path] = BASE_DIR / "assets/font/Kablammo/Kablammo-Regular-VariableFont_MORF.ttf"
+BASE_DIR: Path = Path(__file__).parent.parent
+STYLESHEET_PATH: Path = BASE_DIR / "assets/style.qss"
+FAVICON_PATH: Path = BASE_DIR / "assets/img/favicon.png"
+ICON_PATH: Path = BASE_DIR / "assets/img/icon.png"
+USER_PLACEHOLDER_PATH: Path = BASE_DIR / "assets/img/user.png"
+BACKGROUND_PATH: Path = BASE_DIR / "assets/img/background.png"
+BACKGROUND_HOLES_PATH: Path = BASE_DIR / "assets/img/holes_background.png"
+FONT_PATH: Path = BASE_DIR / "assets/font/Kablammo/Kablammo-Regular-VariableFont_MORF.ttf"
 
 #=============================================================================#
 # CONFIGURATION AUTOMATIQUE                                                   #

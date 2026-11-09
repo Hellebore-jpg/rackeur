@@ -1,4 +1,5 @@
 from src.utils.utils_config import *
+from src.utils.bootstrap import *
 from src.config import *
 
 # Fonctions helpers
@@ -322,8 +323,8 @@ class MainPage(QMainWindow):
 class AuthWindow(QMainWindow):
     """Crée la fenêtre d'autentification en utilisant le template définit plus haut.
     """
-    LOGIN_INDEX: Final[int] = 0
-    REGISTER_INDEX: Final[int] = 1
+    LOGIN_INDEX: int = 0
+    REGISTER_INDEX: int = 1
  
     def __init__(self) -> None:
         """Initialise la page d'autentification.
@@ -445,8 +446,8 @@ class SplashDialog(QDialog):
     """Écran titre : fondu entrant, pause, fondu sortant (2s), passer en appuyant sur la touche Entrer.
     """
     
-    FADE_MS: Final[int] = 500
-    HOLD_MS: Final[int] = 3000
+    FADE_MS: int = 500
+    HOLD_MS: int = 3000
 
     def __init__(self) -> None:
         super().__init__()
@@ -523,24 +524,10 @@ class SplashDialog(QDialog):
         super().keyPressEvent(event)
 
 #=============================================================================#
-# CHARGEMENT DE LA BASE DE DONNÉES EN FONCTION DU TYPE                        #
-#=============================================================================#
-def load_database() -> None:
-    global CSV, HEADERT, CATALOGUE, SESSION
-    if CSV:
-        HEADERT = [str, float, str, int, str]
-        CREATE_FILE(header=['product', 'price', 'description', 'stock', 'quality'])
-        CATALOGUE = Database()
-    else:
-        HEADERT = [str, float, str, int, str] # Changer pour utiliser du SQLite
-        CREATE_FILE(header=['product', 'price', 'description', 'stock', 'quality']) # Changer pour utiliser du SQLite
-        CATALOGUE = Database() # Changer pour utiliser du SQLite
-    SESSION = Session()
-
-#=============================================================================#
 # DEMARRAGE DE L'APPLICATION                                                  #
 #=============================================================================#
 def main() -> int:
+    global CSV
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon(str(FAVICON_PATH)))
     app.setStyle("Fusion")
