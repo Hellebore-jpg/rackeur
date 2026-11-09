@@ -1,41 +1,5 @@
-from __future__ import annotations
-
-from PyQt6.QtCore import Qt, QPropertyAnimation, QRectF, QSequentialAnimationGroup
-from PyQt6.QtGui import (
-    QColor, QFont, QFontDatabase, QIcon, QKeyEvent, QPainter, QPainterPath,
-    QPaintEvent, QPixmap, QResizeEvent, QShowEvent,
-)
-from PyQt6.QtWidgets import (
-    QApplication, QCheckBox, QComboBox, QDialog, QFrame, QGraphicsDropShadowEffect, QHBoxLayout, QLabel,
-    QLineEdit, QMainWindow, QPushButton, QSizePolicy, QStackedWidget, QVBoxLayout, QWidget, QListView,
-    QGraphicsOpacityEffect,
-)
-
-from dataclasses import dataclass
-from pathlib import Path
-from typing import Final
-import sys
-import re
-
-from src.utils.csv_utils import *
-from src.utils.session_utils import *
-import src.config as config
-
-# CONFIG MANUELLE DE L'APP
-BASE_DIR: Final[Path] = Path(__file__).parent
-STYLESHEET_PATH: Final[Path] = BASE_DIR / "assets/style.qss"
-CARD_WIDTH: Final[int] = 380
-FAVICON_PATH: Final[Path] = BASE_DIR / "assets/img/favicon.png"
-ICON_PATH: Final[Path] = BASE_DIR / "assets/img/icon.png"
-USER_PLACEHOLDER_PATH: Final[Path] = BASE_DIR / "assets/img/user.png"
-BACKGROUND_PATH: Final[Path] = BASE_DIR / "assets/img/background.png"
-BACKGROUND_HOLES_PATH: Final[Path] = BASE_DIR / "assets/img/holes_background.png"
-FONT_PATH: Final[Path] = BASE_DIR / "assets/font/Kablammo/Kablammo-Regular-VariableFont_MORF.ttf"
-
-# CONFIG AUTO DE L'APP
-HEADERT: list[type]
-CATALOGUE: Database
-SESSION: Session
+from src.utils.utils_config import *
+from src.config import *
 
 # Fonctions helpers
 def load_stylesheet() -> str:
@@ -562,17 +526,16 @@ class SplashDialog(QDialog):
 # CHARGEMENT DE LA BASE DE DONNÉES EN FONCTION DU TYPE                        #
 #=============================================================================#
 def load_database() -> None:
-    global HEADERT, CATALOGUE, SESSION
-    if config.CSV:
+    global CSV, HEADERT, CATALOGUE, SESSION
+    if CSV:
         HEADERT = [str, float, str, int, str]
         CREATE_FILE(header=['product', 'price', 'description', 'stock', 'quality'])
         CATALOGUE = Database()
-        SESSION = Session()
     else:
         HEADERT = [str, float, str, int, str] # Changer pour utiliser du SQLite
         CREATE_FILE(header=['product', 'price', 'description', 'stock', 'quality']) # Changer pour utiliser du SQLite
         CATALOGUE = Database() # Changer pour utiliser du SQLite
-        SESSION = Session() # Changer pour utiliser du SQLite
+    SESSION = Session()
 
 #=============================================================================#
 # DEMARRAGE DE L'APPLICATION                                                  #
@@ -589,7 +552,7 @@ def main() -> int:
         return 0  # Quitter l'app si l'utilisateur ferme la fenêtre sans choisir
  
     # Charger la base de données
-    config.CSV = dialog.is_csv()
+    CSV = dialog.is_csv()
     load_database()
     
     SplashDialog().exec()

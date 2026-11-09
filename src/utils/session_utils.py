@@ -2,9 +2,9 @@ from typing import NamedTuple
 
 import bcrypt # Hash des mots de passe (Identique à MySQL)
 
+from .utils_config import *
 from .csv_utils import Database, IndexedRow, TEMP_DB
 from .api_utils import PWNED_COUNT
-from src import config as config
 
 # Seuls ces classes sont exportés avec "from session_utils import *", tout le reste est interne au script.
 __all__ = [
@@ -57,7 +57,7 @@ class Session:
     def __init__(self) -> None:
         """Crée une session vide, prête pour la connexion ou l'inscription.
         """
-        if config.CSV:
+        if CSV:
             self.DB: Database = Database('utilisateurs.csv')
         else:
             self.DB: Database = Database('utilisateurs.csv') # Changer pour utiliser du SQLite
@@ -75,7 +75,7 @@ class Session:
         Returns:
             IndexedRow | None: (index, ligne) ou None si introuvable.
         """
-        if config.CSV:
+        if CSV:
             matches: list[IndexedRow] = self.DB.READER().SEARCH(username, [0], True).BODY
         else:
             matches: list[IndexedRow] = self.DB.READER().SEARCH(username, [0], True).BODY # Changer pour utiliser du SQLite
@@ -117,7 +117,7 @@ class Session:
         """
         if self.__find(username) is not None:
             return False
-        if config.CSV:
+        if CSV:
             self.DB.CREATE([username, _password(password), 'visiteur', '0100'])
             self.DB.SAVE_FILE()
         else:
