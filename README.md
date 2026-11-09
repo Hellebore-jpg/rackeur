@@ -3,6 +3,19 @@ Développement d'une application de gestion d'un catalogue de materiel de concer
 
 <img src="md_files\latest_app_screenshot.png" alt="Dernière capture d'écran de l'application" width="800">
 
+## Sommaire
+- [Fonctionnalités](#fonctionnalités)
+- [Technologies](#technologies)
+- [Setup](#setup)
+    - [Prerequis](#prerequis)
+    - [Compatibilité](#compatibilité)
+    - [Installation](#installation)
+    - [Administration & Edition](#administration--edition)
+- [Arborescence](#arborescence)
+- [Autheur](#autheur)
+- [Crédits](#crédits)
+    - [APIs et Dépendences](#apis-et-dépendences)
+
 ## Fonctionnalités
 
 - Un catalogue qui affiche les produits disponibles et leurs informations
@@ -22,7 +35,6 @@ Développement d'une application de gestion d'un catalogue de materiel de concer
 ### Prerequis
 
 - [Python](https://www.python.org/downloads/) installé
-- [Git](https://git-scm.com/install/) installé
 
 ### Compatibilité
 
@@ -52,6 +64,7 @@ Le panel ne montre que les outils dont l'administrateur/éditeur à acces selon 
 | Nom d'utilisateur | Mot de passe |
 |-------------------|--------------|
 | `admin`           | `123456789`  |
+| `editor`          | `123456789`  |
 
 > Ces identifiants ne servent qu'à faire des test, veuillez les changer dès que possible.
 
@@ -63,13 +76,17 @@ rackeur/
 │   ├── data/   → Ressources & Base de données
 │   │   ├── catalogue.csv       → Base de données du catalogue de produits format CSV
 │   │   └── utilisateurs.csv    → Base de données des utilisateurs format CSV
-│   └── font/   → Polices d'écriture
+│   ├── font/   → Polices d'écriture
+│   ├── img/    → Images
+│   └── style.qss   → Feuille de style PyQt
 ├── src/    → Scripts Python
+│   ├── utils/  → Scripts utilitaires
+│   └── config.py   → Configuration globale
 ├── app.py  → Application
 └── requirements.txt    → Dépendences de l'environement
 ```
 
-## Autheurs
+## Autheur
 
 Fait par **4 collaborateurs** pour le projet **Développement Sécurisé** à Guardia CS, 2026 :
 
@@ -80,8 +97,8 @@ Fait par **4 collaborateurs** pour le projet **Développement Sécurisé** à Gu
 
 ## Credits
 
-- Librairies et API utilisés :
-    - [PyQt6](https://pypi.org/project/PyQt6/)
-    - [Requests](https://pypi.org/project/requests/)
-    - [Bcrypt](https://pypi.org/project/bcrypt/)
-    - [API Have I Been Pwned](https://www.openstreetmap.org/)
+### APIs et Dépendences
+- [PyQt6](https://pypi.org/project/PyQt6/)
+- [Requests](https://pypi.org/project/requests/)
+- [Bcrypt](https://pypi.org/project/bcrypt/)
+- [API Have I Been Pwned](https://www.openstreetmap.org/)

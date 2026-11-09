@@ -35,7 +35,7 @@
 ## -- Presentation -- 
 - [ ] Canva de presentation de fin de projet . - **chummel-ops**
 - [ ] Repartition de la parole pour la presentation. - **chummel-ops**
-- [ ] Rédaction du README.md - **Hellebore-jpg**
+- [x] Rédaction du README.md - **Hellebore-jpg**
 
 ## -- Base de Données SQLite -- 
 - [ ] Recherches, analyses, et synthèse autour du SGBD SQLite pour le passage CSV a SQLite. - **ylavallee-prog**
@@ -56,22 +56,22 @@
     >- GUI (Graphical User Interface) : Interface utilisateur graphique, axée sur les éléments visuels et graphiques.
     >- UI (User Interface) : Interface utilisateur, désignant les éléments visuels et interactifs d'un logiciel.
     >- UX (User Experience) : Expérience utilisateur, centrée sur la satisfaction et le parcours global de l'utilisateur.
-- [ ] Recherches, analyses, et synthèse autour des solutions disponibles pour l'interfaçage utilisateur en Python. - **Purple-key-0** 
-- [ ] Choix d'une solution pour l'interfaçage utilisateur de l'application de gestion du catalogue de produits.  - **chummel-ops**
+- [x] Recherches, analyses, et synthèse autour des solutions disponibles pour l'interfaçage utilisateur en Python. - **Purple-key-0** - **Hellebore-jpg**
+- [ ] Choix d'une solution pour l'interfaçage utilisateur de l'application de gestion du catalogue de produits. - **chummel-ops**
 - [ ] Maquette final des pages de l'aplication :
-    - [x] Création d'un compte utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer. - **chummel-ops**
-    - [x] Authentification.  - **chummel-ops**
+    - [x] Création d'un compte utilisateur. - **chummel-ops**
+    - [x] Authentification. - **chummel-ops**
     - [ ] Gestion de produits :
         - [ ] Affichage de la liste des produits, avec critères de tri. - **chummel-ops**
-        - [ ] Recherche d'un produit en fonction d'un ou plusieurs mots-clés.  - **chummel-ops**
-        - [ ] Ajout d'un produit.  - **chummel-ops**
+        - [ ] Recherche d'un produit en fonction d'un ou plusieurs mots-clés. - **chummel-ops**
+        - [ ] Ajout d'un produit. - **chummel-ops**
         - [ ] Modification d'un produit. - **chummel-ops**
         - [ ] Suppression d'un produit. - **chummel-ops** 
 
 ## -- Interface Utilisateur ( Rendre fonctionelle ) -- 
 - [ ] Implémentation des différents composants de l'interface utilisateur :
-    - [ ] Création d'un compte utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer. - **Purple-key-0** 
-    - [ ] Authentification. - **Purple-key-0** 
+    - [x] Création d'un compte utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer. - **Purple-key-0** - **Hellebore-jpg**
+    - [x] Authentification. - **Purple-key-0** - **Hellebore-jpg**
     - [ ] Gestion de produits :
         - [ ] Affichage de la liste des produits, avec critères de tri. - **Purple-key-0** 
         - [ ] Recherche d'un produit en fonction d'un ou plusieurs mots-clés. - **Purple-key-0** 
