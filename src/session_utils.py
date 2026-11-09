@@ -53,10 +53,15 @@ def _verify(password: str, stored: str) -> bool:
 class Session:
     """Gère les sessions utilisateur de manière sécurisée.
     """
-    def __init__(self) -> None:
+    def __init__(self, csv:bool) -> None:
         """Crée une session vide, prête pour la connexion ou l'inscription.
         """
-        self.DB: Database = Database('utilisateurs.csv')
+        self.csv = csv
+        
+        if csv:
+            self.DB: Database = Database('utilisateurs.csv')
+        else:
+            self.DB: Database = Database('utilisateurs.csv') # Changer pour utiliser du SQLite
         
         self.USER: list[str] = list(LOGGED_OUT)
         self.USER_ID: int | None = None
@@ -71,7 +76,10 @@ class Session:
         Returns:
             IndexedRow | None: (index, ligne) ou None si introuvable.
         """
-        matches: list[IndexedRow] = self.DB.READER().SEARCH(username, [0], True).BODY
+        if self.csv:
+            matches: list[IndexedRow] = self.DB.READER().SEARCH(username, [0], True).BODY
+        else:
+            matches: list[IndexedRow] = self.DB.READER().SEARCH(username, [0], True).BODY # Changer pour utiliser du SQLite
         return matches[0] if matches else None
         
     def AUTH(self, username: str, password: str) -> bool:
@@ -110,8 +118,12 @@ class Session:
         """
         if self.__find(username) is not None:
             return False
-        self.DB.CREATE([username, _password(password), 'visiteur', '0100'])
-        self.DB.SAVE_FILE()
+        if self.csv:
+            self.DB.CREATE([username, _password(password), 'visiteur', '0100'])
+            self.DB.SAVE_FILE()
+        else:
+            self.DB.CREATE([username, _password(password), 'visiteur', '0100']) # Changer pour utiliser du SQLite
+            self.DB.SAVE_FILE() # Changer pour utiliser du SQLite
         if autoconnect:
             self.AUTH(username, password)
         return True
@@ -175,7 +187,7 @@ def TESTING() -> None:
     check('_verify : hash invalide -> False sans erreur', _verify('secret', 'pas-un-hash'), False)
 
     with TEMP_DB(header, []) as db:
-        s: Session = Session()
+        s: Session = Session(True)
         s.DB = db
 
         # 2. État initial
