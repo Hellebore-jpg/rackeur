@@ -4,7 +4,7 @@ import sys
 
 USE = "csv" # csv | sqlite
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow): # Ecrasez ça si besoin c'est juste un test
     def __init__(self, csv: bool):
         super().__init__()
         self.csv = csv
@@ -23,7 +23,7 @@ if __name__ == '__main__':
         catalogue = Database()  # Changer pour utiliser du CSV
         catalogue.SAVE_FILE() # Changer pour utiliser du CSV
         
-    app = QApplication(sys.argv)
+    app = QApplication(sys.argv) # Ecrasez ça et les lignes suivantes si besoin c'est juste un test
     window = MainWindow(csv)
     window.show()
     sys.exit(app.exec())
