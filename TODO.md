@@ -6,7 +6,7 @@
 - [x] Rôles dans le groupe - **Tout le monde**
     > `Hellebore-jpg` : Chef de projet
     > `chummel-ops` : Responsable de communication
-- [x] Git & venv - **Hellebore-jpg** :
+- [x] Git & venv - **Hellebore-jpg**
     >- Création du repo Github et de la base.
     >- Ajout des collaborateurs : `Hellebore-jpg (Mathieu)` | `Purple-key-0 (Gabriel)` | `chummel-ops (Charles)` | `ylavallee-prog (Yanis)`
     >- Ajout de l'intervenant : `TheLegacy33`
@@ -14,18 +14,17 @@
     >- Création du .gitignore et de requirements.txt avec `pip freeze > requirements.txt`
 
 ## Objectifs
-- [x] Taches du premier jour : 
-    - [x] Répartition des rôles - **Tout le monde**
-    - [x] Création d'une Diréction Artistique + Logo + Nom d'app - **chummel-ops**
-    - [x] Script Python d'interaction CSV CRUD robuste - **Hellebore-jpg**
-        - [x] 1ère affichage, en ligne de commande, de la liste des produits. ( R ) - **Hellebore-jpg**
-        - [x] 1ère affichage, en ligne de commande, via une option, de la liste des produits, triés par nom, dans l'ordre alphabétique, et alphabétique inverse. ( R ) - **Hellebore-jpg**
-        - [x] 1ère affichage, en ligne de commande, via une option, de la liste des produits, triés par prix, dans l'ordre croissant, et décroissant. ( R ) - **Hellebore-jpg**
-        - [x] 1ère affichage, en ligne de commande, via une option, du ou des produits, en fonction d'un mot-clé (recherche d'un produit dans le catalogue). ( R ) - **Hellebore-jpg**
-        - [x] Ajout, modification, et suppression d'un produit, en ligne de commande, via une ou plusieurs options. ( C U D ) - **Hellebore-jpg**
-    - [x] Création du Catalogue / Tableau de données - **Purple-key-0**
-    - [x] Relécture et analyse du Cahier des Charges - **chummel-ops** - **Purple-key-0**
-    - [x] Creation des taches du TODO.md - **chummel-ops**
+- [x] Répartition des rôles - **Tout le monde**
+- [x] Création d'une Diréction Artistique + Logo + Nom d'app - **chummel-ops**
+- [x] Script Python d'interaction CSV CRUD robuste
+    - [x] 1ère affichage, en ligne de commande, de la liste des produits. ( R ) - **Hellebore-jpg**
+    - [x] 1ère affichage, en ligne de commande, via une option, de la liste des produits, triés par nom, dans l'ordre alphabétique, et alphabétique inverse. ( R ) - **Hellebore-jpg**
+    - [x] 1ère affichage, en ligne de commande, via une option, de la liste des produits, triés par prix, dans l'ordre croissant, et décroissant. ( R ) - **Hellebore-jpg**
+    - [x] 1ère affichage, en ligne de commande, via une option, du ou des produits, en fonction d'un mot-clé (recherche d'un produit dans le catalogue). ( R ) - **Hellebore-jpg**
+    - [x] Ajout, modification, et suppression d'un produit, en ligne de commande, via une ou plusieurs options. ( C U D ) - **Hellebore-jpg**
+- [x] Création du Catalogue / Tableau de données - **Purple-key-0**
+- [x] Relécture et analyse du Cahier des Charges - **chummel-ops** - **Purple-key-0**
+- [x] Creation des taches du TODO.md - **chummel-ops**
 
 ## Autre
 - [x] 1er livrable - **Tout le monde**
@@ -35,11 +34,11 @@
 ## -- Presentation -- 
 - [ ] Canva de presentation de fin de projet . - **chummel-ops**
 - [ ] Repartition de la parole pour la presentation. - **chummel-ops**
-- [ ] Rédaction du README.md - **Hellebore-jpg**
+- [x] Rédaction du README.md - **Hellebore-jpg**
 
 ## -- Base de Données SQLite -- 
 - [ ] Recherches, analyses, et synthèse autour du SGBD SQLite pour le passage CSV a SQLite. - **ylavallee-prog**
-- [ ] Création manuelle du catalogue de produits sous la forme d’une table SQLite.( Premeire BD SQLite ). - **ylavallee-prog**
+- [ ] Création manuelle du catalogue de produits sous la forme d’une table SQLite. ( Premeire BD SQLite ). - **ylavallee-prog**
 - [ ] Passage du CSV a SQLite. - **ylavallee-prog**
 
 ## -- Authentification et Permision -- 
