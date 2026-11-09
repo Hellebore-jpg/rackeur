@@ -132,6 +132,7 @@
 ### Organisation & Finalisation
 - [x] Relécture et analyse du Cahier des Charges - **chummel-ops** - **Purple-key-0**
 - [x] Creation, organisation, écriture et mise à jour du [TODO](TODO.md) (backlogs) - **chummel-ops** - **Hellebore-jpg**
+- [x] Explication du code Python (commentaires & Types strictes) - **Hellebore-jpg**
 - [x] Rédaction du [README](README.md) - **Hellebore-jpg**
 - [ ] Canva de présentation de fin de projet - **chummel-ops**
 - [ ] Derniers fix & Publication

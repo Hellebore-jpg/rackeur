@@ -1,12 +1,9 @@
-#=============================================================================#
-# IMPORTATION DE TOUT LES MODULES                                             #
-#=============================================================================#
 from __future__ import annotations
 
 from PyQt6.QtCore import Qt, QPropertyAnimation, QRectF, QSequentialAnimationGroup
 from PyQt6.QtGui import (
-    QColor, QFont, QFontDatabase, QIcon, QKeyEvent, QPainter, QPainterPath,
-    QPaintEvent, QPixmap, QResizeEvent, QShowEvent,
+    QColor, QFont, QFontDatabase, QIcon, QKeyEvent, QPainter, QPainterPath, QPaintEvent, QPixmap,
+    QResizeEvent, QShowEvent,
 )
 from PyQt6.QtWidgets import (
     QApplication, QCheckBox, QComboBox, QDialog, QFrame, QGraphicsDropShadowEffect, QHBoxLayout, QLabel,
@@ -17,7 +14,6 @@ from PyQt6.QtWidgets import (
 from dataclasses import dataclass
 from pathlib import Path
 import sys
-import re
 
 from src.utils.csv_utils import *
 from src.utils.session_utils import *
