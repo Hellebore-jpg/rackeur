@@ -1,95 +1,148 @@
-# Historique des modifications et listes des objectifs
+# Backlog
 
-# 03/11/2026
+## Sommaire
+- [Kick off](#kick-off)
+- [v1.0](#v10)
+    - [Esthétique](#esthétique)
+    - [Définisions & Recherches](#définisions--recherches)
+    - [Programmation Backend](#programmation-backend)
+    - [Programmation Frontend](#programmation-frontend)
+    - [Jeux & Bases de données](#jeux--bases-de-données)
+    - [Organisation & Finalisation](#organisation--finalisation)
+- [v2.0](#v20)
+
+# Kick off
+>03/11/2026
 
 ## Organisation
 - [x] Rôles dans le groupe - **Tout le monde**
     > `Hellebore-jpg` : Chef de projet
     > `chummel-ops` : Responsable de communication
+- [x] Répartition du travail
+
+## Configuration
 - [x] Git & venv - **Hellebore-jpg**
-    >- Création du repo Github et de la base.
+    >- Création du repo Github et de la base
     >- Ajout des collaborateurs : `Hellebore-jpg (Mathieu)` | `Purple-key-0 (Gabriel)` | `chummel-ops (Charles)` | `ylavallee-prog (Yanis)`
     >- Ajout de l'intervenant : `TheLegacy33`
     >- Explications du fonctionnement de venv à tout le monde et setup sur tout les PCs
-    >- Création du .gitignore et de requirements.txt avec `pip freeze > requirements.txt`
+    >- Création du [.gitignore](.gitignore) et de [requirements.txt](requirement.txt) avec `pip freeze > requirements.txt`
+
+# V1.0
+>03/11/2026 - 13/11/2026
 
 ## Objectifs
-- [x] Taches du premier jour
-    - [x] Répartition des rôles - **Tout le monde**
-    - [x] Création d'une Diréction Artistique + Logo + Nom d'app - **chummel-ops**
-    - [x] Script Python d'interaction CSV CRUD robuste - **Hellebore-jpg**
-        - [x] 1ère affichage, en ligne de commande, de la liste des produits. ( R ) - **Hellebore-jpg**
-        - [x] 1ère affichage, en ligne de commande, via une option, de la liste des produits, triés par nom, dans l'ordre alphabétique, et alphabétique inverse. ( R ) - **Hellebore-jpg**
-        - [x] 1ère affichage, en ligne de commande, via une option, de la liste des produits, triés par prix, dans l'ordre croissant, et décroissant. ( R ) - **Hellebore-jpg**
-        - [x] 1ère affichage, en ligne de commande, via une option, du ou des produits, en fonction d'un mot-clé (recherche d'un produit dans le catalogue). ( R ) - **Hellebore-jpg**
-        - [x] Ajout, modification, et suppression d'un produit, en ligne de commande, via une ou plusieurs options. ( C U D ) - **Hellebore-jpg**
-    - [x] Création du Catalogue / Tableau de données - **Purple-key-0**
-    - [x] Relécture et analyse du Cahier des Charges - **chummel-ops** - **Purple-key-0**
-    - [x] Creation des taches du [TODO](TODO.md) - **chummel-ops**
 
-## Autre
-- [x] 1er livrable - **Tout le monde**
-
-# 03/11/2026 + 
-
-## -- Presentation -- 
-- [ ] Canva de presentation de fin de projet . - **chummel-ops**
-- [x] Rédaction du [README](README.md) - **Hellebore-jpg**
-
-## -- Base de Données SQLite -- 
-- [ ] Recherches, analyses, et synthèse autour du SGBD SQLite pour le passage CSV a SQLite. - **ylavallee-prog**
-- [ ] Création manuelle du catalogue de produits sous la forme d’une table SQLite.( Premeire BD SQLite ). - **ylavallee-prog**
-- [ ] Passage du CSV a SQLite. - **ylavallee-prog**
-
-## -- Authentification et Permision -- 
-- [x] Définition de l'entité « utilisateur » avec prise en compte des différents rôles. - **Hellebore-jpg**
-- [x] Création manuelle d'un jeu d'essais ( Données de tests ) dans la table « utilisateur ». - **Hellebore-jpg**
-- [x] Implémentation du mécanisme d'authentification ( Code page connexion & inscription). - **Hellebore-jpg**
-- [x] Hash des mots de passe en Bcrypt dans la base de données. - **Hellebore-jpg**
-- [x] Gestion des autorisations, sur les 4 opérations sur le catalogue de produits, en ligne de commande, via une ou plusieurs options. - **Hellebore-jpg**
-- [x] Implémentation de la création d'un nouvel utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer, au moyen de l'API RESTful « Have I Been Pwned », en ligne de commande, via une ou plusieurs options. - **Hellebore-jpg**
-
-## -- Interface Utilisateur ( Recherche et Maquette ) --
-- [x] Définition des sigles HMI, GUI, UI et UX. - **Hellebore-jpg**
-    >- HMI (Human-Machine Interface) : Interface homme-machine, souvent industrielle, pour le contrôle de systèmes.
-    >- GUI (Graphical User Interface) : Interface utilisateur graphique, axée sur les éléments visuels et graphiques.
-    >- UI (User Interface) : Interface utilisateur, désignant les éléments visuels et interactifs d'un logiciel.
-    >- UX (User Experience) : Expérience utilisateur, centrée sur la satisfaction et le parcours global de l'utilisateur.
-- [x] Recherches, analyses, et synthèse autour des solutions disponibles pour l'interfaçage utilisateur en Python. - **Purple-key-0** - **Hellebore-jpg**
-- [ ] Choix d'une solution pour l'interfaçage utilisateur de l'application de gestion du catalogue de produits. - **chummel-ops**
+### Esthétique
+- [x] Création d'une Diréction Artistique + Logo + Nom d'app - **chummel-ops**
 - [ ] Maquette finale des pages de l'aplication
     - [x] Titre - **chummel-ops**
         <img src="md_files\title.png" alt="Titre" width="400">
     - [x] Création d'un compte utilisateur et autentification - **chummel-ops**
         <img src="md_files\login.png" alt="Connexion" width="400">
     - [ ] Gestion de produits
-        - [x] Affichage de la liste des produits, avec critères de tri. - **chummel-ops**
+        - [x] Affichage de la liste des produits, avec critères de tri - **chummel-ops**
             <img src="md_files\catalog.png" alt="Connexion" width="400">
-        - [x] Affichage de la liste des produits, pour les admins. - **chummel-ops**
+        - [x] Affichage de la liste des produits, pour les admins - **chummel-ops**
             <img src="md_files\admin.png" alt="Connexion" width="400">
-        - [ ] Recherche d'un produit en fonction d'un ou plusieurs mots-clés. - **chummel-ops**
-        - [ ] Ajout d'un produit. - **chummel-ops**
-        - [ ] Modification d'un produit. - **chummel-ops**
-        - [ ] Suppression d'un produit. - **chummel-ops** 
+        - [ ] Recherche d'un produit en fonction d'un ou plusieurs mots-clés - **chummel-ops**
+        - [ ] Ajout d'un produit - **chummel-ops**
+        - [ ] Modification d'un produit - **chummel-ops**
+        - [ ] Suppression d'un produit - **chummel-ops** 
 
-## -- Interface Utilisateur ( Rendre fonctionelle ) -- 
-- [ ] Implémentation des différents composants de l'interface utilisateur
-    - [x] Création d'un compte utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer. - **Purple-key-0** - **Hellebore-jpg**
-    - [x] Authentification. - **Purple-key-0** - **Hellebore-jpg**
-    - [ ] Gestion de produits
-        - [ ] Affichage de la liste des produits, avec critères de tri. - **Purple-key-0** 
-        - [ ] Recherche d'un produit en fonction d'un ou plusieurs mots-clés. - **Purple-key-0** 
-        - [ ] Ajout d'un produit. - **Purple-key-0** 
-        - [ ] Modification d'un produit. - **Purple-key-0** 
-        - [ ] Suppression d'un produit. - **Purple-key-0**  
+### Définisions & Recherches
+- [x] Définition de l'entité "utilisateur" avec prise en compte des différents rôles - **Hellebore-jpg**
+    >- Visiteur : Consultation Publique
+    >- Utilisateur : Compte & Achâts
+    >- Administrateur : Gestion des données du catalogue
+- [x] Définition des sigles HMI, GUI, UI et UX - **Hellebore-jpg**
+    >- HMI (Human-Machine Interface) : Interface homme-machine, souvent industrielle, pour le contrôle de systèmes.
+    >- GUI (Graphical User Interface) : Interface utilisateur graphique, axée sur les éléments visuels et graphiques.
+    >- UI (User Interface) : Interface utilisateur, désignant les éléments visuels et interactifs d'un logiciel.
+    >- UX (User Experience) : Expérience utilisateur, centrée sur la satisfaction et le parcours global de l'utilisateur.
+- [x] Recherches, analyses, et synthèse autour des solutions disponibles pour l'interface utilisateur en Python - **Purple-key-0** - **Hellebore-jpg**
+    | Module  | Avantages                                                | Inconvénients                                                                               |
+    |---------|----------------------------------------------------------|---------------------------------------------------------------------------------------------|
+    | PyQt6   | Puissant, grande flexibilité, widgets riches.            | Courbe d'apprentissage plus raide et des contraintes de licence (Open source obligatoire).  |
+    | Tkinter | Standard, intégré à Python, facile à apprendre et léger. | Apparence datée, documentation parfois insuffisante, limites face aux interfaces complexes. |
+- [ ] Choix d'une solution pour l'interface utilisateur de l'application de gestion du catalogue de produits. - **chummel-ops**
 
-## -- Bonus -- 
-- [ ] Implémentation d'un système de notification ou d'alerte par envoi de mail en cas de nouveaux compromis détectés pour un utilisateur. - **chummel-ops** 
-- [ ] Navigation par catégories dans l'interface
-- [ ] Panel de gestion des utilisateurs admins et de leur permissions
-- [ ] Jeu de données de test à installer optionellement pendant le setup de l'application - **Hellebore-jpg**
-- [ ] Animations et autres améliorations graphiques
-- [ ] Faux popup pour un "Abonnement Premium" gratuit
-    - [ ] Interface Web
-    - [ ] Base de données MySQL en ligne
-    - [ ] Système de commandes des produits
+### Programmation Backend
+>Implémentation de toutes les fonctionnalitées de l'application à assigner aux boutons de l'interface.
+- [x] Script Python d'interaction CSV CRUD
+    - [x] 1ère affichage, en ligne de commande, de la liste des produits ( R ) - **Hellebore-jpg**
+    - [x] 1ère affichage, en ligne de commande, via une option, de la liste des produits, triés par nom, dans l'ordre alphabétique, et alphabétique inverse ( R ) - **Hellebore-jpg**
+    - [x] 1ère affichage, en ligne de commande, via une option, de la liste des produits, triés par prix, dans l'ordre croissant, et décroissant ( R ) - **Hellebore-jpg**
+    - [x] 1ère affichage, en ligne de commande, via une option, du ou des produits, en fonction d'un mot-clé (recherche d'un produit dans le catalogue) ( R ) - **Hellebore-jpg**
+    - [x] Ajout, modification, et suppression d'un produit, en ligne de commande, via une ou plusieurs options ( C U D ) - **Hellebore-jpg**
+- [x] Scripts Python de gestion utilisateurs
+    - [x] Implémentation du mécanisme d'authentification (Connexion & Inscription) - **Hellebore-jpg**
+    - [x] Hash des mots de passe en Bcrypt dans la base de données - **Hellebore-jpg**
+    - [x] Gestion des autorisations, sur les 4 opérations sur le catalogue de produits, en ligne de commande, via une ou plusieurs options - **Hellebore-jpg**
+    - [x] Implémentation de la création d'un nouvel utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer, au moyen de l'API RESTful "Have I Been Pwned", en ligne de commande, via une ou plusieurs options - **Hellebore-jpg**
+    - [ ] Implémentation d'un système de notification ou d'alerte par envoi de mail en cas de nouveaux compromis détectés pour un utilisateur - **Hellebore-jpg** 
+- [ ] Passage du CSV à SQLite
+    - [x] Choix du type de base de données au démarrage & branches différentes pour le SQLite dans les scripts qui utilisent la BDD - **Hellebore-jpg**
+        >Exemple :
+        >```python
+        >if format_bdd == True:
+        >   {code_spécifique_à_la_BDD_format_CSV}
+        >else:
+        >   {code_spécifique_à_la_BDD_format_SQLite}
+        >```
+    - [ ] Écriture du script d'interaction avec la BDD SQLite
+        - [ ] Affichage de la liste des produits ( R ) - **ylavallee-prog**
+        - [ ] Affichage, via une option, de la liste des produits, triés par nom, dans l'ordre alphabétique, et alphabétique inverse ( R ) - **ylavallee-prog**
+        - [ ] Affichage, via une option, de la liste des produits, triés par prix, dans l'ordre croissant, et décroissant ( R ) - **ylavallee-prog**
+        - [ ] Affichage, via une option, du ou des produits, en fonction d'un mot-clé (recherche d'un produit dans le catalogue) ( R ) - **ylavallee-prog**
+        - [ ] Ajout, modification, et suppression d'un produit, via une ou plusieurs options ( C U D ) - **ylavallee-prog**
+
+### Programmation Frontend
+>Implémentation des différents composants de l'interface utilisateur.
+- [x] Création d'un compte utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer - **Purple-key-0** - **Hellebore-jpg**
+- [x] Authentification - **Purple-key-0** - **Hellebore-jpg**
+- [ ] Gestion de produits
+    - [ ] Affichage de la liste des produits, avec critères de tri - **Purple-key-0** 
+    - [ ] Recherche d'un produit en fonction d'un ou plusieurs mots-clés - **Purple-key-0** 
+    - [ ] Ajout d'un produit - **Purple-key-0** 
+    - [ ] Modification d'un produit - **Purple-key-0** 
+    - [ ] Suppression d'un produit - **Purple-key-0**  
+- [ ] Navigation par catégories dans l'interface - **Hellebore-jpg**
+
+### Jeux & Bases de données
+- [x] Création du Catalogue / Tableau de données - **Purple-key-0**
+    | product        | price  | description                                                                               | stock | quality  |
+    |----------------|--------|-------------------------------------------------------------------------------------------|-------|----------|
+    | Guitare Fender | 100.00 | Guitare électrique Fender Stratocaster, modèle classique avec un son riche et polyvalent. | 15    | Neuf     |
+    | Batterie Pearl | 500.00 | Batterie acoustique Pearl, modèle classique avec un son riche et polyvalent.              | 15    | Bon état |
+    | Basse Ibanez   | 500.00 | Basse électrique Ibanez, modèle classique avec un son riche et polyvalent.                | 15    | Correcte |
+    | Contre-Basse   | 500.00 | Contre-basse acoustique, modèle classique avec un son riche et polyvalent.                | 15    | Bon état |
+- [x] Création manuelle d'un jeu d'essais (Données de tests) dans la table "utilisateur". - **Hellebore-jpg**
+    | username      | password                                                        | role    |permissions |
+    |---------------|-----------------------------------------------------------------|---------|------------|
+    | admin         | \$2b\$12\$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe | admin   |1111        |
+    | editor        | \$2b\$12\$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe | editor  |0110        |
+    | remitatouille | \$2b\$12\$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe | visitor |0100        |
+
+    >\$2b\$12\$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe = 123456789
+- [ ] Recherches, analyses, et synthèse autour du SGBD SQLite pour le passage CSV a SQLite - **ylavallee-prog**
+- [ ] Création manuelle du catalogue de produits sous la forme d'une table SQLite (Première BDD SQLite) - **ylavallee-prog**
+- [ ] Jeu de données de test CSV/SQLite à installer optionellement pendant le setup de l'application - **Hellebore-jpg**
+
+### Organisation & Finalisation
+- [x] Relécture et analyse du Cahier des Charges - **chummel-ops** - **Purple-key-0**
+- [x] Creation, organisation, écriture et mise à jour du [TODO](TODO.md) (backlogs) - **chummel-ops** - **Hellebore-jpg**
+- [x] Rédaction du [README](README.md) - **Hellebore-jpg**
+- [ ] Canva de présentation de fin de projet - **chummel-ops**
+- [ ] Derniers fix & Publication
+
+# V2.0
+>13/11/2026 + 
+
+## Objectifs
+- [ ] Panel de gestion des utilisateurs admins et de leur permissions - **Hellebore-jpg**
+- [ ] Profil utilisateur pour changer ses informations - **Hellebore-jpg**
+- [ ] Système de commandes des produits - **Hellebore-jpg**
+- [ ] Historique des commandes - **Hellebore-jpg**
+- [ ] Interface Web & Base de données MySQL en ligne - **Hellebore-jpg**
+- [ ] Derniers fix & Publication - **Hellebore-jpg**

@@ -1,4 +1,4 @@
 username,password,role,permissions
-admin,$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe, admin,1111
+admin,$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe,admin,1111
 editor,$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe,editor,0110
 remitatouille,$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe,visitor,0100
