@@ -54,7 +54,7 @@ Testé avec :
     ```
 2. Ouvrir le dossier dans un terminal et entrer les commandes `python -m venv .venv` pour créer un environement virtuel.
 3. Activez l'environement venv avec `.venv\Scripts\Activate.ps1`, puis importez les dépendances avec `pip install -r requirements.txt`.
-4. Exécutez le script app.py. (`python app.py`)
+4. Exécutez le script [app.py](app.py). (`python app.py`)
 
 ### Administration & Edition
 

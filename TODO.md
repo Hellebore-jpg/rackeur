@@ -6,7 +6,7 @@
 - [x] Rôles dans le groupe - **Tout le monde**
     > `Hellebore-jpg` : Chef de projet
     > `chummel-ops` : Responsable de communication
-- [x] Git & venv - **Hellebore-jpg** :
+- [x] Git & venv - **Hellebore-jpg**
     >- Création du repo Github et de la base.
     >- Ajout des collaborateurs : `Hellebore-jpg (Mathieu)` | `Purple-key-0 (Gabriel)` | `chummel-ops (Charles)` | `ylavallee-prog (Yanis)`
     >- Ajout de l'intervenant : `TheLegacy33`
@@ -14,7 +14,7 @@
     >- Création du .gitignore et de requirements.txt avec `pip freeze > requirements.txt`
 
 ## Objectifs
-- [x] Taches du premier jour : 
+- [x] Taches du premier jour
     - [x] Répartition des rôles - **Tout le monde**
     - [x] Création d'une Diréction Artistique + Logo + Nom d'app - **chummel-ops**
     - [x] Script Python d'interaction CSV CRUD robuste - **Hellebore-jpg**
@@ -25,7 +25,7 @@
         - [x] Ajout, modification, et suppression d'un produit, en ligne de commande, via une ou plusieurs options. ( C U D ) - **Hellebore-jpg**
     - [x] Création du Catalogue / Tableau de données - **Purple-key-0**
     - [x] Relécture et analyse du Cahier des Charges - **chummel-ops** - **Purple-key-0**
-    - [x] Creation des taches du TODO.md - **chummel-ops**
+    - [x] Creation des taches du [TODO](TODO.md) - **chummel-ops**
 
 ## Autre
 - [x] 1er livrable - **Tout le monde**
@@ -34,8 +34,7 @@
 
 ## -- Presentation -- 
 - [ ] Canva de presentation de fin de projet . - **chummel-ops**
-- [ ] Repartition de la parole pour la presentation. - **chummel-ops**
-- [x] Rédaction du README.md - **Hellebore-jpg**
+- [x] Rédaction du [README](README.md) - **Hellebore-jpg**
 
 ## -- Base de Données SQLite -- 
 - [ ] Recherches, analyses, et synthèse autour du SGBD SQLite pour le passage CSV a SQLite. - **ylavallee-prog**
@@ -58,21 +57,26 @@
     >- UX (User Experience) : Expérience utilisateur, centrée sur la satisfaction et le parcours global de l'utilisateur.
 - [x] Recherches, analyses, et synthèse autour des solutions disponibles pour l'interfaçage utilisateur en Python. - **Purple-key-0** - **Hellebore-jpg**
 - [ ] Choix d'une solution pour l'interfaçage utilisateur de l'application de gestion du catalogue de produits. - **chummel-ops**
-- [ ] Maquette final des pages de l'aplication :
-    - [x] Création d'un compte utilisateur. - **chummel-ops**
-    - [x] Authentification. - **chummel-ops**
-    - [ ] Gestion de produits :
-        - [ ] Affichage de la liste des produits, avec critères de tri. - **chummel-ops**
+- [ ] Maquette finale des pages de l'aplication
+    - [x] Titre - **chummel-ops**
+        <img src="md_files\title.png" alt="Titre" width="400">
+    - [x] Création d'un compte utilisateur et autentification - **chummel-ops**
+        <img src="md_files\login.png" alt="Connexion" width="400">
+    - [ ] Gestion de produits
+        - [x] Affichage de la liste des produits, avec critères de tri. - **chummel-ops**
+            <img src="md_files\catalog.png" alt="Connexion" width="400">
+        - [x] Affichage de la liste des produits, pour les admins. - **chummel-ops**
+            <img src="md_files\admin.png" alt="Connexion" width="400">
         - [ ] Recherche d'un produit en fonction d'un ou plusieurs mots-clés. - **chummel-ops**
         - [ ] Ajout d'un produit. - **chummel-ops**
         - [ ] Modification d'un produit. - **chummel-ops**
         - [ ] Suppression d'un produit. - **chummel-ops** 
 
 ## -- Interface Utilisateur ( Rendre fonctionelle ) -- 
-- [ ] Implémentation des différents composants de l'interface utilisateur :
+- [ ] Implémentation des différents composants de l'interface utilisateur
     - [x] Création d'un compte utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer. - **Purple-key-0** - **Hellebore-jpg**
     - [x] Authentification. - **Purple-key-0** - **Hellebore-jpg**
-    - [ ] Gestion de produits :
+    - [ ] Gestion de produits
         - [ ] Affichage de la liste des produits, avec critères de tri. - **Purple-key-0** 
         - [ ] Recherche d'un produit en fonction d'un ou plusieurs mots-clés. - **Purple-key-0** 
         - [ ] Ajout d'un produit. - **Purple-key-0** 
