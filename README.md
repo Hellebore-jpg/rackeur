@@ -1,4 +1,4 @@
-# Rackeur
+# Rackeur Alpha
 Développement d'une application de gestion d'un catalogue de materiel de concerts et d'événements. Les visiteurs peuvent consulter le catalogue et acheter des produits. Un panel administrateur complet permet aux gestionnaires et éditeurs de gérer les données des produits.
 
 <img src="md_files\latest_app_screenshot.png" alt="Dernière capture d'écran de l'application" width="800">
@@ -15,6 +15,7 @@ Développement d'une application de gestion d'un catalogue de materiel de concer
 - [Autheur](#autheur)
 - [Crédits](#crédits)
     - [APIs et Dépendences](#apis-et-dépendences)
+- [Licence](#licence)
 
 ## Fonctionnalités
 
@@ -103,3 +104,8 @@ Fait par **4 collaborateurs** pour le projet **Développement Sécurisé** à Gu
 - [Requests](https://pypi.org/project/requests/)
 - [Bcrypt](https://pypi.org/project/bcrypt/)
 - [API Have I Been Pwned](https://www.openstreetmap.org/)
+
+## Licence
+
+Ce projet est sous licence GNU General Public License v3.0.
+Voir le fichier [LICENSE](LICENSE) pour le texte intégral.
