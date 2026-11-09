@@ -1,0 +1,105 @@
+/* Ce est au format QSS (Qt Style Sheets) */
+
+#root {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #1e1b4b, stop:0.5 #312e81, stop:1 #0f172a);
+}
+
+#card {
+    background-color: #111827;
+    border-radius: 20px;
+}
+
+QLabel {
+    color: #e5e7eb;
+    font-size: 13px;
+    background: transparent;
+}
+
+#title {
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+#subtitle {
+    color: #9ca3af;
+    font-size: 13px;
+}
+
+#fieldLabel {
+    color: #9ca3af;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+QLineEdit {
+    background-color: #1f2937;
+    border: 2px solid #1f2937;
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: white;
+    font-size: 14px;
+    selection-background-color: #6366f1;
+}
+
+QLineEdit:hover {
+    border-color: #374151;
+}
+
+QLineEdit:focus {
+    border-color: #6366f1;
+}
+
+QCheckBox {
+    color: #9ca3af;
+    font-size: 12px;
+    spacing: 8px;
+    background: transparent;
+}
+
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 2px solid #374151;
+    background: #1f2937;
+}
+
+QCheckBox::indicator:checked {
+    background: #6366f1;
+    border-color: #6366f1;
+}
+
+#primaryButton {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                                stop:0 #6366f1, stop:1 #8b5cf6);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#primaryButton:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                                stop:0 #818cf8, stop:1 #a78bfa);
+}
+
+#primaryButton:pressed {
+    background: #4f46e5;
+}
+
+#linkButton {
+    background: transparent;
+    border: none;
+    color: #818cf8;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+#linkButton:hover {
+    color: #a5b4fc;
+    text-decoration: underline;
+}
