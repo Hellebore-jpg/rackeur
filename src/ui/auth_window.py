@@ -18,9 +18,8 @@ from src.ui.splash import SplashDialog
 class AuthWindow(QMainWindow):
     """Crée la fenêtre d'autentification en utilisant le template définit plus haut.
     """
-    LOGIN_INDEX: int = 2
-    REGISTER_INDEX: int = 1
-    SPLASH_INDEX: int = 0
+    LOGIN_INDEX: int = 1
+    REGISTER_INDEX: int = 2
  
     def __init__(self) -> None:
         """Initialise la page d'autentification.
@@ -69,7 +68,7 @@ class AuthWindow(QMainWindow):
         self.login_page.submit_button.clicked.connect(self.on_login)
         self.register_page.submit_button.clicked.connect(self.on_register)
 
-        self.splash.finished.connect(lambda: self.show_page(self.REGISTER_INDEX))
+        self.splash.finished.connect(lambda: self.show_page(self.LOGIN_INDEX))
         self.stack.setCurrentWidget(self.splash)
 
     def show_page(self, index: int) -> None:
