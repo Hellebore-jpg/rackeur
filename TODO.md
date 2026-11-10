@@ -134,8 +134,9 @@
 - [x] Creation, organisation, écriture et mise à jour du [TODO](TODO.md) (backlogs) - **chummel-ops** - **Hellebore-jpg**
 - [x] Explication du code Python (commentaires & Types strictes) - **Hellebore-jpg**
 - [x] Rédaction du [README](README.md) - **Hellebore-jpg**
-- [ ] Canva de présentation de fin de projet - **chummel-ops**
-- [ ] Derniers fix & Publication
+- [x] Canva de présentation de fin de projet - **chummel-ops**
+- [ ] Binaries PyInstaller - **Hellebore-jpg**
+- [ ] Derniers fix & Publication - **Hellebore-jpg**
 
 # V2.0
 >13/11/2026 + 
