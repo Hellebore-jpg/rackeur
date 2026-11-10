@@ -1,7 +1,7 @@
 from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctions
 
 # Importation de Qt et de ses Widgets
-from PyQt6.QtCore import Qt, QPropertyAnimation, QSequentialAnimationGroup
+from PyQt6.QtCore import Qt, QPropertyAnimation, QSequentialAnimationGroup, pyqtSignal
 from PyQt6.QtGui import (
     QFont, QFontDatabase, QKeyEvent, QPixmap, QShowEvent,
 )
@@ -12,19 +12,19 @@ from PyQt6.QtWidgets import (
 from ..utils.helpers import BackgroundWidget
 from .. import config
 
-class SplashDialog(QDialog):
+class SplashDialog(QWidget):
     """Écran titre : fondu entrant, pause, fondu sortant (6s), passer en appuyant sur la touche Entrer.
     """
-    
+
     FADE_MS: int = 500
     HOLD_MS: int = 3000
+    finished = pyqtSignal()
 
     def __init__(self) -> None:
         """Initialise l'écran titre.
         """
         super().__init__()
         self.setWindowTitle("The Rackeur")
-        self.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.FramelessWindowHint)
         self.setWindowState(Qt.WindowState.WindowMaximized)
 
         font_id = QFontDatabase.addApplicationFont(str(config.FONT_PATH))
@@ -80,7 +80,7 @@ class SplashDialog(QDialog):
         self._anim.addAnimation(fade_in)
         self._anim.addPause(self.HOLD_MS)
         self._anim.addAnimation(fade_out)
-        self._anim.finished.connect(self.accept)
+        self._anim.finished.connect(self.finished.emit)
 
     def showEvent(self, event: QShowEvent | None) -> None:
         """Affiche la fenêtre d'intro.
@@ -101,6 +101,6 @@ class SplashDialog(QDialog):
         """
         if event is not None and event.key() in (Qt.Key.Key_Return, Qt.Key.Key_Enter):
             self._anim.stop()
-            self.accept()
+            self.finished.emit()
             return
         super().keyPressEvent(event)

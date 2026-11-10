@@ -13,12 +13,14 @@ from .. import config
 #=============================================================================#
 from src.ui.form_page import FormPage, FieldSpec
 from src.ui.main_page import MainPage
+from src.ui.splash import SplashDialog
 
 class AuthWindow(QMainWindow):
     """Crée la fenêtre d'autentification en utilisant le template définit plus haut.
     """
-    LOGIN_INDEX: int = 0
+    LOGIN_INDEX: int = 2
     REGISTER_INDEX: int = 1
+    SPLASH_INDEX: int = 0
  
     def __init__(self) -> None:
         """Initialise la page d'autentification.
@@ -52,24 +54,23 @@ class AuthWindow(QMainWindow):
             "Vous avez déjà un compte ?",
             "Se connecter",
         )
- 
+
         self.stack: QStackedWidget = QStackedWidget()
-        self.stack.addWidget(self.login_page)
-        self.stack.addWidget(self.register_page)
- 
-        self.setCentralWidget(make_background(make_card(self.stack), RoundedImage(config.USER_PLACEHOLDER_PATH)))
- 
-        self.login_page.switch_button.clicked.connect(
-            lambda: self.show_page(self.REGISTER_INDEX)
-        )
-        self.register_page.switch_button.clicked.connect(
-            lambda: self.show_page(self.LOGIN_INDEX)
-        )
+        self.splash = SplashDialog()
+        self.stack.addWidget(self.splash)
+        self.stack.addWidget(make_background(make_card(self.login_page), RoundedImage(config.USER_PLACEHOLDER_PATH)))
+        self.stack.addWidget(make_background(make_card(self.register_page), RoundedImage(config.USER_PLACEHOLDER_PATH)))
+
+        self.setCentralWidget(self.stack)
+         
+        self.login_page.switch_button.clicked.connect(lambda: self.show_page(self.REGISTER_INDEX))
+        self.register_page.switch_button.clicked.connect(lambda: self.show_page(self.LOGIN_INDEX))
         self.login_page.submit_button.clicked.connect(self.on_login)
         self.register_page.submit_button.clicked.connect(self.on_register)
- 
-        self.show_page(self.LOGIN_INDEX)
- 
+
+        self.splash.finished.connect(lambda: self.show_page(self.REGISTER_INDEX))
+        self.stack.setCurrentWidget(self.splash)
+
     def show_page(self, index: int) -> None:
         """Charge une autre page.
 
