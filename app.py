@@ -44,8 +44,6 @@ def main() -> int:
     # Charger la base de données
     utils_config.CSV = dialog.is_csv()
     load_database()
-    
-    SplashDialog().exec()
  
     # Afficher la fenêtre de connexion
     window = AuthWindow()
