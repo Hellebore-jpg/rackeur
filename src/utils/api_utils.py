@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import requests # Gère les requêtes d'API
 import hashlib # Gère le hashing
 

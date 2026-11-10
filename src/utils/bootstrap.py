@@ -1,16 +1,19 @@
-from ..config import *
-from .utils_config import *
+from __future__ import annotations
+
+from .. import config
+from .session_utils import Session
+from .utils_config import CSV
+from .csv_utils import CREATE_FILE, Database
 
 def load_database() -> None:
     """Chargement de la base de données en fonction de son type.
     """
-    global CSV, HEADERT, CATALOGUE, SESSION
     if CSV:
-        HEADERT = [str, float, str, int, str]
+        config.HEADERT = [str, float, str, int, str]
         CREATE_FILE(header=['product', 'price', 'description', 'stock', 'quality'])
-        CATALOGUE = Database()
+        config.CATALOG = Database()
     else:
-        HEADERT = [str, float, str, int, str] # Changer pour utiliser du SQLite
-        CREATE_FILE(header=['product', 'price', 'description', 'stock', 'quality']) # Changer pour utiliser du SQLite
-        CATALOGUE = Database() # Changer pour utiliser du SQLite
-    SESSION = Session()
+        config.HEADERT = [str, float, str, int, str]
+        CREATE_FILE(header=['product', 'price', 'description', 'stock', 'quality'])
+        config.CATALOG = Database()
+    config.SESSION = Session()   

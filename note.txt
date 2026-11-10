@@ -1,0 +1,9 @@
+commenter tout les imports
+
+tout mettre sur la même fenêtre et rendre le tout uniforme
+
+l'icon ne doit apparaitre que sur l'inscription et la connexion
+
+notification sur le mdp est leaké lors de la connexion
+
+commenter toute les fonctions dans les pages

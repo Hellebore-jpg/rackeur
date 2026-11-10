@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from PyQt6.QtCore import Qt, QRectF
 from PyQt6.QtGui import (
     QColor, QPainter, QPainterPath, QPaintEvent, QPixmap, QResizeEvent,
@@ -6,8 +8,10 @@ from PyQt6.QtWidgets import (
     QFrame, QGraphicsDropShadowEffect, QLabel, QVBoxLayout, QWidget,
 )
 
-from ..config import *
+from pathlib import Path
 import re
+
+from .. import config
 
 def load_stylesheet() -> str:
     """Charge la feuille de style PyQt. Les chemins relatifs des ressources référencées via url(...) sont convertis en chemins absolus à partir de BASE_DIR.
@@ -15,7 +19,7 @@ def load_stylesheet() -> str:
     Returns:
         str: Contenu de la feuille de style avec les chemins résolus.
     """
-    stylesheet: str = STYLESHEET_PATH.read_text(encoding="utf-8")
+    stylesheet: str = config.STYLESHEET_PATH.read_text(encoding="utf-8")
     def resolve_path(match: re.Match[str]) -> str:
         """Convertit un chemin relatif de url(...) en chemin absolu.
 
@@ -26,7 +30,7 @@ def load_stylesheet() -> str:
             str: Chemin url('{chemin_absolu}') avec des séparateurs POSIX, compatible avec les feuilles de style Qt.
         """
         path: str = match.group(1).strip("\"'")
-        absolute_path: Path = (BASE_DIR / path).resolve()
+        absolute_path: Path = (config.BASE_DIR / path).resolve()
         return f"url('{absolute_path.as_posix()}')"
     
     stylesheet = re.sub(
@@ -48,7 +52,7 @@ def make_card(content: QWidget) -> QFrame:
     """
     card = QFrame()
     card.setObjectName("card")
-    card.setFixedWidth(CARD_WIDTH)
+    card.setFixedWidth(config.CARD_WIDTH)
  
     layout = QVBoxLayout(card)
     layout.setContentsMargins(32, 32, 32, 32)
@@ -126,7 +130,7 @@ class BackgroundWidget(QWidget):
         painter.drawPixmap(x, y, self._scaled)
         painter.end()
 
-def make_background(card: QFrame, header: QWidget | None = None, bg_path: Path = BACKGROUND_PATH) -> QWidget:
+def make_background(card: QFrame, header: QWidget | None = None, bg_path: Path = config.BACKGROUND_PATH) -> QWidget:
     """Crée le widget d'arrière plan avec une carte au centre.
 
     Args:

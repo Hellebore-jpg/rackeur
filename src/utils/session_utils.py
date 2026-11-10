@@ -1,8 +1,10 @@
+from __future__ import annotations
+
 from typing import NamedTuple
 
 import bcrypt # Hash des mots de passe (Identique à MySQL)
 
-from .utils_config import *
+from . import utils_config
 from .csv_utils import Database, IndexedRow, TEMP_DB
 from .api_utils import PWNED_COUNT
 
@@ -57,7 +59,7 @@ class Session:
     def __init__(self) -> None:
         """Crée une session vide, prête pour la connexion ou l'inscription.
         """
-        if CSV:
+        if utils_config.CSV:
             self.DB: Database = Database('utilisateurs.csv')
         else:
             self.DB: Database = Database('utilisateurs.csv') # Changer pour utiliser du SQLite
@@ -75,7 +77,7 @@ class Session:
         Returns:
             IndexedRow | None: (index, ligne) ou None si introuvable.
         """
-        if CSV:
+        if utils_config.CSV:
             matches: list[IndexedRow] = self.DB.READER().SEARCH(username, [0], True).BODY
         else:
             matches: list[IndexedRow] = self.DB.READER().SEARCH(username, [0], True).BODY # Changer pour utiliser du SQLite
@@ -117,7 +119,7 @@ class Session:
         """
         if self.__find(username) is not None:
             return False
-        if CSV:
+        if utils_config.CSV:
             self.DB.CREATE([username, _password(password), 'visiteur', '0100'])
             self.DB.SAVE_FILE()
         else:
