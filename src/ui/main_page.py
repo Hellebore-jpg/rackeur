@@ -5,7 +5,7 @@ from PyQt6.QtWidgets import (
     QMainWindow, QVBoxLayout, QWidget
 )
 
-from ..utils.helpers import make_header, make_background, make_card, RoundedImage
+from ..utils.helpers import make_header, make_global_background, make_big_card, RoundedImage
 from .. import config
         
 class MainPage(QMainWindow):
@@ -20,7 +20,9 @@ class MainPage(QMainWindow):
         # Construire l'interface du tableau ici
         title, subtitle = make_header("Page principale", "Vous êtes connecté")
         content = QWidget()
+        
         layout = QVBoxLayout(content)
         layout.addWidget(title)
         layout.addWidget(subtitle)
-        self.setCentralWidget(make_background(make_card(content), RoundedImage(config.USER_PLACEHOLDER_PATH)))
+
+        self.setCentralWidget(make_global_background(make_big_card(content), RoundedImage(config.USER_PLACEHOLDER_PATH)))

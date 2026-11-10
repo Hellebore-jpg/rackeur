@@ -11,7 +11,8 @@ from src.utils.session_utils import Session
 
 # VALEURS PERSONALISÉES
 CARD_WIDTH: int = 380
-
+BIG_CARD_WIDTH: int = 1700
+BIG_CARD_HEIGHT: int = 800
 # CHEMINS DE FICHIERS
 BASE_DIR: Path = Path(__file__).parent.parent
 STYLESHEET_PATH: Path = BASE_DIR / "assets/style.qss"

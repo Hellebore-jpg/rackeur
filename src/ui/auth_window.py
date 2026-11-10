@@ -1,9 +1,11 @@
 from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctions
 
 # Importation de Qt et de ses Widgets
+from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QMainWindow, QSizePolicy, QStackedWidget,
 )
+from PyQt6.QtGui import QKeyEvent
 
 from ..utils.helpers import make_background, make_card, RoundedImage
 from .. import config
@@ -20,6 +22,7 @@ class AuthWindow(QMainWindow):
     """
     LOGIN_INDEX: int = 1
     REGISTER_INDEX: int = 2
+    TYPE_AUTH: bool = False
  
     def __init__(self) -> None:
         """Initialise la page d'autentification.
@@ -77,6 +80,10 @@ class AuthWindow(QMainWindow):
         Args:
             index (int): Index de la page définit dans la classe.
         """
+        if index == 1:
+            TYPE_AUTH = False
+        if index == 2:
+            TYPE_AUTH = True
         for i in range(self.stack.count()):
             policy = (
                 QSizePolicy.Policy.Preferred
@@ -154,3 +161,17 @@ class AuthWindow(QMainWindow):
         else:
             self.show_page(self.LOGIN_INDEX)
             page.show_message("Compte créé, mais la connexion a échoué. Réessayez.")
+
+    def keyPressEnter(self, event: QKeyEvent | None) -> None:
+        """Permet de se connecter ou de s'inscrire "Entrée"
+        
+        Args:
+            event (QKeyEvent | None): Evénement lié à la touche.
+            type_auth (bool): Variable qui permet de différencier une connexion d'une inscription.
+        """
+        if event is not None and event.key() in (Qt.Key.Key_Return, Qt.Key.Key_Enter):
+            if self.TYPE_AUTH == False:
+                self.on_login
+            if self.TYPE_AUTH == True:
+                self.on_register
+        super().keyPressEvent(event)

@@ -6,7 +6,7 @@ from PyQt6.QtGui import (
     QColor, QPainter, QPainterPath, QPaintEvent, QPixmap, QResizeEvent,
 )
 from PyQt6.QtWidgets import (
-    QFrame, QGraphicsDropShadowEffect, QLabel, QVBoxLayout, QWidget,
+    QFrame, QGraphicsDropShadowEffect, QLabel, QVBoxLayout, QWidget, QHBoxLayout, QPushButton,
 )
 
 from pathlib import Path # Gère les chemins de fichiers
@@ -57,6 +57,31 @@ def make_card(content: QWidget) -> QFrame:
  
     layout = QVBoxLayout(card)
     layout.setContentsMargins(32, 32, 32, 32)
+    layout.addWidget(content)
+ 
+    shadow = QGraphicsDropShadowEffect(card)
+    shadow.setBlurRadius(50)
+    shadow.setOffset(0, 12)
+    shadow.setColor(QColor(0, 0, 0, 160))
+    card.setGraphicsEffect(shadow)
+    return card
+
+def make_big_card(content: QWidget) -> QFrame:
+    """Crée un Widget dans une grande carte arondie avec une ombre.
+
+    Args:
+        content (QWidget): Widget à intégrer.
+
+    Returns:
+        QFrame: Carte avec widget intégré.
+    """
+    card = QFrame()
+    card.setObjectName("card")
+    card.setFixedWidth(config.BIG_CARD_WIDTH)
+    card.setFixedHeight(config.BIG_CARD_HEIGHT)
+ 
+    layout = QVBoxLayout(card)
+    layout.setContentsMargins(10, 10, 10, 10)
     layout.addWidget(content)
  
     shadow = QGraphicsDropShadowEffect(card)
@@ -151,6 +176,42 @@ def make_background(card: QFrame, header: QWidget | None = None, bg_path: Path =
         layout.addSpacing(20)
     layout.addWidget(card, alignment=Qt.AlignmentFlag.AlignHCenter)
     layout.addStretch()
+    return root
+
+def make_global_background(card: QFrame, img: QWidget | None = None, bg_path: Path = config.BACKGROUND_PATH) -> QWidget:
+    """Crée le widget d'arrière plan avec une carte au centre.
+
+    Args:
+        card (QFrame): Carte à mettre au centre.
+        bg_path (Path): Chemin de l'image d'arrière plan.
+
+    Returns:
+        QWidget: Widget d'arrière plan.
+    """
+    pseudo = config.SESSION.USER[0]
+    root = BackgroundWidget(bg_path)
+    root.setObjectName("root")
+ 
+    global_layout = QVBoxLayout(root)
+    global_layout.addStretch()
+
+    header = QVBoxLayout()
+    titre_layout = QHBoxLayout()
+    if img is not None:
+        titre_layout.addWidget(img, alignment=Qt.AlignmentFlag.AlignHCenter)
+        titre_layout.addSpacing(20)
+    titre = QLabel(f"Bienvenu cher {pseudo}")
+    titre_layout.addWidget(titre)
+    navbar_layout = QHBoxLayout()
+    btn = QPushButton("test page 1")
+    navbar_layout.addWidget(btn)
+    btn = QPushButton("test page 2")
+    navbar_layout.addWidget(btn)
+    header.addLayout(titre_layout)
+    header.addLayout(navbar_layout)
+    global_layout.addLayout(header)
+    global_layout.addWidget(card, alignment=Qt.AlignmentFlag.AlignHCenter)
+    global_layout.addStretch()
     return root
      
 def make_header(title: str, subtitle: str) -> tuple[QLabel, QLabel]:
