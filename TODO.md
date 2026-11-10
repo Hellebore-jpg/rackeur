@@ -35,20 +35,21 @@
 
 ### Esthétique
 - [x] Création d'une Diréction Artistique + Logo + Nom d'app - **chummel-ops**
-- [ ] Maquette finale des pages de l'aplication
+- [x] Maquette finale des pages de l'aplication
+    <img src="md_files\title.png" alt="Titre" width="400"> <img src="md_files\login.png" alt="Connexion" width="400">
+    <img src="md_files\catalog.png" alt="Catalogue" width="400"> <img src="md_files\admin.png" alt="Panel Admin" width="400">
+    <img src="md_files\search.png" alt="Recherche" width="400"> <img src="md_files\add_product.png" alt="Ajout de produit" width="400">
+    <img src="md_files\edit_product.png" alt="Modification de produit" width="400"> <img src="md_files\del_product.png" alt="Supression de produit" width="400">
+    
     - [x] Titre - **chummel-ops**
-        <img src="md_files\title.png" alt="Titre" width="400">
     - [x] Création d'un compte utilisateur et autentification - **chummel-ops**
-        <img src="md_files\login.png" alt="Connexion" width="400">
-    - [ ] Gestion de produits
+    - [x] Gestion de produits
         - [x] Affichage de la liste des produits, avec critères de tri - **chummel-ops**
-            <img src="md_files\catalog.png" alt="Connexion" width="400">
         - [x] Affichage de la liste des produits, pour les admins - **chummel-ops**
-            <img src="md_files\admin.png" alt="Connexion" width="400">
-        - [ ] Recherche d'un produit en fonction d'un ou plusieurs mots-clés - **chummel-ops**
-        - [ ] Ajout d'un produit - **chummel-ops**
-        - [ ] Modification d'un produit - **chummel-ops**
-        - [ ] Suppression d'un produit - **chummel-ops** 
+        - [x] Recherche d'un produit en fonction d'un ou plusieurs mots-clés - **chummel-ops**
+        - [x] Ajout d'un produit - **chummel-ops**
+        - [x] Modification d'un produit - **chummel-ops**
+        - [x] Suppression d'un produit - **chummel-ops**
 
 ### Définisions & Recherches
 - [x] Définition de l'entité "utilisateur" avec prise en compte des différents rôles - **Hellebore-jpg**
@@ -60,12 +61,13 @@
     >- GUI (Graphical User Interface) : Interface utilisateur graphique, axée sur les éléments visuels et graphiques.
     >- UI (User Interface) : Interface utilisateur, désignant les éléments visuels et interactifs d'un logiciel.
     >- UX (User Experience) : Expérience utilisateur, centrée sur la satisfaction et le parcours global de l'utilisateur.
+- [x] Recherches, analyses, et synthèse autour du SGBD SQLite pour le passage CSV a SQLite - (ylavallee-prog) - **Hellebore-jpg**
 - [x] Recherches, analyses, et synthèse autour des solutions disponibles pour l'interface utilisateur en Python - **Purple-key-0** - **Hellebore-jpg**
     | Module  | Avantages                                                | Inconvénients                                                                               |
     |---------|----------------------------------------------------------|---------------------------------------------------------------------------------------------|
     | PyQt6   | Puissant, grande flexibilité, widgets riches.            | Courbe d'apprentissage plus raide et des contraintes de licence (Open source obligatoire).  |
     | Tkinter | Standard, intégré à Python, facile à apprendre et léger. | Apparence datée, documentation parfois insuffisante, limites face aux interfaces complexes. |
-- [ ] Choix d'une solution pour l'interface utilisateur de l'application de gestion du catalogue de produits. - **chummel-ops**
+- [x] Choix d'une solution pour l'interface utilisateur de l'application de gestion du catalogue de produits. - **chummel-ops**
 
 ### Programmation Backend
 >Implémentation de toutes les fonctionnalitées de l'application à assigner aux boutons de l'interface.
@@ -74,6 +76,7 @@
     - [x] 1ère affichage, en ligne de commande, via une option, de la liste des produits, triés par nom, dans l'ordre alphabétique, et alphabétique inverse ( R ) - **Hellebore-jpg**
     - [x] 1ère affichage, en ligne de commande, via une option, de la liste des produits, triés par prix, dans l'ordre croissant, et décroissant ( R ) - **Hellebore-jpg**
     - [x] 1ère affichage, en ligne de commande, via une option, du ou des produits, en fonction d'un mot-clé (recherche d'un produit dans le catalogue) ( R ) - **Hellebore-jpg**
+    - [x] Recherche par catégories - **Hellebore-jpg**
     - [x] Ajout, modification, et suppression d'un produit, en ligne de commande, via une ou plusieurs options ( C U D ) - **Hellebore-jpg**
 - [x] Scripts Python de gestion utilisateurs
     - [x] Implémentation du mécanisme d'authentification (Connexion & Inscription) - **Hellebore-jpg**
@@ -91,11 +94,13 @@
         >   {code_spécifique_à_la_BDD_format_SQLite}
         >```
     - [ ] Écriture du script d'interaction avec la BDD SQLite
-        - [ ] Affichage de la liste des produits ( R ) - **ylavallee-prog**
-        - [ ] Affichage, via une option, de la liste des produits, triés par nom, dans l'ordre alphabétique, et alphabétique inverse ( R ) - **ylavallee-prog**
-        - [ ] Affichage, via une option, de la liste des produits, triés par prix, dans l'ordre croissant, et décroissant ( R ) - **ylavallee-prog**
-        - [ ] Affichage, via une option, du ou des produits, en fonction d'un mot-clé (recherche d'un produit dans le catalogue) ( R ) - **ylavallee-prog**
-        - [ ] Ajout, modification, et suppression d'un produit, via une ou plusieurs options ( C U D ) - **ylavallee-prog**
+        >(Originalement prévue pour ylavallee-prog mais réasigné à cause d'un empêchement)
+        - [ ] Affichage de la liste des produits ( R ) - (ylavallee-prog) - **Hellebore-jpg**
+        - [ ] Affichage, via une option, de la liste des produits, triés par nom, dans l'ordre alphabétique, et alphabétique inverse ( R ) - (ylavallee-prog) - **Hellebore-jpg**
+        - [ ] Affichage, via une option, de la liste des produits, triés par prix, dans l'ordre croissant, et décroissant ( R ) - (ylavallee-prog) - **Hellebore-jpg**
+        - [ ] Affichage, via une option, du ou des produits, en fonction d'un mot-clé (recherche d'un produit dans le catalogue) ( R ) - (ylavallee-prog) - **Hellebore-jpg**
+        - [ ] Recherche par catégories - **Hellebore-jpg**
+        - [ ] Ajout, modification, et suppression d'un produit, via une ou plusieurs options ( C U D ) - (ylavallee-prog) - **Hellebore-jpg**
 
 ### Programmation Frontend
 >Implémentation des différents composants de l'interface utilisateur.
@@ -107,7 +112,7 @@
     - [ ] Ajout d'un produit - **Purple-key-0** 
     - [ ] Modification d'un produit - **Purple-key-0** 
     - [ ] Suppression d'un produit - **Purple-key-0**  
-- [ ] Navigation par catégories dans l'interface - **Hellebore-jpg**
+- [ ] Navigation par catégories dans l'interface - **Purple-key-0**  
 
 ### Jeux & Bases de données
 - [x] Création du Catalogue / Tableau de données - **Purple-key-0**
@@ -125,8 +130,7 @@
     | remitatouille | \$2b\$12\$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe | visitor |0100        |
 
     >\$2b\$12\$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe = 123456789
-- [ ] Recherches, analyses, et synthèse autour du SGBD SQLite pour le passage CSV a SQLite - **ylavallee-prog**
-- [ ] Création manuelle du catalogue de produits sous la forme d'une table SQLite (Première BDD SQLite) - **ylavallee-prog**
+- [ ] Création manuelle du catalogue de produits sous la forme d'une table SQLite (Première BDD SQLite) - (ylavallee-prog) - **Hellebore-jpg**
 - [ ] Jeu de données de test CSV/SQLite à installer optionellement pendant le setup de l'application - **Hellebore-jpg**
 
 ### Organisation & Finalisation
