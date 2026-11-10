@@ -35,9 +35,6 @@ def CREATE_FILE(path: str | Path = 'catalogue.csv', header: list[str] | None = N
 
     Returns:
         Path: Chemin complet du fichier créé.
-
-    Raises:
-        FileExistsError: Si le fichier existe déjà et que overwrite vaut False.
     """
     full_path: Path = Path(DATA_DIR, path)
     if full_path.exists() and not overwrite: # Arrête si le fichier existe déjà et que l'écrasement est désactivé

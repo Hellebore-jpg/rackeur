@@ -28,6 +28,7 @@ class AuthWindow(QMainWindow):
         self.resize(520, 820)
         self.setMinimumSize(440, 820)
         self.main_page: MainPage | None = None
+        self.next: bool = True
  
         self.login_page: FormPage = FormPage(
             "Connexion",
@@ -103,7 +104,14 @@ class AuthWindow(QMainWindow):
         password: str = page.inputs["password"].text()
         
         if config.SESSION.AUTH(username, password):
-            self.open_main_page()
+            if self.next == False:
+                self.open_main_page()
+            leaks, _, _, _, _ = config.SESSION.SUGGEST_PWD_UPGRADE(password)
+            if leaks > 0:
+                page.show_message(f"Ce mot de passe a déjà fuité {leaks} fois dans des bases piratées. Changez-le !")
+                self.login_page.submit_button.setText("Se connecter quand même")
+                self.login_page.submit_button.setStyleSheet("background-color: #e74c3c")
+            self.next = False
         else:
             page.inputs["password"].clear()
             page.show_message("Nom d'utilisateur ou mot de passe incorrect.")

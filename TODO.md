@@ -80,7 +80,7 @@
     - [x] Hash des mots de passe en Bcrypt dans la base de données - **Hellebore-jpg**
     - [x] Gestion des autorisations, sur les 4 opérations sur le catalogue de produits, en ligne de commande, via une ou plusieurs options - **Hellebore-jpg**
     - [x] Implémentation de la création d'un nouvel utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer, au moyen de l'API RESTful "Have I Been Pwned", en ligne de commande, via une ou plusieurs options - **Hellebore-jpg**
-    - [ ] Implémentation d'un système de notification ou d'alerte par envoi de mail en cas de nouveaux compromis détectés pour un utilisateur - **Hellebore-jpg** 
+    - [x] Implémentation d'un système de notification en cas de nouveaux compromis détectés pour un utilisateur - **Hellebore-jpg** 
 - [ ] Passage du CSV à SQLite
     - [x] Choix du type de base de données au démarrage & branches différentes pour le SQLite dans les scripts qui utilisent la BDD - **Hellebore-jpg**
         >Exemple :
