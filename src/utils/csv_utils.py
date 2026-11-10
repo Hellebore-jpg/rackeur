@@ -1,7 +1,7 @@
-from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctionsfrom contextlib import contextmanager #
+from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctions
 
 from contextlib import contextmanager # Gère les blocs "with" personnalisés (utilisé pour la BDD temporaire)
-from collections.abc import Generator
+from collections.abc import Generator # Permet de renvoyer une classe temporaire dans TEMP_DB()
 from typing import TypedDict # Gère les types de variables, ce script est écrit avec des types stictes
 from pathlib import Path # Gère les chemins de fichiers
 import unicodedata # Gère les actions sur les caractères unicode
@@ -62,15 +62,15 @@ def TEMP_DB(header: list[str], rows: list[list[object]], delimeter: str = ',') -
         delimeter (str, optional): Délimitation utilisée par le fichier CSV. Defaults to ','.
  
     Yields:
-        Catalogue: Catalogue lié au fichier temporaire.
+        Database: BDD lié au fichier temporaire.
     """
     with tempfile.TemporaryDirectory() as tmp_dir: # Le dossier (et son contenu) disparaît à la fin du with
         path: Path = CREATE_FILE(Path(tmp_dir, 'test.csv'), header, delimeter, overwrite=True)
-        catalogue: Database = Database(path, delimeter)
+        temp_db: Database = Database(path, delimeter)
         for row in rows:
-            catalogue.CREATE(row)
-        catalogue.SAVE_FILE()
-        yield catalogue
+            temp_db.CREATE(row)
+        temp_db.SAVE_FILE()
+        yield temp_db
 
 class Database:
     """Classe permetant d'importer et d'interagir facilement avec un fichier CSV.
@@ -79,7 +79,7 @@ class Database:
         """Importation d'un fichier CSV.
 
         Args:
-            path (str | Path, optional): Chemin du fichier catalogue dans "assets/data/". Defaults to 'catalogue.csv'.
+            path (str | Path, optional): Chemin du fichier .csv dans "assets/data/". Defaults to 'catalogue.csv'.
             delimeter (str, optional): Délimitation utilisée par le fichier CSV. Defaults to ','.
         """
         self.PATH: Path = Path(DATA_DIR, path)
@@ -101,14 +101,14 @@ class Database:
             return {'header': table[0], 'body': table[1:]}
         
     def READER(self, start: int = 0, end: int = 0) -> DB_Reader:
-        """Raccourci pour créer un lecteur, ex : Catalogue('x.csv').READER().NUM_SORT(1).READ()
+        """Raccourci pour créer un lecteur, ex : Database('x.csv').READER().NUM_SORT(1).READ()
  
         Args:
             start (int, optional): Index de la première ligne du segment. Defaults to 0.
             end (int, optional): Index de fin du segment (exclu), 0 signifie jusqu'à la fin. Defaults to 0.
  
         Returns:
-            Catalogue_Reader: Lecteur sur le segment demandé.
+            DB_Reader: Lecteur sur le segment demandé.
         """
         return DB_Reader(self, start, end)
 
@@ -241,14 +241,14 @@ class DB_Reader:
     """Classe regroupant toutes les fonctions permettant d'afficher, de trier ou de rechercher les données d'un tableau CSV.
     """
     def __init__(self, database: Database, start: int = 0, end: int = 0) -> None:
-        """Importe un morceau du fichier CSV contenu dans le Catalogue utilisé pour pouvoir y extraire des informations.
+        """Importe un morceau du fichier CSV contenu dans la BDD utilisée pour pouvoir y extraire des informations.
 
         Args:
             database (DataBase): Base de données CSV.
             start (int, optional): Index de la première ligne du segment utilisé. Defaults to 0.
             end (int, optional): Index de la dernière ligne du segment utilisé. Defaults to 0.
         """
-        real_ids: range = range(*slice(start, end or None).indices(len(database.BODY))) # Les index restent ceux du Catalogue (ne repartent pas de 0)
+        real_ids: range = range(*slice(start, end or None).indices(len(database.BODY))) # Les index restent ceux de la base de données (ne repartent pas de 0)
         # Cette expression est divisée en plusieurs parties :
         # 1. "slice" découpe le morceau désiré du tableau pour renvoyer les lignes comprises entre "start" et "end" exclu.
         # 2. ".indices" renvoie la liste des indices des lignes que l'on vient d'extraire.

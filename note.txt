@@ -1,0 +1,5 @@
+tout mettre sur la même fenêtre et rendre le tout uniforme
+
+l'icon ne doit apparaitre que sur l'inscription et la connexion
+
+notification si le mdp est leaké lors de la connexion

@@ -1,9 +1,12 @@
-from typing import NamedTuple
+from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctions
+
+from typing import NamedTuple # Permet de créer une classe pour définir un type de variable
 
 import bcrypt # Hash des mots de passe (Identique à MySQL)
 
-from src.csv_utils import *
-from src.api_utils import *
+from . import utils_config
+from .csv_utils import Database, IndexedRow, TEMP_DB
+from .api_utils import PWNED_COUNT
 
 # Seuls ces classes sont exportés avec "from session_utils import *", tout le reste est interne au script.
 __all__ = [
@@ -53,12 +56,10 @@ def _verify(password: str, stored: str) -> bool:
 class Session:
     """Gère les sessions utilisateur de manière sécurisée.
     """
-    def __init__(self, csv:bool) -> None:
+    def __init__(self) -> None:
         """Crée une session vide, prête pour la connexion ou l'inscription.
         """
-        self.csv = csv
-        
-        if csv:
+        if utils_config.CSV:
             self.DB: Database = Database('utilisateurs.csv')
         else:
             self.DB: Database = Database('utilisateurs.csv') # Changer pour utiliser du SQLite
@@ -76,7 +77,7 @@ class Session:
         Returns:
             IndexedRow | None: (index, ligne) ou None si introuvable.
         """
-        if self.csv:
+        if utils_config.CSV:
             matches: list[IndexedRow] = self.DB.READER().SEARCH(username, [0], True).BODY
         else:
             matches: list[IndexedRow] = self.DB.READER().SEARCH(username, [0], True).BODY # Changer pour utiliser du SQLite
@@ -118,7 +119,7 @@ class Session:
         """
         if self.__find(username) is not None:
             return False
-        if self.csv:
+        if utils_config.CSV:
             self.DB.CREATE([username, _password(password), 'visiteur', '0100'])
             self.DB.SAVE_FILE()
         else:
@@ -187,7 +188,7 @@ def TESTING() -> None:
     check('_verify : hash invalide -> False sans erreur', _verify('secret', 'pas-un-hash'), False)
 
     with TEMP_DB(header, []) as db:
-        s: Session = Session(True)
+        s: Session = Session()
         s.DB = db
 
         # 2. État initial
