@@ -61,7 +61,7 @@
     >- GUI (Graphical User Interface) : Interface utilisateur graphique, axée sur les éléments visuels et graphiques.
     >- UI (User Interface) : Interface utilisateur, désignant les éléments visuels et interactifs d'un logiciel.
     >- UX (User Experience) : Expérience utilisateur, centrée sur la satisfaction et le parcours global de l'utilisateur.
-- [x] Recherches, analyses, et synthèse autour du SGBD SQLite pour le passage CSV a SQLite - (ylavallee-prog) - **Hellebore-jpg**
+- [x] Recherches, analyses, et synthèse autour du SGBD SQLite pour le passage CSV a SQLite - **ylavallee-prog** - **Hellebore-jpg**
 - [x] Recherches, analyses, et synthèse autour des solutions disponibles pour l'interface utilisateur en Python - **Purple-key-0** - **Hellebore-jpg**
     | Module  | Avantages                                                | Inconvénients                                                                               |
     |---------|----------------------------------------------------------|---------------------------------------------------------------------------------------------|
@@ -94,13 +94,12 @@
         >   {code_spécifique_à_la_BDD_format_SQLite}
         >```
     - [ ] Écriture du script d'interaction avec la BDD SQLite
-        >(Originalement prévue pour ylavallee-prog mais réasigné à cause d'un empêchement)
-        - [ ] Affichage de la liste des produits ( R ) - (ylavallee-prog) - **Hellebore-jpg**
-        - [ ] Affichage, via une option, de la liste des produits, triés par nom, dans l'ordre alphabétique, et alphabétique inverse ( R ) - (ylavallee-prog) - **Hellebore-jpg**
-        - [ ] Affichage, via une option, de la liste des produits, triés par prix, dans l'ordre croissant, et décroissant ( R ) - (ylavallee-prog) - **Hellebore-jpg**
-        - [ ] Affichage, via une option, du ou des produits, en fonction d'un mot-clé (recherche d'un produit dans le catalogue) ( R ) - (ylavallee-prog) - **Hellebore-jpg**
+        - [ ] Affichage de la liste des produits ( R ) - **ylavallee-prog** - **Hellebore-jpg**
+        - [ ] Affichage, via une option, de la liste des produits, triés par nom, dans l'ordre alphabétique, et alphabétique inverse ( R ) - **ylavallee-prog** - **Hellebore-jpg**
+        - [ ] Affichage, via une option, de la liste des produits, triés par prix, dans l'ordre croissant, et décroissant ( R ) - **ylavallee-prog** - **Hellebore-jpg**
+        - [ ] Affichage, via une option, du ou des produits, en fonction d'un mot-clé (recherche d'un produit dans le catalogue) ( R ) - **ylavallee-prog** - **Hellebore-jpg**
         - [ ] Recherche par catégories - **Hellebore-jpg**
-        - [ ] Ajout, modification, et suppression d'un produit, via une ou plusieurs options ( C U D ) - (ylavallee-prog) - **Hellebore-jpg**
+        - [ ] Ajout, modification, et suppression d'un produit, via une ou plusieurs options ( C U D ) - **ylavallee-prog** - **Hellebore-jpg**
 
 ### Programmation Frontend
 >Implémentation des différents composants de l'interface utilisateur.
@@ -130,7 +129,7 @@
     | remitatouille | \$2b\$12\$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe | visitor |0100        |
 
     >\$2b\$12\$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe = 123456789
-- [ ] Création manuelle du catalogue de produits sous la forme d'une table SQLite (Première BDD SQLite) - (ylavallee-prog) - **Hellebore-jpg**
+- [ ] Création manuelle du catalogue de produits sous la forme d'une table SQLite (Première BDD SQLite) - **ylavallee-prog** - **Hellebore-jpg**
 - [ ] Jeu de données de test CSV/SQLite à installer optionellement pendant le setup de l'application - **Hellebore-jpg**
 
 ### Organisation & Finalisation
