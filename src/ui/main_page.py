@@ -1,5 +1,6 @@
-from __future__ import annotations
+from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctions
 
+# Importation de Qt et de ses Widgets
 from PyQt6.QtWidgets import (
     QMainWindow, QVBoxLayout, QWidget
 )
@@ -12,6 +13,8 @@ class MainPage(QMainWindow):
     """
 
     def __init__(self) -> None:
+        """Lance la page principale de l'application.
+        """
         super().__init__()
         self.setWindowTitle("Rackeur | Catalogue")
         # Construire l'interface du tableau ici

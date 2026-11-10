@@ -1,5 +1,6 @@
-from __future__ import annotations
+from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctions
 
+# Importation de Qt et de ses Widgets
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QComboBox, QDialog, QLabel, QPushButton, QVBoxLayout, QWidget, QListView,
@@ -60,4 +61,6 @@ class SourceDialog(QDialog):
         outer.addWidget(root)
  
     def is_csv(self) -> bool:
+        """Renvoie si oui ou non l'utilisateur à choisi l'option CSV.
+        """
         return self.combo.currentText() == "CSV"

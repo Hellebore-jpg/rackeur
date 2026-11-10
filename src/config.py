@@ -1,6 +1,6 @@
-from __future__ import annotations
+from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctions
 
-from pathlib import Path
+from pathlib import Path # Gère les chemins de fichiers
 
 from src.utils.csv_utils import Database
 from src.utils.session_utils import Session

@@ -1,5 +1,6 @@
-from __future__ import annotations
+from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctions
 
+# Importation de Qt et de ses Widgets
 from PyQt6.QtCore import Qt, QPropertyAnimation, QSequentialAnimationGroup
 from PyQt6.QtGui import (
     QFont, QFontDatabase, QKeyEvent, QPixmap, QShowEvent,
@@ -12,13 +13,15 @@ from ..utils.helpers import BackgroundWidget
 from .. import config
 
 class SplashDialog(QDialog):
-    """Écran titre : fondu entrant, pause, fondu sortant (2s), passer en appuyant sur la touche Entrer.
+    """Écran titre : fondu entrant, pause, fondu sortant (6s), passer en appuyant sur la touche Entrer.
     """
     
     FADE_MS: int = 500
     HOLD_MS: int = 3000
 
     def __init__(self) -> None:
+        """Initialise l'écran titre.
+        """
         super().__init__()
         self.setWindowTitle("The Rackeur")
         self.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.FramelessWindowHint)
@@ -80,12 +83,22 @@ class SplashDialog(QDialog):
         self._anim.finished.connect(self.accept)
 
     def showEvent(self, event: QShowEvent | None) -> None:
+        """Affiche la fenêtre d'intro.
+
+        Args:
+            event (QShowEvent | None): Evénement avec lequel l'écran dooit se lancer.
+        """
         super().showEvent(event)
         self.activateWindow()
         self.setFocus()
         self._anim.start()
 
     def keyPressEvent(self, event: QKeyEvent | None) -> None:
+        """Permet d'interompre l'intro en appuyant sur "Entrée"
+
+        Args:
+            event (QKeyEvent | None): Evénement lié à la touche.
+        """
         if event is not None and event.key() in (Qt.Key.Key_Return, Qt.Key.Key_Enter):
             self._anim.stop()
             self.accept()

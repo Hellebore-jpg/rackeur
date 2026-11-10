@@ -1,5 +1,6 @@
-from __future__ import annotations
+from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctions
 
+# Importation de Qt et de ses Widgets
 from PyQt6.QtCore import Qt, QRectF
 from PyQt6.QtGui import (
     QColor, QPainter, QPainterPath, QPaintEvent, QPixmap, QResizeEvent,
@@ -8,8 +9,8 @@ from PyQt6.QtWidgets import (
     QFrame, QGraphicsDropShadowEffect, QLabel, QVBoxLayout, QWidget,
 )
 
-from pathlib import Path
-import re
+from pathlib import Path # Gère les chemins de fichiers
+import re # Permet de faire des recherches sur du texte en utilisant les expressions régulières (RegEx)
 
 from .. import config
 

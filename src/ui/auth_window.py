@@ -1,5 +1,6 @@
-from __future__ import annotations
+from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctions
 
+# Importation de Qt et de ses Widgets
 from PyQt6.QtWidgets import (
     QMainWindow, QSizePolicy, QStackedWidget,
 )
@@ -70,6 +71,11 @@ class AuthWindow(QMainWindow):
         self.show_page(self.LOGIN_INDEX)
  
     def show_page(self, index: int) -> None:
+        """Charge une autre page.
+
+        Args:
+            index (int): Index de la page définit dans la classe.
+        """
         for i in range(self.stack.count()):
             policy = (
                 QSizePolicy.Policy.Preferred
@@ -83,11 +89,15 @@ class AuthWindow(QMainWindow):
         self.register_page.clear_message()
         
     def open_main_page(self) -> None:
+        """Ouvre la page principage le l'application.
+        """
         self.main_page = MainPage()
         self.main_page.showMaximized()
         self.close()
  
     def on_login(self) -> None:
+        """Fonction de comportement du bouton de connexion.
+        """
         page = self.login_page
         username: str = page.inputs["username"].text()
         password: str = page.inputs["password"].text()
@@ -99,6 +109,8 @@ class AuthWindow(QMainWindow):
             page.show_message("Nom d'utilisateur ou mot de passe incorrect.")
  
     def on_register(self) -> None:
+        """Fonction de comportement du bouton d'inscription.
+        """
         page = self.register_page
         username: str = page.inputs["username"].text().strip()
         password: str = page.inputs["password"].text()

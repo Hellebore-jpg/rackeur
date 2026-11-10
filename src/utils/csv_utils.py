@@ -1,7 +1,7 @@
-from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctionsfrom contextlib import contextmanager #
+from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctions
 
 from contextlib import contextmanager # Gère les blocs "with" personnalisés (utilisé pour la BDD temporaire)
-from collections.abc import Generator
+from collections.abc import Generator # Permet de renvoyer une classe temporaire dans TEMP_DB()
 from typing import TypedDict # Gère les types de variables, ce script est écrit avec des types stictes
 from pathlib import Path # Gère les chemins de fichiers
 import unicodedata # Gère les actions sur les caractères unicode

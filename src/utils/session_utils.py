@@ -1,6 +1,6 @@
-from __future__ import annotations
+from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctions
 
-from typing import NamedTuple
+from typing import NamedTuple # Permet de créer une classe pour définir un type de variable
 
 import bcrypt # Hash des mots de passe (Identique à MySQL)
 

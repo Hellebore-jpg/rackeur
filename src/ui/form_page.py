@@ -1,16 +1,19 @@
-from __future__ import annotations
+from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctions
 
+# Importation de Qt et de ses Widgets
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QCheckBox, QHBoxLayout, QLabel, QLineEdit, QPushButton, QVBoxLayout, QWidget,
 )
 
-from dataclasses import dataclass
+from dataclasses import dataclass # Permet de créer une classe qui définit un type de variable
 
 from ..utils.helpers import make_header
 
 @dataclass(frozen=True)
 class FieldSpec:
+    """Classe symbolisant les valeurs des champs de texte.
+    """
     key: str
     label: str
     placeholder: str
@@ -89,11 +92,22 @@ class FormPage(QWidget):
         layout.addLayout(switch_row)
  
     def _toggle_password(self, visible: bool) -> None:
+        """Affiche ou cache le mot de passe.
+
+        Args:
+            visible (bool): Etat.
+        """
         mode = QLineEdit.EchoMode.Normal if visible else QLineEdit.EchoMode.Password
         for edit in self._password_inputs:
             edit.setEchoMode(mode)
             
     def show_message(self, text: str, hints: list[str] | None = None) -> None:
+        """Affiche un message d'erreur sous le formulaire.
+
+        Args:
+            text (str): Texte du message d'erreur.
+            hints (list[str] | None, optional): Transforme une liste de texte en liste d'erreurs à afficher. Defaults to None.
+        """
         html = f"<b>{text}</b>"
         if hints:
             html += "<br>" + "<br>".join(f"• {hint}" for hint in hints)
@@ -101,4 +115,6 @@ class FormPage(QWidget):
         self.message.show()
 
     def clear_message(self) -> None:
+        """retire le message d'erreur.
+        """
         self.message.hide()

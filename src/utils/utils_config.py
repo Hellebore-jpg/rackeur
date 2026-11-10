@@ -1,4 +1,4 @@
-from __future__ import annotations
+from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctions
 #=============================================================================#
 # PARAMETRES DES SCRIPTS HELPERS                                              #
 #=============================================================================#

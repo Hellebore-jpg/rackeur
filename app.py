@@ -1,5 +1,6 @@
-from __future__ import annotations
+from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctions
 
+# Importation de Qt et de ses Widgets
 from PyQt6.QtGui import (
     QIcon,
 )
@@ -7,7 +8,7 @@ from PyQt6.QtWidgets import (
     QApplication, QDialog,
 )
 
-import sys
+import sys # Permet l'interaction avec le système d'exploitation
 
 from src.utils.bootstrap import load_database
 from src.utils.helpers import load_stylesheet
@@ -25,6 +26,11 @@ from src.ui.splash import SplashDialog
 # DEMARRAGE DE L'APPLICATION                                                  #
 #=============================================================================#
 def main() -> int:
+    """Démarre et gère l'application dans sa globalité.
+
+    Returns:
+        int: Code de fermeture de l'application.
+    """
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon(str(config.FAVICON_PATH)))
     app.setStyle("Fusion")
