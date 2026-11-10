@@ -1,5 +1,4 @@
 username,password,role,permissions
-"admin",15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225, admin,1111
-"rat-degou",15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225,editor,0110
-"remitatouille",15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225,visitor,0100
-"rateau",15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225,none,0000
+admin,$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe,admin,1111
+editor,$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe,editor,0110
+remitatouille,$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe,visitor,0100

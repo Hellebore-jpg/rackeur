@@ -1,0 +1,1 @@
+# Empêche les erreurs liées aux chemins relatifs dans les importations de scripts python.
