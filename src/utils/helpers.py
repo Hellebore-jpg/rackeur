@@ -13,6 +13,7 @@ from pathlib import Path # Gère les chemins de fichiers
 import re # Permet de faire des recherches sur du texte en utilisant les expressions régulières (RegEx)
 
 from .. import config
+from ..ui.app_pages import AppWindow
 
 def load_stylesheet() -> str:
     """Charge la feuille de style PyQt. Les chemins relatifs des ressources référencées via url(...) sont convertis en chemins absolus à partir de BASE_DIR.
@@ -178,7 +179,7 @@ def make_background(card: QFrame, header: QWidget | None = None, bg_path: Path =
     layout.addStretch()
     return root
 
-def make_global_background(card: QFrame, img: QWidget | None = None, bg_path: Path = config.BACKGROUND_PATH) -> QWidget:
+def make_global_background(card: QFrame, app_window: AppWindow, img: QWidget | None = None, bg_path: Path = config.BACKGROUND_PATH, current_page: str | None = None) -> QWidget:
     """Crée le widget d'arrière plan avec une carte au centre.
 
     Args:
@@ -196,30 +197,61 @@ def make_global_background(card: QFrame, img: QWidget | None = None, bg_path: Pa
     global_layout.addStretch()
 
     header = QVBoxLayout()
-    titre_layout = QHBoxLayout()
+    title_layout = QHBoxLayout()
     if img is not None:
-        titre_layout.addWidget(img, alignment=Qt.AlignmentFlag.AlignHCenter)
-        titre_layout.addSpacing(20)
-    titre = QLabel(f"Bienvenu cher {pseudo}")
-    titre_layout.addWidget(titre)
+        title_layout.addWidget(img, alignment=Qt.AlignmentFlag.AlignHCenter)
+        title_layout.addSpacing(20)
+    title = QLabel(f"Bienvenu cher {pseudo}")
+    title.setProperty("class", "title")
+    title_layout.addWidget(title)
+
     navbar_layout = QHBoxLayout()
-    btn = QPushButton("test page 1")
-    navbar_layout.addWidget(btn)
-    btn = QPushButton("test page 2")
-    navbar_layout.addWidget(btn)
-    header.addLayout(titre_layout)
+    if current_page != "main":
+        catalog_btn = QPushButton("Catalogue")
+        catalog_btn.setProperty("class", "onglet-button")
+        catalog_btn.clicked.connect(lambda: catalog_page(app_window))
+        navbar_layout.addWidget(catalog_btn)
+
+    if current_page != "add_product":
+        product_btn = QPushButton("Ajouter un produits")
+        product_btn.setProperty("class", "onglet-button")
+        product_btn.clicked.connect(lambda: product_page(app_window))
+        navbar_layout.addWidget(product_btn)
+
+    if current_page != "gestion_user":
+        user_btn = QPushButton("Gérer les utilisateurs")
+        user_btn.setProperty("class", "onglet-button")
+        user_btn.clicked.connect(lambda: user_page(app_window))
+        navbar_layout.addWidget(user_btn)
+
+    header.addLayout(title_layout)
     header.addLayout(navbar_layout)
     global_layout.addLayout(header)
     global_layout.addWidget(card, alignment=Qt.AlignmentFlag.AlignHCenter)
     global_layout.addStretch()
     return root
-     
+
+def catalog_page(window) -> None:
+    """Affiche le catalogue dans la fenêtre courante."""
+    from src.ui.main_page import MainPage
+    window.switch_to("main",lambda window: MainPage(window),)
+
+def product_page(window) -> None:
+    """Affiche la page d'ajout de produit dans la fenêtre courante."""
+    from src.ui.add_product import AddProductPage
+    window.switch_to("add_product",lambda window: AddProductPage(window),)
+
+def user_page(window) -> None:
+    """Affiche la page de gestion des utilisateurs dans la fenêtre courante."""
+    from src.ui.gestion_user import GestionUserPage
+    window.switch_to("gestion_usert",lambda window: GestionUserPage(window),)
+
 def make_header(title: str, subtitle: str) -> tuple[QLabel, QLabel]:
     """Crée une entête.
 
     Args:
-        title (str): Titre de l'entête.
-        subtitle (str): Sous titre de l'entête.
+        title (str): title de l'entête.
+        subtitle (str): Sous title de l'entête.
 
     Returns:
         tuple[QLabel, QLabel]: Entête.
@@ -229,3 +261,17 @@ def make_header(title: str, subtitle: str) -> tuple[QLabel, QLabel]:
     subtitle_label = QLabel(subtitle)
     subtitle_label.setObjectName("subtitle")
     return title_label, subtitle_label
+
+class Page(QWidget):
+    """Base des pages : se comporte comme un QMainWindow avec setCentralWidget."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        self._root_layout = QVBoxLayout(self)
+        self._root_layout.setContentsMargins(0, 0, 0, 0)
+
+    def setCentralWidget(self, widget: QWidget) -> None:
+        while (item := self._root_layout.takeAt(0)) is not None:
+            if item.widget() is not None:
+                item.widget().deleteLater()
+        self._root_layout.addWidget(widget)

@@ -55,6 +55,18 @@ QPushButton[class="product-button"]:hover {
     background-color: #647cff;
 }
 
+QPushButton[class="onglet-button"] {
+    background-color: #353d55;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+QPushButton[class="onglet-button"]:hover {
+    background-color: #647cff;
+}
+
 /* Textes */
 QLabel {
     color: #f3ecff;

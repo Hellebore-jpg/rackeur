@@ -21,6 +21,8 @@ from src.utils import utils_config
 from src.ui.source_dialog import SourceDialog
 from src.ui.auth_window import AuthWindow
 from src.ui.splash import SplashDialog
+from src.ui.app_pages import AppWindow
+from src.ui.main_page import MainPage
 
 #=============================================================================#
 # DEMARRAGE DE L'APPLICATION                                                  #
@@ -45,9 +47,11 @@ def main() -> int:
     utils_config.CSV = dialog.is_csv()
     load_database()
  
-    # Afficher la fenêtre de connexion
-    window = AuthWindow()
+    window = AppWindow()
+    window.switch_to("auth", lambda parent: AuthWindow(parent))
     window.showMaximized()
+
+
     return app.exec()
 
 if __name__ == '__main__':

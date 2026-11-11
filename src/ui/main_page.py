@@ -1,37 +1,46 @@
-from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctions
+from __future__ import annotations 
 
-# Importation de Qt et de ses Widgets
 from PyQt6.QtCore import Qt, QPoint
 from PyQt6.QtWidgets import (
-    QMainWindow, QVBoxLayout, QWidget, QWidget, QGridLayout, QFrame, QLabel, QHBoxLayout, QPushButton, QSizePolicy,
+    QMainWindow, QVBoxLayout, QWidget, QGridLayout, QFrame, QLabel, QHBoxLayout, QPushButton, QSizePolicy,
 )
 
-from ..utils.helpers import make_header, make_global_background, make_big_card, RoundedImage
+from ..utils.helpers import Page, make_global_background, make_big_card, RoundedImage
 from ..utils.csv_utils import DB_Reader, Database
 from .. import config
-        
-class MainPage(QMainWindow):
+
+class MainPage(Page):
     """Page principale affichée après la connexion.
     """
 
-    def __init__(self) -> None:
+    def __init__(self, app_window) -> None:
         """Lance la page principale de l'application.
         """
         super().__init__()
-        self.setWindowTitle("Rackeur | Catalogue")
-        # Construire l'interface du tableau ici
+        self.app_window = app_window
         self.setWindowTitle("Produits")
+        self._details_ouvert = None
+        self._panneaux = []
+        self.database = Database("catalogue.csv")
+        self.refresh()
+
+    def refresh(self) -> None:
+        """Reconstruit toute la grille à partir des données actuelles."""
+        for panneau in self._panneaux:
+            panneau.deleteLater()
+        self._panneaux = []
+        self._details_ouvert = None
+
+        reader = DB_Reader(self.database)
+        produits = reader.READ()
+
         content = QWidget()
         layout = QVBoxLayout(content)
-        grille = QGridLayout()  # CHANGÉ : plus de parent, c'est layout qui la gère
+        grille = QGridLayout()
         grille.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignLeft)
         grille.setSpacing(10)
         colonnes = 6
 
-        database = Database("catalogue.csv")
-        reader = DB_Reader(database)
-        produits = reader.READ()
-        self._details_ouvert = None
         for index, ligne in enumerate(produits):
             bloc = QFrame()
             bloc.setProperty("class", "product-card")
@@ -41,7 +50,7 @@ class MainPage(QMainWindow):
             bloc_layout.setContentsMargins(8, 4, 8, 4)
             bloc_layout.setSpacing(10)
             header = QHBoxLayout()
-            
+
             name = QLabel(ligne[0])
             name.setProperty("class", "product-name")
             stock = QLabel(f"En stock : {ligne[3]}")
@@ -54,11 +63,12 @@ class MainPage(QMainWindow):
             bloc_layout.addLayout(header)
             details = QFrame(self)
             details.setProperty("class", "product-details")
+            self._panneaux.append(details)
             details_layout = QVBoxLayout(details)
             ordre = ["description", "price", "quality"]
 
             for nom_colonne in ordre:
-                i = database.HEAD.index(nom_colonne)
+                i = self.database.HEAD.index(nom_colonne)
                 valeur = ligne[i]
 
                 if nom_colonne == "price":
@@ -81,11 +91,11 @@ class MainPage(QMainWindow):
 
             details.hide()
 
-            bouton = QPushButton("Voir les détails")
-            bouton.setProperty("class", "product-button")
-            bloc_layout.addWidget(bouton)
+            btn = QPushButton("Voir les détails")
+            btn.setProperty("class", "product-button")
+            bloc_layout.addWidget(btn)
 
-            def toggle_details(checked=False, d=details, b=bouton, bloc=bloc):
+            def toggle_details(checked=False, d=details, b=btn, bloc=bloc):
                 if d.isVisible():
                     d.hide()
                     b.setText("Voir les détails")
@@ -101,24 +111,31 @@ class MainPage(QMainWindow):
                 d.move(pos)
                 d.adjustSize()
                 d.show()
-                d.raise_()  
+                d.raise_()
                 b.setText("Masquer les détails")
                 self._details_ouvert = (d, b)
 
-            bouton.clicked.connect(toggle_details)
+            btn.clicked.connect(toggle_details)
+
+            btn_delete = QPushButton("Supprimer le produit")
+            btn_delete.setProperty("class", "product-button")
+            bloc_layout.addWidget(btn_delete)
+            btn_delete.clicked.connect(lambda checked=False, i=index: self.delete_product(i))
 
             rang = index // colonnes
             colonne = index % colonnes
-            # CHANGÉ : AlignTop pour que les cartes voisines ne s'étirent pas
             grille.addWidget(bloc, rang, colonne, Qt.AlignmentFlag.AlignTop)
 
-
-        # AJOUTÉ : ligne vide extensible sous la grille, pour que tout reste collé en haut
         grille.setRowStretch((len(produits) // colonnes) + 1, 1)
 
         layout.addLayout(grille)
 
-        self.setCentralWidget(make_global_background(make_big_card(content), RoundedImage(config.USER_PLACEHOLDER_PATH)))
+        self.setCentralWidget(make_global_background(make_big_card(content), app_window=self.app_window, img=RoundedImage(config.USER_PLACEHOLDER_PATH), current_page="main"))
+
+    def delete_product(self, index_product: int):
+        self.database.DELETE(index_product)
+        self.database.SAVE_FILE()
+        self.refresh()
 
     def resizeEvent(self, event):
         super().resizeEvent(event)

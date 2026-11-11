@@ -7,7 +7,7 @@ from PyQt6.QtWidgets import (
 )
 from PyQt6.QtGui import QKeyEvent
 
-from ..utils.helpers import make_background, make_card, RoundedImage
+from ..utils.helpers import make_background, make_card, RoundedImage, Page
 from .. import config
 
 #=============================================================================#
@@ -17,17 +17,18 @@ from src.ui.form_page import FormPage, FieldSpec
 from src.ui.main_page import MainPage
 from src.ui.splash import SplashDialog
 
-class AuthWindow(QMainWindow):
+class AuthWindow(Page):
     """Crée la fenêtre d'autentification en utilisant le template définit plus haut.
     """
     LOGIN_INDEX: int = 1
     REGISTER_INDEX: int = 2
     TYPE_AUTH: bool = False
  
-    def __init__(self) -> None:
+    def __init__(self, app_window) -> None:
         """Initialise la page d'autentification.
         """
         super().__init__()
+        self.app_window = app_window
         self.setWindowTitle("Rackeur | Bienvenue")
         self.resize(520, 820)
         self.setMinimumSize(440, 820)
@@ -97,11 +98,9 @@ class AuthWindow(QMainWindow):
         self.register_page.clear_message()
         
     def open_main_page(self) -> None:
-        """Ouvre la page principage le l'application.
-        """
-        self.main_page = MainPage()
-        self.main_page.showMaximized()
-        self.close()
+        from src.ui.main_page import MainPage
+        self.app_window.switch_to("main",lambda window: MainPage(window),)
+
  
     def on_login(self) -> None:
         """Fonction de comportement du bouton de connexion.
