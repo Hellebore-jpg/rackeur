@@ -10,11 +10,68 @@
     border-radius: 20px;
 }
 
+/* Bloc */
+QFrame[class="product-card"] {
+    background-color: #252936;
+    border: 1px solid #353b4b;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+QFrame[class="product-card"]:hover {
+    background-color: #303748;
+    border: 1px solid #647cff;
+}
+
+QFrame[class="product-details"] {
+    background-color: #303748; 
+    border: 1px solid #647cff; 
+    border-radius: 8px;
+}
+
+QLabel[class="product-name"] {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+QLabel[class="product-stock"] {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+QPushButton[class="product-button"] {
+    background-color: #353d55;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+QPushButton[class="product-button"]:hover {
+    background-color: #647cff;
+}
+
 /* Textes */
 QLabel {
     color: #f3ecff;
     font-size: 13px;
     background: transparent;
+}
+
+QLabel[class="title"] {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+QLabel[class="subtitle"] {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 #title {

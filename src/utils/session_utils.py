@@ -4,14 +4,9 @@ from typing import NamedTuple # Permet de créer une classe pour définir un typ
 
 import bcrypt # Hash des mots de passe (Identique à MySQL)
 
-<<<<<<< HEAD:src/session_utils.py
-from .csv_utils import *
-from .api_utils import *
-=======
 from . import utils_config
 from .csv_utils import Database, IndexedRow, TEMP_DB
 from .api_utils import PWNED_COUNT
->>>>>>> d980c0ff9329379a40949afbf498f8913af0e7b5:src/utils/session_utils.py
 
 # Seuls ces classes sont exportés avec "from session_utils import *", tout le reste est interne au script.
 __all__ = [
