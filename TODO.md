@@ -39,16 +39,15 @@
     <img src="md_files\title.png" alt="Titre" width="400"> <img src="md_files\login.png" alt="Connexion" width="400">
     <img src="md_files\catalog.png" alt="Catalogue" width="400"> <img src="md_files\admin.png" alt="Panel Admin" width="400">
     <img src="md_files\search.png" alt="Recherche" width="400"> <img src="md_files\add_product.png" alt="Ajout de produit" width="400">
-    <img src="md_files\edit_product.png" alt="Modification de produit" width="400"> <img src="md_files\del_product.png" alt="Supression de produit" width="400">
+    <img src="md_files\del_product.png" alt="Supression de produit" width="400">
     
     - [x] Titre - **chummel-ops**
     - [x] Création d'un compte utilisateur et autentification - **chummel-ops**
     - [x] Gestion de produits
         - [x] Affichage de la liste des produits, avec critères de tri - **chummel-ops**
-        - [x] Affichage de la liste des produits, pour les admins - **chummel-ops**
+        - [x] Affichage et modification de la liste des produits, pour les admins - **chummel-ops**
         - [x] Recherche d'un produit en fonction d'un ou plusieurs mots-clés - **chummel-ops**
         - [x] Ajout d'un produit - **chummel-ops**
-        - [x] Modification d'un produit - **chummel-ops**
         - [x] Suppression d'un produit - **chummel-ops**
 
 ### Définisions & Recherches

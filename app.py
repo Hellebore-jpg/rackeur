@@ -20,7 +20,6 @@ from src.utils import utils_config
 #=============================================================================#
 from src.ui.source_dialog import SourceDialog
 from src.ui.auth_window import AuthWindow
-from src.ui.splash import SplashDialog
 
 #=============================================================================#
 # DEMARRAGE DE L'APPLICATION                                                  #

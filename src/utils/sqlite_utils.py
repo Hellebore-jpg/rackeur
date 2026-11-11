@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import csv
 import math
 import sqlite3
 import tempfile
@@ -11,7 +10,9 @@ from pathlib import Path
 from typing import TypeAlias
 
 __all__ = [
-    'IndexedRow', 'DATA_DIR', 'CREATE_FILE', 'TEMP_DB', 'Database', 'DB_Reader',
+    'IndexedRow',
+    'CREATE_FILE', 'TEMP_DB',
+    'Database', 'DB_Reader',
 ]
 
 IndexedRow: TypeAlias = tuple[int, list[str]]
@@ -21,12 +22,10 @@ DEFAULT_HEADERS = {
     'utilisateurs': ['username', 'password', 'role', 'permissions'],
 }
 
-
 def _quote_identifier(identifier: str) -> str:
     if not identifier or '\x00' in identifier:
         raise ValueError(f'Identifiant SQLite invalide : {identifier!r}')
     return '"' + identifier.replace('"', '""') + '"'
-
 
 def _validate_headers(header: list[str]) -> list[str]:
     headers = [name.strip() for name in header]
@@ -39,7 +38,6 @@ def _validate_headers(header: list[str]) -> list[str]:
         raise ValueError('Les noms de colonnes doivent être valides et uniques')
     return headers
 
-
 def _normalize(text: str) -> str:
     decomposed = unicodedata.normalize('NFD', text)
     return ''.join(
@@ -48,10 +46,8 @@ def _normalize(text: str) -> str:
         if unicodedata.category(character) != 'Mn'
     ).casefold()
 
-
 def _cell(row: list[str], column: int) -> str:
     return row[column] if -len(row) <= column < len(row) else ''
-
 
 def _to_float(text: str) -> float | None:
     try:
@@ -59,7 +55,6 @@ def _to_float(text: str) -> float | None:
     except ValueError:
         return None
     return None if math.isnan(value) else value
-
 
 def _to_type(item: str, rtype: type) -> object:
     if rtype is str:
@@ -73,23 +68,13 @@ def _to_type(item: str, rtype: type) -> object:
         return number
     return rtype(item)
 
-
-def _database_path(path: str | Path | None) -> tuple[Path, str, Path | None]:
-    requested = Path('catalogue.db') if path is None else Path(path)
+def _database_path(path: str | Path | None) -> tuple[Path, str]:
+    requested = Path('database.db') if path is None else Path(path)
     if not requested.is_absolute():
         requested = DATA_DIR / requested
 
-    if requested.suffix.casefold() == '.csv':
-        csv_path = requested
-        database_path = requested.with_suffix('.db')
-    else:
-        database_path = requested
-        csv_path = requested.with_suffix('.csv')
-        if not csv_path.is_file():
-            csv_path = None
-
-    return database_path, requested.stem, csv_path
-
+    database_path = requested.with_suffix('.db')
+    return database_path, requested.stem
 
 @contextmanager
 def TEMP_DB(header: list[str], rows: list[list[object]]) -> Generator[Database]:
@@ -104,20 +89,14 @@ def TEMP_DB(header: list[str], rows: list[list[object]]) -> Generator[Database]:
             database.CREATE(row)
         yield database
 
-
 def CREATE_FILE(
-    path: str | Path = 'catalogue.db',
+    path: str | Path = 'database.db',
     header: list[str] | None = None,
-    delimeter: str = ',',
     overwrite: bool = False,
 ) -> Path:
     """Crée une base SQLite avec une table vide.
-
-    ``delimeter`` est conservé pour compatibilité avec l'ancienne API CSV,
-    mais n'est pas utilisé par SQLite.
     """
-    del delimeter
-    database_path, table, _ = _database_path(path)
+    database_path, table = _database_path(path)
     if database_path.exists():
         if not overwrite:
             return database_path
@@ -125,20 +104,17 @@ def CREATE_FILE(
     Database(database_path, table=table, header=header)
     return database_path
 
-
 class Database:
-    """Accède à une table SQLite avec une API CRUD simple."""
-
+    """Accède à une table SQLite avec une API CRUD simple.
+    """
+    
     def __init__(
         self,
         path: str | Path | None = None,
-        delimeter: str = ',',
-        *,
         table: str | None = None,
         header: list[str] | None = None,
     ) -> None:
-        del delimeter
-        self.PATH, inferred_table, self._CSV_PATH = _database_path(path)
+        self.PATH, inferred_table = _database_path(path)
         self.TABLE_NAME = table or inferred_table
         self.TABLE = _quote_identifier(self.TABLE_NAME)
         self.PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -165,18 +141,10 @@ class Database:
         if exists:
             return
 
-        csv_header: list[str] = []
-        csv_rows: list[list[str]] = []
-        if header is None and self._CSV_PATH is not None:
-            with self._CSV_PATH.open(encoding='utf-8-sig', newline='') as source:
-                reader = csv.reader(source)
-                csv_header = next(reader, [])
-                csv_rows = list(reader)
-
         columns = _validate_headers(
             header
             if header is not None
-            else csv_header or DEFAULT_HEADERS.get(self.TABLE_NAME, [])
+            else DEFAULT_HEADERS.get(self.TABLE_NAME, [])
         )
         with self._connection() as connection:
             column_sql = ', '.join(
@@ -187,25 +155,6 @@ class Database:
                 f'CREATE TABLE {self.TABLE} ('
                 f'"__position" INTEGER PRIMARY KEY{separator}{column_sql})'
             )
-            if csv_rows:
-                quoted_columns = ', '.join(
-                    _quote_identifier(name) for name in columns
-                )
-                placeholders = ', '.join('?' for _ in columns)
-                value_clause = f', {placeholders}' if placeholders else ''
-                connection.executemany(
-                    f'INSERT INTO {self.TABLE} ("__position"{", " + quoted_columns if quoted_columns else ""}) '
-                    f'VALUES (?{value_clause})',
-                    [
-                        (
-                            position,
-                            *(
-                                row + [''] * max(0, len(columns) - len(row))
-                            )[:len(columns)],
-                        )
-                        for position, row in enumerate(csv_rows)
-                    ],
-                )
 
     @property
     def HEAD(self) -> list[str]:
@@ -240,11 +189,6 @@ class Database:
 
     def READER(self, start: int = 0, end: int = 0) -> DB_Reader:
         return DB_Reader(self, start, end)
-
-    def SAVE_FILE(self) -> None:
-        """Conservé pour compatibilité : les écritures SQLite sont immédiates."""
-        with self._connection():
-            pass
 
     def CREATE(self, item: list[object], index: int = -1) -> None:
         columns = self.HEAD
@@ -404,24 +348,39 @@ class DB_Reader:
         self.BODY = [pair for _, pair in numeric] + others
         return self
 
-    def SEARCH(
-        self,
-        query: str,
-        columns: list[int] | None = None,
-        exact: bool = False,
-    ) -> DB_Reader:
-        needle = _normalize(query)
-        wanted = columns if columns is not None else [-1]
-        all_columns = -1 in wanted
-
-        def matches(row: list[str]) -> bool:
-            cells = row if all_columns else [_cell(row, column) for column in wanted]
-            if exact:
-                return all(needle == _normalize(cell) for cell in cells)
-            return any(needle in _normalize(cell) for cell in cells)
-
-        self.BODY = [pair for pair in self.BODY if matches(pair[1])]
-        return self
+    def SEARCH(self, query: str | list[str], columns: list[int] | None = None, exact: bool = False) -> DB_Reader:
+            """Ne garde que les lignes du segment qui correspondent à la recherche (sans accents ni majuscules) sur les colonnes {columns}.
+     
+            Args:
+                query (str | list[str]): Recherche. Accepte une liste notamment pour les recherches par catégories ou tags.
+                columns (list[int] | None, optional): Index des colonnes sur lesquelles appliquer la recherche, None ou -1 signifie toutes les colonnes. Defaults to None.
+                exact (bool, optional): Si vrai, TOUTES les cellules observées doivent contenir la recherche (sinon une seule suffit). Defaults to False.
+     
+            Returns:
+                DB_Reader: Le lecteur, pour enchaîner.
+            """
+            if isinstance(query, str): query = [query]
+            needles: list[str] = [_normalize(q) for q in query]
+            wanted: list[int] = columns if columns is not None else [-1]
+            all_columns: bool = -1 in wanted
+     
+            def matches(row: list[str]) -> bool:
+                """Renvoie si la ligne correspond à la recherche.
+     
+                Args:
+                    row (list[str]): Ligne du fichier SQLite.
+     
+                Returns:
+                    bool: Correspondance.
+                """
+                cells: list[str] = row if all_columns else [_cell(row, c) for c in wanted]
+                for needle in needles:
+                    if exact: return all(needle == _normalize(cell) for cell in cells)
+                    else: return any(needle in _normalize(cell) for cell in cells) # Renvoie vrai si n'importe quelle case observée de la ligne correspond.
+                return False
+     
+            self.BODY = [pair for pair in self.BODY if matches(pair[1])]
+            return self
 
     def READ(self, types: list[type] | None = None) -> list[object] | list[list[object]]:
         kinds = types or [str]
@@ -471,7 +430,6 @@ class DB_Reader:
         for row in rows:
             print(format_row(row))
 
-
 def TESTING() -> None:
     """Teste les opérations principales sur une base SQLite temporaire."""
     header = ['nom', 'prix', 'qte', 'actif']
@@ -515,23 +473,10 @@ def TESTING() -> None:
         assert database.HEAD == ['produit', 'prix', 'quantite', 'actif']
 
         database.CREATE(['Rat', 3, 1, 'non'])
-        database.SAVE_FILE()
         reloaded = Database(database.PATH, table='data')
         assert reloaded.BODY[-1] == ['Rat', '3', '1', 'non']
 
-    with tempfile.TemporaryDirectory() as temporary_directory:
-        csv_path = Path(temporary_directory) / 'import.csv'
-        with csv_path.open('w', encoding='utf-8', newline='') as source:
-            writer = csv.writer(source)
-            writer.writerow(['nom', 'prix'])
-            writer.writerow(['Pomme', '1.5'])
-        migrated = Database(csv_path, table='produits')
-        assert migrated.PATH == csv_path.with_suffix('.db')
-        assert migrated.HEAD == ['nom', 'prix']
-        assert migrated.BODY == [['Pomme', '1.5']]
-
     print('Tests SQLite réussis.')
-
 
 if __name__ == '__main__':
     TESTING()
