@@ -1,9 +1,17 @@
-from typing import NamedTuple
+from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctions
+
+from typing import NamedTuple # Permet de créer une classe pour définir un type de variable
 
 import bcrypt # Hash des mots de passe (Identique à MySQL)
 
+<<<<<<< HEAD:src/session_utils.py
 from .csv_utils import *
 from .api_utils import *
+=======
+from . import utils_config
+from .csv_utils import Database, IndexedRow, TEMP_DB
+from .api_utils import PWNED_COUNT
+>>>>>>> d980c0ff9329379a40949afbf498f8913af0e7b5:src/utils/session_utils.py
 
 # Seuls ces classes sont exportés avec "from session_utils import *", tout le reste est interne au script.
 __all__ = [
@@ -56,7 +64,10 @@ class Session:
     def __init__(self) -> None:
         """Crée une session vide, prête pour la connexion ou l'inscription.
         """
-        self.DB: Database = Database('utilisateurs.csv')
+        if utils_config.CSV:
+            self.DB: Database = Database('utilisateurs.csv')
+        else:
+            self.DB: Database = Database('utilisateurs.csv') # Changer pour utiliser du SQLite
         
         self.USER: list[str] = list(LOGGED_OUT)
         self.USER_ID: int | None = None
@@ -71,7 +82,10 @@ class Session:
         Returns:
             IndexedRow | None: (index, ligne) ou None si introuvable.
         """
-        matches: list[IndexedRow] = self.DB.READER().SEARCH(username, [0], True).BODY
+        if utils_config.CSV:
+            matches: list[IndexedRow] = self.DB.READER().SEARCH(username, [0], True).BODY
+        else:
+            matches: list[IndexedRow] = self.DB.READER().SEARCH(username, [0], True).BODY # Changer pour utiliser du SQLite
         return matches[0] if matches else None
         
     def AUTH(self, username: str, password: str) -> bool:
@@ -110,8 +124,12 @@ class Session:
         """
         if self.__find(username) is not None:
             return False
-        self.DB.CREATE([username, _password(password), 'visiteur', '0100'])
-        self.DB.SAVE_FILE()
+        if utils_config.CSV:
+            self.DB.CREATE([username, _password(password), 'visiteur', '0100'])
+            self.DB.SAVE_FILE()
+        else:
+            self.DB.CREATE([username, _password(password), 'visiteur', '0100']) # Changer pour utiliser du SQLite
+            self.DB.SAVE_FILE() # Changer pour utiliser du SQLite
         if autoconnect:
             self.AUTH(username, password)
         return True

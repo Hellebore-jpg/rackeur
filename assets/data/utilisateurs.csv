@@ -1,6 +1,12 @@
 username,password,role,permissions
+<<<<<<< HEAD
 admin,$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe, admin,1111
 rat-degou,$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe,editor,0110
 remitatouille,$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe,visitor,0100
 test,$2b$12$gQo6Rcm6EBZsBb7h/dFc2e3myba/8HuGkICR7yL1k8PYg73QBS.p2,visiteur,0100
 test1,$2b$12$mtam7th8P87obJEEsK9P/.f96GPDsr/vHrXq8kmz.M8luN.D1djg.,visiteur,0100
+=======
+admin,$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe,admin,1111
+editor,$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe,editor,0110
+remitatouille,$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe,visitor,0100
+>>>>>>> d980c0ff9329379a40949afbf498f8913af0e7b5
