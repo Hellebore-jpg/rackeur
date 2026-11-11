@@ -36,10 +36,7 @@
 ### Esthétique
 - [x] Création d'une Diréction Artistique + Logo + Nom d'app - **chummel-ops**
 - [x] Maquette finale des pages de l'aplication
-    <img src="md_files\title.png" alt="Titre" width="400"> <img src="md_files\login.png" alt="Connexion" width="400">
-    <img src="md_files\catalog.png" alt="Catalogue" width="400"> <img src="md_files\admin.png" alt="Panel Admin" width="400">
-    <img src="md_files\search.png" alt="Recherche" width="400"> <img src="md_files\add_product.png" alt="Ajout de produit" width="400">
-    <img src="md_files\del_product.png" alt="Supression de produit" width="400">
+    <img src="md_files\title.png" alt="Titre" width="300"> <img src="md_files\login.png" alt="Connexion" width="300"> <img src="md_files\catalog.png" alt="Catalogue" width="300"> <img src="md_files\admin.png" alt="Panel Admin" width="300"> <img src="md_files\search.png" alt="Recherche" width="300"> <img src="md_files\add_product.png" alt="Ajout de produit" width="300"> <img src="md_files\del_product.png" alt="Supression de produit" width="300">
     
     - [x] Titre - **chummel-ops**
     - [x] Création d'un compte utilisateur et autentification - **chummel-ops**
@@ -83,7 +80,7 @@
     - [x] Gestion des autorisations, sur les 4 opérations sur le catalogue de produits, en ligne de commande, via une ou plusieurs options - **Hellebore-jpg**
     - [x] Implémentation de la création d'un nouvel utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer, au moyen de l'API RESTful "Have I Been Pwned", en ligne de commande, via une ou plusieurs options - **Hellebore-jpg**
     - [x] Implémentation d'un système de notification en cas de nouveaux compromis détectés pour un utilisateur - **Hellebore-jpg** 
-- [ ] Passage du CSV à SQLite
+- [x] Passage du CSV à SQLite
     - [x] Choix du type de base de données au démarrage & branches différentes pour le SQLite dans les scripts qui utilisent la BDD - **Hellebore-jpg**
         >Exemple :
         >```python
@@ -92,13 +89,13 @@
         >else:
         >   {code_spécifique_à_la_BDD_format_SQLite}
         >```
-    - [ ] Écriture du script d'interaction avec la BDD SQLite
-        - [ ] Affichage de la liste des produits ( R ) - **ylavallee-prog** - **Hellebore-jpg**
-        - [ ] Affichage, via une option, de la liste des produits, triés par nom, dans l'ordre alphabétique, et alphabétique inverse ( R ) - **ylavallee-prog** - **Hellebore-jpg**
-        - [ ] Affichage, via une option, de la liste des produits, triés par prix, dans l'ordre croissant, et décroissant ( R ) - **ylavallee-prog** - **Hellebore-jpg**
-        - [ ] Affichage, via une option, du ou des produits, en fonction d'un mot-clé (recherche d'un produit dans le catalogue) ( R ) - **ylavallee-prog** - **Hellebore-jpg**
-        - [ ] Recherche par catégories - **Hellebore-jpg**
-        - [ ] Ajout, modification, et suppression d'un produit, via une ou plusieurs options ( C U D ) - **ylavallee-prog** - **Hellebore-jpg**
+    - [x] Écriture du script d'interaction avec la BDD SQLite
+        - [x] Affichage de la liste des produits ( R ) - **ylavallee-prog** - **Hellebore-jpg**
+        - [x] Affichage, via une option, de la liste des produits, triés par nom, dans l'ordre alphabétique, et alphabétique inverse ( R ) - **ylavallee-prog** - **Hellebore-jpg**
+        - [x] Affichage, via une option, de la liste des produits, triés par prix, dans l'ordre croissant, et décroissant ( R ) - **ylavallee-prog** - **Hellebore-jpg**
+        - [x] Affichage, via une option, du ou des produits, en fonction d'un mot-clé (recherche d'un produit dans le catalogue) ( R ) - **ylavallee-prog** - **Hellebore-jpg**
+        - [x] Recherche par catégories - **ylavallee-prog** - **Hellebore-jpg**
+        - [x] Ajout, modification, et suppression d'un produit, via une ou plusieurs options ( C U D ) - **ylavallee-prog** - **Hellebore-jpg**
 
 ### Programmation Frontend
 >Implémentation des différents composants de l'interface utilisateur.
@@ -128,7 +125,8 @@
     | remitatouille | \$2b\$12\$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe | visitor |0100        |
 
     >\$2b\$12\$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe = 123456789
-- [ ] Création manuelle du catalogue de produits sous la forme d'une table SQLite (Première BDD SQLite) - **ylavallee-prog** - **Hellebore-jpg**
+- [x] Création manuelle du catalogue de produits sous la forme d'une table SQLite (Première BDD SQLite) - **ylavallee-prog** - **Hellebore-jpg**
+    >Idem que les jeux de données visibles au dessus.
 - [ ] Jeu de données de test CSV/SQLite à installer optionellement pendant le setup de l'application - **Hellebore-jpg**
 
 ### Organisation & Finalisation
@@ -137,6 +135,7 @@
 - [x] Explication du code Python (commentaires & Types strictes) - **Hellebore-jpg**
 - [x] Rédaction du [README](README.md) - **Hellebore-jpg**
 - [x] Canva de présentation de fin de projet - **chummel-ops**
+- [ ] Ajout des bases de données (CSV & SQLite) dans le [.gitignore](.gitignore) - **Hellebore-jpg**
 - [ ] Binaries PyInstaller - **Hellebore-jpg**
 - [ ] Derniers fix & Publication - **Hellebore-jpg**
 

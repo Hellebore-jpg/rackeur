@@ -27,17 +27,6 @@ def _quote_identifier(identifier: str) -> str:
         raise ValueError(f'Identifiant SQLite invalide : {identifier!r}')
     return '"' + identifier.replace('"', '""') + '"'
 
-def _validate_headers(header: list[str]) -> list[str]:
-    headers = [name.strip() for name in header]
-    normalized = [name.casefold() for name in headers]
-    if (
-        not headers
-        or any(not name or name == '__position' for name in normalized)
-        or len(set(normalized)) != len(normalized)
-    ):
-        raise ValueError('Les noms de colonnes doivent être valides et uniques')
-    return headers
-
 def _normalize(text: str) -> str:
     decomposed = unicodedata.normalize('NFD', text)
     return ''.join(
@@ -69,7 +58,7 @@ def _to_type(item: str, rtype: type) -> object:
     return rtype(item)
 
 def _database_path(path: str | Path | None) -> tuple[Path, str]:
-    requested = Path('database.db') if path is None else Path(path)
+    requested = Path('catalogue.db') if path is None else Path(path)
     if not requested.is_absolute():
         requested = DATA_DIR / requested
 
@@ -90,7 +79,7 @@ def TEMP_DB(header: list[str], rows: list[list[object]]) -> Generator[Database]:
         yield database
 
 def CREATE_FILE(
-    path: str | Path = 'database.db',
+    path: str | Path = 'catalogue.db',
     header: list[str] | None = None,
     overwrite: bool = False,
 ) -> Path:
@@ -141,11 +130,7 @@ class Database:
         if exists:
             return
 
-        columns = _validate_headers(
-            header
-            if header is not None
-            else DEFAULT_HEADERS.get(self.TABLE_NAME, [])
-        )
+        columns = header if header is not None else DEFAULT_HEADERS.get(self.TABLE_NAME, [])
         with self._connection() as connection:
             column_sql = ', '.join(
                 f'{_quote_identifier(name)} TEXT' for name in columns
@@ -257,7 +242,7 @@ class Database:
         if isinstance(item, list) and index is None:
             if len(item) != len(headers):
                 raise ValueError('Le nombre de colonnes ne peut pas changer')
-            new_headers = _validate_headers(item)
+            new_headers = item
             renames = [
                 (old, new)
                 for old, new in zip(headers, new_headers)
@@ -280,7 +265,7 @@ class Database:
             return
 
         if isinstance(item, str) and index is not None:
-            new_name = _validate_headers([item])[0]
+            new_name = [item][0]
             old_name = headers[index]
             with self._connection() as connection:
                 connection.execute(
