@@ -25,12 +25,12 @@ class AddProductPage(Page):
         self._details_ouvert = None
         self._panneaux = []
         self.database = Database("catalogue.csv")
+        self.refresh()
 
-
+    def refresh(self) -> None:
         self._details_ouvert = None
 
         reader = DB_Reader(self.database)
-        produits = reader.READ()
 
         content = QWidget()
         layout = QVBoxLayout(content)
