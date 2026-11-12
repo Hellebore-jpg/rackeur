@@ -2,7 +2,7 @@ from __future__ import annotations # Gère l'annotation des classes dans leurs p
 
 from pathlib import Path # Gère les chemins de fichiers
 
-from src.utils.csv_utils import Database
+from src.utils import sqlite_utils, csv_utils
 from src.utils.session_utils import Session
 
 #=============================================================================#
@@ -29,7 +29,7 @@ FONT_PATH: Path = BASE_DIR / "assets/font/Kablammo/Kablammo-Regular-VariableFont
 
 # GESTION DE LA BASE DE DONNÉE CSV
 HEADERT: list[type] | None = None # Header de la base de données
-CATALOG: Database | None = None # Base de données en CSV
+CATALOG: csv_utils.Database | sqlite_utils.Database | None = None # Base de données en CSV/SQLite
 
 # CONFIGURATION GLOBALE
 SESSION: Session # Gestion utilisateurs

@@ -114,7 +114,7 @@ class AuthWindow(Page):
                 self.open_main_page()
             leaks, _, _, _, _ = config.SESSION.SUGGEST_PWD_UPGRADE(password)
             if leaks > 0:
-                page.show_message(f"Ce mot de passe a déjà fuité {leaks} fois dans des bases piratées. Changez-le !")
+                page.show_message("Conseil :", [f"Ce mot de passe a déjà fuité {leaks} fois dans des bases piratées. Changez-le !"])
                 self.login_page.submit_button.setText("Se connecter quand même")
                 self.login_page.submit_button.setStyleSheet("background-color: #e74c3c")
             self.next = False

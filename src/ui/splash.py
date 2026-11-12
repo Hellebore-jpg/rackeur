@@ -6,7 +6,7 @@ from PyQt6.QtGui import (
     QFont, QFontDatabase, QKeyEvent, QPixmap, QShowEvent,
 )
 from PyQt6.QtWidgets import (
-    QDialog, QLabel, QVBoxLayout, QWidget, QGraphicsOpacityEffect,
+    QLabel, QVBoxLayout, QWidget, QGraphicsOpacityEffect,
 )
 
 from ..utils.helpers import BackgroundWidget

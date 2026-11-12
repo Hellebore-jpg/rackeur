@@ -2,18 +2,17 @@ from __future__ import annotations # Gère l'annotation des classes dans leurs p
 
 from .. import config
 from .session_utils import Session
-from .utils_config import CSV
-from .csv_utils import CREATE_FILE, Database
+from . import utils_config, csv_utils, sqlite_utils
 
 def load_database() -> None:
     """Chargement de la base de données en fonction de son type.
     """
-    if CSV:
+    if utils_config.CSV:
         config.HEADERT = [str, float, str, int, str]
-        CREATE_FILE(header=['product', 'price', 'description', 'stock', 'quality'])
-        config.CATALOG = Database()
+        csv_utils.CREATE_FILE(header=['product', 'price', 'description', 'stock', 'quality'])
+        config.CATALOG = csv_utils.Database()
     else:
         config.HEADERT = [str, float, str, int, str]
-        CREATE_FILE(header=['product', 'price', 'description', 'stock', 'quality'])
-        config.CATALOG = Database()
-    config.SESSION = Session()   
+        sqlite_utils.CREATE_FILE(header=['product', 'price', 'description', 'stock', 'quality'])
+        config.CATALOG = sqlite_utils.Database()
+    config.SESSION = Session()

@@ -306,18 +306,19 @@ class DB_Reader:
         self.BODY = [pair for _, pair in numeric] + others # Retire la valeur numérique secondaire pour ne garder que (index réel, ligne)
         return self
         
-    def SEARCH(self, query: str, columns: list[int] | None = None, exact: bool = False) -> DB_Reader:
+    def SEARCH(self, query: str | list[str], columns: list[int] | None = None, exact: bool = False) -> DB_Reader:
         """Ne garde que les lignes du segment qui correspondent à la recherche (sans accents ni majuscules) sur les colonnes {columns}.
  
         Args:
-            query (str): Recherche.
+            query (str | list[str]): Recherche. Accepte une liste notamment pour les recherches par catégories ou tags.
             columns (list[int] | None, optional): Index des colonnes sur lesquelles appliquer la recherche, None ou -1 signifie toutes les colonnes. Defaults to None.
             exact (bool, optional): Si vrai, TOUTES les cellules observées doivent contenir la recherche (sinon une seule suffit). Defaults to False.
  
         Returns:
             DB_Reader: Le lecteur, pour enchaîner.
         """
-        needle: str = _normalize(query)
+        if isinstance(query, str): query = [query]
+        needles: list[str] = [_normalize(q) for q in query]
         wanted: list[int] = columns if columns is not None else [-1]
         all_columns: bool = -1 in wanted
  
@@ -331,8 +332,10 @@ class DB_Reader:
                 bool: Correspondance.
             """
             cells: list[str] = row if all_columns else [_cell(row, c) for c in wanted]
-            if exact: return all(needle == _normalize(cell) for cell in cells)
-            return any(needle in _normalize(cell) for cell in cells) # Renvoie vrai si n'importe quelle case observée de la ligne correspond.
+            for needle in needles:
+                if exact: return all(needle == _normalize(cell) for cell in cells)
+                else: return any(needle in _normalize(cell) for cell in cells) # Renvoie vrai si n'importe quelle case observée de la ligne correspond.
+            return False
  
         self.BODY = [pair for pair in self.BODY if matches(pair[1])]
         return self
