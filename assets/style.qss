@@ -11,6 +11,14 @@
 }
 
 /* Bloc */
+
+QFrame[class="create-card"] {
+    background-color: #252936;
+    border: 1px solid #353b4b;
+    border-radius: 8px;
+    padding: 4px;
+}
+
 QFrame[class="product-card"] {
     background-color: #252936;
     border: 1px solid #353b4b;

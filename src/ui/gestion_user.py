@@ -5,9 +5,12 @@ from PyQt6.QtWidgets import (
     QMainWindow, QVBoxLayout, QWidget, QGridLayout, QFrame, QLabel, QHBoxLayout, QPushButton, QSizePolicy,
 )
 
-from ..utils.helpers import Page, make_global_background, make_big_card, RoundedImage
+from ..utils.helpers import Page, make_global_background, make_big_card, RoundedImage, NavBtn
 from ..utils.csv_utils import DB_Reader, Database
 from .. import config
+
+from .main_page import MainPage
+from .add_product import AddProductPage
 
 class GestionUserPage(Page):
     """Page principale affichée après la connexion.
@@ -51,7 +54,10 @@ class GestionUserPage(Page):
 
         layout.addLayout(liste)
 
-        self.setCentralWidget(make_global_background(make_big_card(content), app_window=self.app_window, img=RoundedImage(config.USER_PLACEHOLDER_PATH), current_page="main"))
+        btn1: NavBtn = {"win_class": MainPage, "title": "main", "btn_title": "Catalogue"}
+        btn2: NavBtn = {"win_class": AddProductPage, "title": "add_product", "btn_title": "Ajouter un produit"}
+        self.setCentralWidget(make_global_background(make_big_card(content), app_window=self.app_window, img=RoundedImage(config.USER_PLACEHOLDER_PATH), current_page="gestion_user", navbtns=[btn1, btn2]))
+        
 
     def delete_user(self, index_product: int):
         self.database.DELETE(index_product)

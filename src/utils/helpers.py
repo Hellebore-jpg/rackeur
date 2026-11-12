@@ -11,6 +11,7 @@ from PyQt6.QtWidgets import (
 
 from pathlib import Path # Gère les chemins de fichiers
 import re # Permet de faire des recherches sur du texte en utilisant les expressions régulières (RegEx)
+from typing import TypedDict
 
 from .. import config
 from ..ui.app_pages import AppWindow
@@ -179,7 +180,12 @@ def make_background(card: QFrame, header: QWidget | None = None, bg_path: Path =
     layout.addStretch()
     return root
 
-def make_global_background(card: QFrame, app_window: AppWindow, img: QWidget | None = None, bg_path: Path = config.BACKGROUND_PATH, current_page: str | None = None) -> QWidget:
+class NavBtn:
+    win_class: Page
+    title: str
+    btn_title: str
+
+def make_global_background(card: QFrame, app_window: AppWindow, img: QWidget | None = None, bg_path: Path = config.BACKGROUND_PATH, current_page: str | None = None, navbtns: list[NavBtn] = []) -> QWidget:
     """Crée le widget d'arrière plan avec une carte au centre.
 
     Args:
@@ -206,23 +212,13 @@ def make_global_background(card: QFrame, app_window: AppWindow, img: QWidget | N
     title_layout.addWidget(title)
 
     navbar_layout = QHBoxLayout()
-    if current_page != "main":
-        catalog_btn = QPushButton("Catalogue")
-        catalog_btn.setProperty("class", "onglet-button")
-        catalog_btn.clicked.connect(lambda: catalog_page(app_window))
-        navbar_layout.addWidget(catalog_btn)
+    print(current_page)
 
-    if current_page != "add_product":
-        product_btn = QPushButton("Ajouter un produits")
-        product_btn.setProperty("class", "onglet-button")
-        product_btn.clicked.connect(lambda: product_page(app_window))
-        navbar_layout.addWidget(product_btn)
-
-    if current_page != "gestion_user":
-        user_btn = QPushButton("Gérer les utilisateurs")
-        user_btn.setProperty("class", "onglet-button")
-        user_btn.clicked.connect(lambda: user_page(app_window))
-        navbar_layout.addWidget(user_btn)
+    for e in navbtns:
+        btn = QPushButton(e["btn_title"])
+        btn.setProperty("class", "onglet-button")
+        btn.clicked.connect(lambda: app_window.switch_to(e["title"], e["win_class"](app_window),))
+        navbar_layout.addWidget(btn)
 
     header.addLayout(title_layout)
     header.addLayout(navbar_layout)
@@ -230,21 +226,6 @@ def make_global_background(card: QFrame, app_window: AppWindow, img: QWidget | N
     global_layout.addWidget(card, alignment=Qt.AlignmentFlag.AlignHCenter)
     global_layout.addStretch()
     return root
-
-def catalog_page(window) -> None:
-    """Affiche le catalogue dans la fenêtre courante."""
-    from src.ui.main_page import MainPage
-    window.switch_to("main",lambda window: MainPage(window),)
-
-def product_page(window) -> None:
-    """Affiche la page d'ajout de produit dans la fenêtre courante."""
-    from src.ui.add_product import AddProductPage
-    window.switch_to("add_product",lambda window: AddProductPage(window),)
-
-def user_page(window) -> None:
-    """Affiche la page de gestion des utilisateurs dans la fenêtre courante."""
-    from src.ui.gestion_user import GestionUserPage
-    window.switch_to("gestion_usert",lambda window: GestionUserPage(window),)
 
 def make_header(title: str, subtitle: str) -> tuple[QLabel, QLabel]:
     """Crée une entête.

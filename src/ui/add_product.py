@@ -2,12 +2,15 @@ from __future__ import annotations
 
 from PyQt6.QtCore import Qt, QPoint
 from PyQt6.QtWidgets import (
-    QMainWindow, QVBoxLayout, QWidget, QGridLayout, QFrame, QLabel, QHBoxLayout, QPushButton, QSizePolicy,
+    QMainWindow, QVBoxLayout, QWidget, QGridLayout, QFrame, QLabel, QHBoxLayout, QPushButton, QSizePolicy, QLineEdit, QLCDNumber,
 )
 
-from ..utils.helpers import Page, make_global_background, make_big_card, RoundedImage
+from ..utils.helpers import Page, make_global_background, make_big_card, RoundedImage, NavBtn
 from ..utils.csv_utils import DB_Reader, Database
 from .. import config
+
+from .gestion_user import GestionUserPage
+from .main_page import MainPage
 
 class AddProductPage(Page):
     """Page principale affichée après la connexion.
@@ -23,13 +26,8 @@ class AddProductPage(Page):
         self._details_ouvert = None
         self._panneaux = []
         self.database = Database("catalogue.csv")
-        self.refresh()
 
-    def refresh(self) -> None:
-        """Reconstruit toute la grille à partir des données actuelles."""
-        for panneau in self._panneaux:
-            panneau.deleteLater()
-        self._panneaux = []
+
         self._details_ouvert = None
 
         reader = DB_Reader(self.database)
@@ -37,101 +35,34 @@ class AddProductPage(Page):
 
         content = QWidget()
         layout = QVBoxLayout(content)
-        grille = QGridLayout()
-        grille.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignLeft)
-        grille.setSpacing(10)
-        colonnes = 6
 
-        for index, ligne in enumerate(produits):
-            bloc = QFrame()
-            bloc.setProperty("class", "product-card")
-            bloc.setFixedWidth(270)
-            bloc.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Maximum)
-            bloc_layout = QVBoxLayout(bloc)
-            bloc_layout.setContentsMargins(8, 4, 8, 4)
-            bloc_layout.setSpacing(10)
-            header = QHBoxLayout()
+        bloc = QFrame()
+        bloc.setProperty("class", "create-card")
+        bloc.setFixedWidth(700)
+        bloc_layout = QVBoxLayout(bloc)
+        bloc_layout.setContentsMargins(8, 4, 8, 4)
+        bloc_layout.setSpacing(10)
 
-            name = QLabel(ligne[0])
-            name.setProperty("class", "product-name")
-            stock = QLabel(f"En stock : {ligne[3]}")
-            stock.setProperty("class", "product-stock")
+        name = QLineEdit()
+        name.setPlaceholderText("Nom du produit")
+        bloc_layout.addWidget(name)
 
-            header.addWidget(name)
-            header.addStretch()
-            header.addWidget(stock)
+        price = QLCDNumber()
+        bloc_layout.addWidget(price)
 
-            bloc_layout.addLayout(header)
-            details = QFrame(self)
-            details.setProperty("class", "product-details")
-            self._panneaux.append(details)
-            details_layout = QVBoxLayout(details)
-            ordre = ["description", "price", "quality"]
+        bloc_description = QFrame()
+        bloc.setProperty("class", "create-card")
+        bloc.setFixedWidth(300)
+        bloc_description_layout = QVBoxLayout(bloc_description)
+        description = QLineEdit()
+        bloc_description_layout.addWidget(description)
+        bloc_layout.addLayout(bloc_description_layout)
 
-            for nom_colonne in ordre:
-                i = self.database.HEAD.index(nom_colonne)
-                valeur = ligne[i]
+        layout.addWidget(bloc)
 
-                if nom_colonne == "price":
-                    prix = str(valeur).rstrip("0").rstrip(".")
-                    valeur = f"{prix} €"
-                    info = QLabel(f"Prix : {valeur}")
-
-                elif nom_colonne == "description":
-                    info = QLabel(str(valeur))
-
-                elif nom_colonne == "quality":
-                    info = QLabel(f"Qualité : {valeur}")
-
-                info.setWordWrap(True)
-                info.setSizePolicy(
-                    QSizePolicy.Policy.Preferred,
-                    QSizePolicy.Policy.Minimum
-                )
-                details_layout.addWidget(info)
-
-            details.hide()
-
-            btn = QPushButton("Voir les détails")
-            btn.setProperty("class", "product-button")
-            bloc_layout.addWidget(btn)
-
-            def toggle_details(checked=False, d=details, b=btn, bloc=bloc):
-                if d.isVisible():
-                    d.hide()
-                    b.setText("Voir les détails")
-                    self._details_ouvert = None
-                    return
-
-                if self._details_ouvert is not None:
-                    self._details_ouvert[0].hide()
-                    self._details_ouvert[1].setText("Voir les détails")
-
-                pos = bloc.mapTo(self, QPoint(0, bloc.height()))
-                d.setFixedWidth(bloc.width())
-                d.move(pos)
-                d.adjustSize()
-                d.show()
-                d.raise_()
-                b.setText("Masquer les détails")
-                self._details_ouvert = (d, b)
-
-            btn.clicked.connect(toggle_details)
-
-            btn_delete = QPushButton("Supprimer le produit")
-            btn_delete.setProperty("class", "product-button")
-            bloc_layout.addWidget(btn_delete)
-            btn_delete.clicked.connect(lambda checked=False, i=index: self.delete_product(i))
-
-            rang = index // colonnes
-            colonne = index % colonnes
-            grille.addWidget(bloc, rang, colonne, Qt.AlignmentFlag.AlignTop)
-
-        grille.setRowStretch((len(produits) // colonnes) + 1, 1)
-
-        layout.addLayout(grille)
-
-        self.setCentralWidget(make_global_background(make_big_card(content), app_window=self.app_window, img=RoundedImage(config.USER_PLACEHOLDER_PATH), current_page="main"))
+        btn1: NavBtn = {"win_class": GestionUserPage, "title": "gestion_user", "btn_title": "Gérer les utilisateurs"}
+        btn2: NavBtn = {"win_class": MainPage, "title": "main", "btn_title": "Catalogue"}
+        self.setCentralWidget(make_global_background(make_big_card(content), app_window=self.app_window, img=RoundedImage(config.USER_PLACEHOLDER_PATH), current_page="add_product", navbtns=[btn1, btn2]))
 
     def delete_product(self, index_product: int):
         self.database.DELETE(index_product)

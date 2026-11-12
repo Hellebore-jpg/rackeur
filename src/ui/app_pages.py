@@ -11,7 +11,7 @@ class AppWindow(QMainWindow):
         self.setCentralWidget(self.stack)
         self._pages: dict[str, QWidget] = {}
 
-    def switch_to(self, cle: str, fabrique) -> None:
+    def switch_to(self, cle: str, fabrique, title_page: str) -> None:
         page = self._pages.get(cle)
 
         if page is None:
@@ -22,4 +22,5 @@ class AppWindow(QMainWindow):
         if hasattr(page, "refresh"):
             page.refresh()
 
-        self.stack.setCurrentWidget(page)
+        if title_page == "main":
+            self.stack.setCurrentWidget()
