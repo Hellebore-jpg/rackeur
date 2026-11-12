@@ -1,5 +1,4 @@
 username,password,role,permissions
+admin,$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe,admin,1111
 editor,$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe,editor,0110
-test2,$2b$12$yJ3XcEOptIKQxF9mNWG5yekpN4HNY.kG1jnLk39hTarem0PD3pNdS,visiteur,1111
-test3,$2b$12$b8n2RUjuGj5qcCckAJOlkuI24ooUaPTb2mYvyjZQ.j7fo6u/.JHp2,visiteur,0100
-ratdmin,$2b$12$lCuKoriqD32xAJ1V19khr.ng3FYt0J.VBkci/2PGNf7Rm2TRPykpi,visiteur,0100
+remitatouille,$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe,visiteur,0100
