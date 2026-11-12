@@ -102,12 +102,12 @@
 - [x] Création d'un compte utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer - **Purple-key-0** - **Hellebore-jpg**
 - [x] Authentification - **Purple-key-0** - **Hellebore-jpg**
 - [ ] Gestion de produits
-    - [ ] Affichage de la liste des produits, avec critères de tri - **Purple-key-0** 
+    - [x] Affichage de la liste des produits - **Purple-key-0** 
     - [ ] Recherche d'un produit en fonction d'un ou plusieurs mots-clés - **Purple-key-0** 
-    - [ ] Ajout d'un produit - **Purple-key-0** 
+    - [x] Ajout d'un produit - **Purple-key-0** 
     - [ ] Modification d'un produit - **Purple-key-0** 
-    - [ ] Suppression d'un produit - **Purple-key-0**  
-- [ ] Navigation par catégories dans l'interface - **Purple-key-0**  
+    - [x] Suppression d'un produit - **Purple-key-0**  
+- [ ] Navigation par catégories dans l'interface - **Purple-key-0**
 
 ### Jeux & Bases de données
 - [x] Création du Catalogue / Tableau de données - **Purple-key-0**
