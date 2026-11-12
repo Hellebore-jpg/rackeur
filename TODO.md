@@ -127,7 +127,7 @@
     >\$2b\$12\$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe = 123456789
 - [x] Création manuelle du catalogue de produits sous la forme d'une table SQLite (Première BDD SQLite) - **ylavallee-prog** - **Hellebore-jpg**
     >Idem que les jeux de données visibles au dessus.
-- [ ] Jeu de données de test CSV/SQLite à installer optionellement pendant le setup de l'application - **Hellebore-jpg**
+- [x] Jeu de données de test CSV/SQLite à installer optionellement pendant le setup de l'application - **chummel-ops**
 
 ### Organisation & Finalisation
 - [x] Relécture et analyse du Cahier des Charges - **chummel-ops** - **Purple-key-0**
@@ -135,7 +135,7 @@
 - [x] Explication du code Python (commentaires & Types strictes) - **Hellebore-jpg**
 - [x] Rédaction du [README](README.md) - **Hellebore-jpg**
 - [x] Canva de présentation de fin de projet - **chummel-ops**
-- [ ] Ajout des bases de données (CSV & SQLite) dans le [.gitignore](.gitignore) - **Hellebore-jpg**
+- [x] Ajout des bases de données (CSV & SQLite) dans le [.gitignore](.gitignore) - **chummel-ops**
 - [ ] Binaries PyInstaller - **Hellebore-jpg**
 - [ ] Derniers fix & Publication - **Hellebore-jpg**
 
