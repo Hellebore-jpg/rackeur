@@ -274,3 +274,46 @@ QCheckBox::indicator:checked {
     color: white;
     font-size: 84px;
 }
+
+/*Pop-up*/
+QMessageBox#popupWarning {
+    background-color: #ac001d;
+}
+
+QMessageBox#popupWarning QLabel {
+    color: #ffffff;
+    font-size: 14px;
+}
+
+QMessageBox#popupWarning QPushButton {
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+}
+
+QMessageBox#popupWarning QPushButton:hover {
+    background-color: #31161a;
+}
+
+QMessageBox#popupConfirmation {
+    background-color: #2e0259;
+}
+
+QMessageBox#popupConfirmation QLabel {
+    color: #ffffff;
+    font-size: 14px;
+}
+
+QMessageBox#popupConfirmation QPushButton {
+    background-color: #4a0075;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+}
+
+QMessageBox#popupConfirmation QPushButton:hover {
+    background-color: #6d00eb;
+}

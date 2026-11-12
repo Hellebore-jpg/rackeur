@@ -14,7 +14,6 @@ from .. import config
 # IMPORTATION DES FENÊTRES                                                    #
 #=============================================================================#
 from src.ui.form_page import FormPage, FieldSpec
-from src.ui.main_page import MainPage
 from src.ui.splash import SplashDialog
 
 class AuthWindow(Page):
@@ -32,7 +31,6 @@ class AuthWindow(Page):
         self.setWindowTitle("Rackeur | Bienvenue")
         self.resize(520, 820)
         self.setMinimumSize(440, 820)
-        self.main_page: MainPage | None = None
         self.next: bool = True
  
         self.login_page: FormPage = FormPage(
@@ -98,8 +96,7 @@ class AuthWindow(Page):
         self.register_page.clear_message()
         
     def open_main_page(self) -> None:
-        from src.ui.main_page import MainPage
-        self.app_window.switch_to("main",lambda window: MainPage(window),)
+        self.app_window.switch_to("main")
 
  
     def on_login(self) -> None:

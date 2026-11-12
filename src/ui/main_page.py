@@ -9,9 +9,6 @@ from ..utils.helpers import Page, make_global_background, make_big_card, Rounded
 from ..utils.csv_utils import DB_Reader, Database
 from .. import config
 
-from .gestion_user import GestionUserPage
-from .add_product import AddProductPage
-
 class MainPage(Page):
     """Page principale affichée après la connexion.
     """
@@ -133,8 +130,8 @@ class MainPage(Page):
 
         layout.addLayout(grille)
 
-        btn1: NavBtn = {"win_class": GestionUserPage, "title": "gestion_user", "btn_title": "Gérer les utilisateurs"}
-        btn2: NavBtn = {"win_class": AddProductPage, "title": "add_product", "btn_title": "Ajouter un produit"}
+        btn1: NavBtn = {"title": "gestion_user", "btn_title": "Gérer les utilisateurs"}
+        btn2: NavBtn = {"title": "add_product", "btn_title": "Ajouter un produit"}
         self.setCentralWidget(make_global_background(make_big_card(content), app_window=self.app_window, img=RoundedImage(config.USER_PLACEHOLDER_PATH), current_page="main", navbtns=[btn1, btn2]))
 
     def delete_product(self, index_product: int):

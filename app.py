@@ -46,9 +46,8 @@ def main() -> int:
     load_database()
  
     window = AppWindow()
-    window.switch_to("auth", lambda parent: AuthWindow(parent))
+    window.switch_to("auth")
     window.showMaximized()
-
 
     return app.exec()
 

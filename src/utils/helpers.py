@@ -10,11 +10,11 @@ from PyQt6.QtWidgets import (
 )
 
 from pathlib import Path # Gère les chemins de fichiers
-import re # Permet de faire des recherches sur du texte en utilisant les expressions régulières (RegEx)
 from typing import TypedDict
+import re
 
 from .. import config
-from ..ui.app_pages import AppWindow
+
 
 def load_stylesheet() -> str:
     """Charge la feuille de style PyQt. Les chemins relatifs des ressources référencées via url(...) sont convertis en chemins absolus à partir de BASE_DIR.
@@ -43,6 +43,7 @@ def load_stylesheet() -> str:
     )
     
     return stylesheet
+
 
 def make_card(content: QWidget) -> QFrame:
     """Crée un Widget dans une carte arondie avec une ombre.
@@ -181,11 +182,10 @@ def make_background(card: QFrame, header: QWidget | None = None, bg_path: Path =
     return root
 
 class NavBtn:
-    win_class: Page
     title: str
     btn_title: str
 
-def make_global_background(card: QFrame, app_window: AppWindow, img: QWidget | None = None, bg_path: Path = config.BACKGROUND_PATH, current_page: str | None = None, navbtns: list[NavBtn] = []) -> QWidget:
+def make_global_background(card: QFrame, app_window, img: QWidget | None = None, bg_path: Path = config.BACKGROUND_PATH, current_page: str | None = None, navbtns: list[NavBtn] = []) -> QWidget:
     """Crée le widget d'arrière plan avec une carte au centre.
 
     Args:
@@ -212,12 +212,11 @@ def make_global_background(card: QFrame, app_window: AppWindow, img: QWidget | N
     title_layout.addWidget(title)
 
     navbar_layout = QHBoxLayout()
-    print(current_page)
 
     for e in navbtns:
         btn = QPushButton(e["btn_title"])
         btn.setProperty("class", "onglet-button")
-        btn.clicked.connect(lambda: app_window.switch_to(e["title"], e["win_class"](app_window),))
+        btn.clicked.connect(lambda: app_window.switch_to(e["title"]))
         navbar_layout.addWidget(btn)
 
     header.addLayout(title_layout)

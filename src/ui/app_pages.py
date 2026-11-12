@@ -1,5 +1,10 @@
 from PyQt6.QtWidgets import QMainWindow, QStackedWidget, QWidget
 
+from .gestion_user import GestionUserPage
+from .add_product import AddProductPage
+from .main_page import MainPage
+from .auth_window import AuthWindow
+
 
 class AppWindow(QMainWindow):
     """Unique fenêtre de l'application : les pages sont empilées dedans."""
@@ -9,18 +14,21 @@ class AppWindow(QMainWindow):
         self.setWindowTitle("Rackeur")
         self.stack = QStackedWidget()
         self.setCentralWidget(self.stack)
-        self._pages: dict[str, QWidget] = {}
 
-    def switch_to(self, cle: str, fabrique, title_page: str) -> None:
-        page = self._pages.get(cle)
+        self._pages = {
+            "main": (MainPage(self)),
+            "add_product": (AddProductPage(self)),
+            "gestion_user": (GestionUserPage(self)),
+            "auth": (AuthWindow(self))
+        }
 
-        if page is None:
-            page = fabrique(self)
-            self._pages[cle] = page
+        for page in self._pages.values():
             self.stack.addWidget(page)
 
-        if hasattr(page, "refresh"):
-            page.refresh()
+    def switch_to(self, title_page: str) -> None:
+        page = self._pages.get(title_page)
 
-        if title_page == "main":
-            self.stack.setCurrentWidget()
+        if page is None:
+            raise ValueError(f"Page inconnue : {title_page}")
+
+        self.stack.setCurrentWidget(page)
