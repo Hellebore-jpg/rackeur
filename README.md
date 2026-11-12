@@ -55,7 +55,9 @@ Testé avec :
     ```
 2. Ouvrir le dossier dans un terminal et entrer les commandes `python -m venv .venv` pour créer un environement virtuel.
 3. Activez l'environement venv avec `.venv\Scripts\Activate.ps1`, puis importez les dépendances avec `pip install -r requirements.txt`.
-4. Exécutez le script [app.py](app.py). (`python app.py`)
+4. *(Optionnel)* Renomer  `assets/data/catalogue.csv` en `assets/data/test_catalogue.csv` pour peupler la base de données de fausses données de test **(ATTENTION ! CELA EFFACERA LES DONNEES DEJA PRESENTES !)**.
+5. *(Optionnel)* Lancer `sqlite_test_catalog_maker.py` pour crée le catalog de fausses données de test en SQLite.  
+6. Exécutez le script [app.py](app.py). (`python app.py`)
 
 ### Administration & Edition
 
