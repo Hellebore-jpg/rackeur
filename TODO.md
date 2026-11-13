@@ -140,7 +140,7 @@
 - [ ] Derniers fix & Publication - **Hellebore-jpg**
 
 # V2.0
->13/11/2026 + 
+>13/11/2026 +
 
 ## Objectifs
 - [ ] Navigation par catégories dans l'interface - **Purple-key-0**

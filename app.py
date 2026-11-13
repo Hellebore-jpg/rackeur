@@ -9,6 +9,7 @@ from PyQt6.QtWidgets import (
 )
 
 import sys # Permet l'interaction avec le système d'exploitation
+import ctypes
 
 from src.utils.bootstrap import load_database
 from src.utils.helpers import load_stylesheet
@@ -19,8 +20,13 @@ from src.utils import utils_config
 # IMPORTATION DES FENÊTRES                                                    #
 #=============================================================================#
 from src.ui.source_dialog import SourceDialog
-from src.ui.auth_window import AuthWindow
 from src.ui.app_pages import AppWindow
+
+
+# Fix de l'icon quand on lance l'appli à partir du script :
+if sys.platform == "win32":
+    myappid = 'com.egoutsdumonde.rackeur'
+    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
 #=============================================================================#
 # DEMARRAGE DE L'APPLICATION                                                  #

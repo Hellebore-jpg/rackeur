@@ -1,8 +1,7 @@
 from __future__ import annotations 
 
-from PyQt6.QtCore import Qt, QPoint
 from PyQt6.QtWidgets import (
-    QMainWindow, QVBoxLayout, QWidget, QGridLayout, QFrame, QLabel, QHBoxLayout, QPushButton, QSizePolicy, QLineEdit, QComboBox, QMessageBox, QTextEdit,
+    QVBoxLayout, QWidget, QFrame, QPushButton, QSizePolicy, QLineEdit, QComboBox, QMessageBox, QTextEdit,
     )
 from PyQt6.QtGui import QIntValidator, QDoubleValidator
 
@@ -64,12 +63,18 @@ class AddProductPage(Page):
         bloc_layout.addWidget(self.name)
 
         self.price = QLineEdit()
-        self.price.setValidator(QDoubleValidator(0, 999999, 2, self.price))
+
+        validator = QDoubleValidator(0.0, 999999.0, 2, self.price)
+        validator.setNotation(QDoubleValidator.Notation.StandardNotation)
+        self.price.setValidator(validator)
+
         if is_edit:
             self.price.setText(str(self.product[1]))
-        else : 
+        else:
             self.price.setPlaceholderText("Prix du produit")
+
         bloc_layout.addWidget(self.price)
+
 
         self.stock = QLineEdit()
         self.stock.setValidator(QIntValidator(0, 999999, self.stock))
