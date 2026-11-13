@@ -67,6 +67,7 @@ class Session:
         if self.DB.BODY == []:
             self.DB.CREATE(["admin", "$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe", 'admin', '11111'])
             self.DB.CREATE(["editor", "$2b$12$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe", 'editor', '01100'])
+            if utils_config.CSV: self.DB.SAVE_FILE()
         
         self.USER: list[str] = list(LOGGED_OUT)
         self.USER_ID: int | None = None
