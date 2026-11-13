@@ -100,6 +100,7 @@ class AddProductPage(Page):
         bloc_layout.addWidget(bloc_description)
 
         save_btn = QPushButton("Enregistrer le produit")
+        save_btn.setProperty("class", "product-button")
         if is_edit:
             save_btn.clicked.connect(self.edit_product)
         else :

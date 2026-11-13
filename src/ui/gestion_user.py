@@ -97,11 +97,12 @@ class GestionUserPage(Page):
         layout.addLayout(liste)
 
         valid_btn = QPushButton("Valider les modifications")
+        valid_btn.setProperty("class", "product-button")
         valid_btn.clicked.connect(self.on_valid_clicked)
         layout.addWidget(valid_btn)
 
-        btn1: NavBtn = {"title": "main", "btn_title": "Catalogue"}
-        btn2: NavBtn = {"title": "add_product", "btn_title": "Ajouter un produit"}
+        btn2: NavBtn = {"title": "main", "btn_title": "Catalogue"}
+        btn1: NavBtn = {"title": "add_product", "btn_title": "Ajouter un produit"}
         self.setCentralWidget(make_global_background(make_big_card(content), app_window=self.app_window, img=RoundedImage(config.USER_PLACEHOLDER_PATH), current_page="gestion_user", navbtns=[btn1, btn2]))
 
     def on_valid_clicked(self) -> None:

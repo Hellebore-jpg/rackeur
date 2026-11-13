@@ -20,8 +20,8 @@ class PwdCheckResult(NamedTuple):
     has_digit: bool
     has_special: bool
 
-LOGGED_OUT: list[str] = ['Non Connécté', '*****', 'none', '0000']
-PERMISSIONS: list[str] = ['CREATE', 'READ', 'UPDATE', 'DELETE']
+LOGGED_OUT: list[str] = ['Non Connécté', '*****', 'none', '00000']
+PERMISSIONS: list[str] = ['CREATE', 'READ', 'UPDATE', 'DELETE', 'USER']
 NO_PERMS = {e: False for e in PERMISSIONS}
 
 HEADER_TYPE: list[type] = [str]

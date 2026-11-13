@@ -218,7 +218,14 @@ def make_global_background(card: QFrame, app_window, img: QWidget | None = None,
         btn = QPushButton(e["btn_title"])
         btn.setProperty("class", "onglet-button")
         btn.clicked.connect(lambda checked=False, page_title=e["title"]: app_window.switch_to(page_title))
-        navbar_layout.addWidget(btn)
+        if e["title"] == "add_product":
+            if config.SESSION.CHECK_PERM('CREATE'):
+                navbar_layout.addWidget(btn)
+        elif e["title"] == "gestion_user":
+            if config.SESSION.CHECK_PERM('USER'):
+                navbar_layout.addWidget(btn)
+        else:
+            navbar_layout.addWidget(btn)
 
     header.addLayout(title_layout)
     header.addLayout(navbar_layout)
