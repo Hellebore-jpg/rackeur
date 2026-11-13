@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QMainWindow, QStackedWidget, QWidget
+from PyQt6.QtWidgets import QMainWindow, QStackedWidget
 
 from .gestion_user import GestionUserPage
 from .add_product import AddProductPage

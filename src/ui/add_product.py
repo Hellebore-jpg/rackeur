@@ -1,8 +1,7 @@
 from __future__ import annotations 
 
-from PyQt6.QtCore import Qt, QPoint
 from PyQt6.QtWidgets import (
-    QMainWindow, QVBoxLayout, QWidget, QGridLayout, QFrame, QLabel, QHBoxLayout, QPushButton, QSizePolicy, QLineEdit, QComboBox, QMessageBox, QTextEdit,
+    QVBoxLayout, QWidget, QFrame, QPushButton, QSizePolicy, QLineEdit, QComboBox, QMessageBox, QTextEdit,
     )
 from PyQt6.QtGui import QIntValidator, QDoubleValidator
 

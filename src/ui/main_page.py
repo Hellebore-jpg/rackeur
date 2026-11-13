@@ -2,7 +2,7 @@ from __future__ import annotations
 import math
 from PyQt6.QtCore import Qt, QPoint
 from PyQt6.QtWidgets import (
-    QMainWindow, QVBoxLayout, QWidget, QGridLayout, QFrame, QLabel, QHBoxLayout, QPushButton, QSizePolicy, QLineEdit,
+    QVBoxLayout, QWidget, QGridLayout, QFrame, QLabel, QHBoxLayout, QPushButton, QSizePolicy, QLineEdit,
 )
 
 from ..utils.helpers import Page, make_global_background, make_big_card, RoundedImage, NavBtn

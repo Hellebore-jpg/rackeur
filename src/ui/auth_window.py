@@ -3,7 +3,7 @@ from __future__ import annotations # Gère l'annotation des classes dans leurs p
 # Importation de Qt et de ses Widgets
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
-    QMainWindow, QSizePolicy, QStackedWidget,
+    QSizePolicy, QStackedWidget,
 )
 from PyQt6.QtGui import QKeyEvent
 

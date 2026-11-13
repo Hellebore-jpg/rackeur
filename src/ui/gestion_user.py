@@ -1,16 +1,14 @@
 from __future__ import annotations 
 
-from PyQt6.QtCore import Qt, QPoint
+from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
-    QMainWindow, QVBoxLayout, QWidget, QGridLayout, QFrame, QLabel, QHBoxLayout, QPushButton, QSizePolicy, QCheckBox, QComboBox, QListWidget, QAbstractItemView, QMessageBox,
+    QVBoxLayout, QWidget, QGridLayout, QLabel, QPushButton, QCheckBox, QComboBox, QMessageBox,
 )
 
 from ..utils.helpers import Page, make_global_background, make_big_card, RoundedImage, NavBtn, CheckableComboBox
 from ..utils import csv_utils, sqlite_utils, utils_config
 from .. import config
 from ..utils.session_utils import PERMISSIONS
-from .main_page import MainPage
-from .add_product import AddProductPage
 
 class GestionUserPage(Page):
     """Page principale affichée après la connexion.
