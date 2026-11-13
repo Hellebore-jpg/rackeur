@@ -1,6 +1,6 @@
-/* Ce est au format QSS (Qt Style Sheets) */
+/* Ce fichier est au format QSS (Qt Style Sheets) */
 
-/* Arrière plans */
+/* ============ Arrière plans (inchangés) ============ */
 #root {
     background: #2e0259;
 }
@@ -10,40 +10,27 @@
     border-radius: 20px;
 }
 
-/* Bloc */
-
-QFrame[class="create-card"] {
-    background-color: #252936;
-    border: 1px solid #353b4b;
-    border-radius: 8px;
-    padding: 4px;
-}
-
+/* ============ Blocs ============ */
+QFrame[class="create-card"],
 QFrame[class="product-card"] {
-    background-color: #252936;
-    border: 1px solid #353b4b;
-    border-radius: 8px;
+    background-color: #170629;
+    border: 1px solid #3b1a66;
+    border-radius: 10px;
     padding: 4px;
 }
 
 QFrame[class="product-card"]:hover {
-    background-color: #303748;
-    border: 1px solid #647cff;
+    background-color: #1d0835;
+    border: 1px solid #a78bfa;
 }
 
 QFrame[class="product-details"] {
-    background-color: #303748; 
-    border: 1px solid #647cff; 
-    border-radius: 8px;
+    background-color: #1d0835;
+    border: 1px solid #a78bfa;
+    border-radius: 10px;
 }
 
-QLabel[class="product-name"] {
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 5px;
-}
-
+QLabel[class="product-name"],
 QLabel[class="product-stock"] {
     color: #ffffff;
     font-size: 15px;
@@ -51,31 +38,40 @@ QLabel[class="product-stock"] {
     padding: 5px;
 }
 
-QPushButton[class="product-button"] {
-    background-color: #353d55;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-QPushButton[class="product-button"]:hover {
-    background-color: #647cff;
-}
-
+/* Boutons secondaires (produits + onglets) */
+QPushButton[class="product-button"],
 QPushButton[class="onglet-button"] {
-    background-color: #353d55;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px;
+    background-color: #2f1458;
+    color: #f3ecff;
+    border: 1px solid #4a2480;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-weight: 600;
 }
 
+QPushButton[class="product-button"]:hover,
 QPushButton[class="onglet-button"]:hover {
-    background-color: #647cff;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                                stop:0 #7c3aed, stop:1 #a855f7);
+    border-color: #c4a1ff;
+    color: white;
 }
 
-/* Textes */
+QPushButton[class="product-button"]:pressed,
+QPushButton[class="onglet-button"]:pressed {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                                stop:0 #6d28d9, stop:1 #9333ea);
+}
+
+/* Onglet actif (à activer avec setCheckable(True)) */
+QPushButton[class="onglet-button"]:checked {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                                stop:0 #7c3aed, stop:1 #a855f7);
+    border-color: #c4a1ff;
+    color: white;
+}
+
+/* ============ Textes ============ */
 QLabel {
     color: #f3ecff;
     font-size: 13px;
@@ -111,7 +107,7 @@ QLabel[class="subtitle"] {
     font-weight: 600;
 }
 
-/* Entrées */
+/* ============ Entrées ============ */
 QLineEdit {
     background-color: #170629;
     border: 2px solid #3b1a66;
@@ -139,7 +135,7 @@ QLineEdit:disabled {
     color: #6f5f8c;
 }
 
-/* Dropdowns */
+/* ============ Dropdowns ============ */
 QComboBox {
     background-color: #170629;
     border: 2px solid #3b1a66;
@@ -191,7 +187,7 @@ QComboBox QAbstractItemView::item:selected {
     color: white;
 }
 
-/* Checkboxes */
+/* ============ Checkboxes ============ */
 QCheckBox {
     color: #a99bc2;
     font-size: 12px;
@@ -221,7 +217,7 @@ QCheckBox::indicator:checked {
     border-color: #c4a1ff;
 }
 
-/* Boutons */
+/* ============ Boutons ============ */
 #primaryButton {
     background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
                                 stop:0 #7c3aed, stop:1 #a855f7);
@@ -275,7 +271,7 @@ QCheckBox::indicator:checked {
     font-size: 84px;
 }
 
-/*Pop-up*/
+/* ============ Pop-up ============ */
 QMessageBox#popupWarning {
     background-color: #ac001d;
 }
@@ -289,7 +285,7 @@ QMessageBox#popupWarning QPushButton {
     background-color: #000000;
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 8px 18px;
 }
 
@@ -307,13 +303,16 @@ QMessageBox#popupConfirmation QLabel {
 }
 
 QMessageBox#popupConfirmation QPushButton {
-    background-color: #4a0075;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                                stop:0 #7c3aed, stop:1 #a855f7);
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 8px 18px;
+    font-weight: 600;
 }
 
 QMessageBox#popupConfirmation QPushButton:hover {
-    background-color: #6d00eb;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                                stop:0 #8b5cf6, stop:1 #c084fc);
 }
