@@ -160,7 +160,7 @@ class MainPage(Page):
         self.refresh()
 
     def edit_product(self, index_product: int):
-        self.app_window.switch_to("add_product", index_product)
+        pass
 
     def resizeEvent(self, event):
         super().resizeEvent(event)
