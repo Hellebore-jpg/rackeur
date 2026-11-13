@@ -130,7 +130,8 @@ class AddProductPage(Page):
             return
 
         self.database.CREATE(liste)
-        self.database.SAVE_FILE()
+        if utils_config.CSV:
+            self.database.SAVE_FILE()
         self.clear_form()
         self.show_popup()
 
@@ -145,8 +146,8 @@ class AddProductPage(Page):
             return
         for col, valeur in enumerate(liste):
             self.database.UPDATE(valeur, [self.index_product, col])
-        self.database.SAVE_FILE()
         if utils_config.CSV:
+            self.database.SAVE_FILE()
             self.database = csv_utils.Database("catalogue.csv")
         else:
             self.database = sqlite_utils.Database("catalogue.db")

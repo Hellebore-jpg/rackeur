@@ -5,7 +5,6 @@
 
 from src.utils import sqlite_utils
 
-sqlite_utils.CREATE_FILE(header=['product', 'price', 'description', 'stock', 'quality'])
 db = sqlite_utils.Database()
 
 db.CREATE(["Batterie Pearl Roadshow",1130.00,"Batterie acoustique Pearl Roadshow, idéal pour débutants comme pour musiciens confirmés.",5,"Bon état"])

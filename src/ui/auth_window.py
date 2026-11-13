@@ -80,9 +80,9 @@ class AuthWindow(Page):
             index (int): Index de la page définit dans la classe.
         """
         if index == 1:
-            TYPE_AUTH = False
+            self.TYPE_AUTH = False
         if index == 2:
-            TYPE_AUTH = True
+            self.TYPE_AUTH = True
         for i in range(self.stack.count()):
             policy = (
                 QSizePolicy.Policy.Preferred
@@ -160,7 +160,7 @@ class AuthWindow(Page):
             self.show_page(self.LOGIN_INDEX)
             page.show_message("Compte créé, mais la connexion a échoué. Réessayez.")
 
-    def keyPressEnter(self, event: QKeyEvent | None) -> None:
+    def keyPressEvent(self, event: QKeyEvent | None) -> None:
         """Permet de se connecter ou de s'inscrire "Entrée"
         
         Args:
@@ -169,7 +169,7 @@ class AuthWindow(Page):
         """
         if event is not None and event.key() in (Qt.Key.Key_Return, Qt.Key.Key_Enter):
             if self.TYPE_AUTH == False:
-                self.on_login
+                self.on_login()
             if self.TYPE_AUTH == True:
-                self.on_register
+                self.on_register()
         super().keyPressEvent(event)

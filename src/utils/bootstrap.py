@@ -12,7 +12,6 @@ def load_database() -> None:
         csv_utils.CREATE_FILE(header=['product', 'price', 'description', 'stock', 'quality'])
         config.CATALOG = csv_utils.Database()
     else:
-        config.HEADERT = [str, float, str, int, str]
         sqlite_utils.CREATE_FILE(header=['product', 'price', 'description', 'stock', 'quality'])
-        config.CATALOG = sqlite_utils.Database()
+        config.CATALOG = sqlite_utils.Database(table="catalogue.db")
     config.SESSION = Session()
