@@ -136,7 +136,10 @@
 - [x] Rédaction du [README](README.md) - **Hellebore-jpg**
 - [x] Canva de présentation de fin de projet - **chummel-ops**
 - [x] Ajout des bases de données (CSV & SQLite) dans le [.gitignore](.gitignore) - **chummel-ops**
-- [ ] Binaries PyInstaller - **Hellebore-jpg**
+- [x] Création de l'executable compilé en machine code avec nuitka (Windows) - **Hellebore-jpg**
+    >python -m nuitka --standalone --onefile --enable-plugin=pyqt6 --windows-disable-console --windows-icon-from-ico=./assets/img/favicon.ico --include-data-dir=assets=./assets app.py
+- [ ] Création de l'executable compilé en machine code avec nuitka (Linux) - **Hellebore-jpg**
+    >python -m nuitka --standalone --onefile --enable-plugin=pyqt6 --windows-disable-console --windows-icon-from-ico=./assets/img/favicon.ico --include-data-dir=assets=./assets app.py
 - [ ] Derniers fix & Publication - **Hellebore-jpg**
 
 # V2.0
