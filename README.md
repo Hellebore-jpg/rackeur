@@ -20,11 +20,11 @@ Développement d'une application de gestion d'un catalogue de materiel de concer
 ## Fonctionnalités
 
 - Un catalogue qui affiche les produits disponibles et leurs informations
-- Navigation des produits par catégories et recherche
-- Achât des produits
+- Navigation des produits par mots clés
 - Panel administrateur complet (gère les produits, permissions, etc...)
 - PoLP "Principle of Least Privilege" ou Principe du Moindre Privilège
-- Alertes automatique en cas de fuite du mot de passe de l'utilisateur
+- Alertes automatique en cas de fuite du mot de passe de l'utilisateur à la connexion/inscription
+- Bases de données locales en CSV ou SQLite (au choix)
 
 ## Technologies
 
@@ -56,9 +56,9 @@ Testé avec :
 2. Ouvrir le dossier dans un terminal et entrer les commandes `python -m venv .venv` pour créer un environement virtuel.
 3. Activez l'environement venv avec `.venv\Scripts\Activate.ps1`, puis importez les dépendances avec `pip install -r requirements.txt`.
 4. *(Optionnel)* Installer la base de données de test :
-    1. Renomer  `assets/data/catalogue.csv` en `assets/data/test_catalogue.csv` pour peupler la base de données de fausses données de test **(ATTENTION ! CELA EFFACERA LES DONNEES DEJA PRESENTES !)**.
-    2. Lancer `sqlite_test_catalog_maker.py` pour créer le catalog de fausses données de test en SQLite. 
-5. *(Optionnel)* Supprimer `test_catalogue.csv` et `sqlite_test_catalog_maker`. 
+    1. Renomer  `assets/data/test_catalogue.csv` en `assets/data/catalogue.csv` pour peupler la base de données de fausses données de test **(ATTENTION ! CELA EFFACERA LES DONNEES DEJA PRESENTES !)**.
+    2. Lancer `sqlite_test_db_maker.py` pour créer le catalog de fausses données de test en SQLite.
+5. *(Optionnel)* Supprimer `test_catalogue.csv` et `sqlite_test_db_maker`. 
 5. Exécutez le script [app.py](app.py). (`python app.py`)
 
 ### Administration & Edition
@@ -80,7 +80,9 @@ rackeur/
 ├── assets/ → Stockage des ressources
 │   ├── data/   → Ressources & Base de données
 │   │   ├── catalogue.csv       → Base de données du catalogue de produits format CSV
-│   │   └── utilisateurs.csv    → Base de données des utilisateurs format CSV
+│   │   ├── catalogue.db        → Base de données du catalogue de produits format SQLite
+│   │   ├── utilisateurs.csv    → Base de données des utilisateurs format CSV
+│   │   └── utilisateurs.db     → Base de données des utilisateurs format SQLite
 │   ├── font/   → Polices d'écriture
 │   ├── img/    → Images
 │   └── style.qss   → Feuille de style PyQt
