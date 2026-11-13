@@ -108,6 +108,7 @@
     - [ ] Modification d'un produit - **Purple-key-0** 
     - [x] Suppression d'un produit - **Purple-key-0**  
 - [ ] Navigation par catégories dans l'interface - **Purple-key-0**
+- [x] Panel de gestion des utilisateurs admins et de leur permissions - **Purple-key-0**
 
 ### Jeux & Bases de données
 - [x] Création du Catalogue / Tableau de données - **Purple-key-0**
@@ -143,9 +144,8 @@
 >13/11/2026 + 
 
 ## Objectifs
-- [ ] Panel de gestion des utilisateurs admins et de leur permissions - **Hellebore-jpg**
 - [ ] Profil utilisateur pour changer ses informations - **Hellebore-jpg**
 - [ ] Système de commandes des produits - **Hellebore-jpg**
 - [ ] Historique des commandes - **Hellebore-jpg**
-- [ ] Interface Web & Base de données MySQL en ligne - **Hellebore-jpg**
+- [ ] Base de données MySQL en ligne - **Hellebore-jpg**
 - [ ] Derniers fix & Publication - **Hellebore-jpg**
