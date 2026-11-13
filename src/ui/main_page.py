@@ -130,7 +130,9 @@ class MainPage(Page):
 
             btn_edit = QPushButton("Modifier le produit")
             btn_edit.setProperty("class", "product-button")
-            bloc
+            bloc_layout.addWidget(btn_edit)
+
+            btn_edit.clicked.connect(lambda checked=False, i=index: self.edit_product(i))
             btn_delete.clicked.connect(lambda checked=False, i=index: self.delete_product(i))
 
             rang = index // colonnes
@@ -153,6 +155,10 @@ class MainPage(Page):
         else:
             self.database = sqlite_utils.Database("catalogue.db")
         self.refresh()
+
+    def edit_product(self, index_product: int):
+        
+
 
     def resizeEvent(self, event):
         super().resizeEvent(event)
