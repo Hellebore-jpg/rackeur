@@ -140,7 +140,8 @@
     >python -m nuitka --standalone --onefile --enable-plugin=pyqt6 --windows-disable-console --windows-icon-from-ico=./assets/img/favicon.ico --include-data-dir=assets=./assets app.py
 - [ ] Création de l'executable compilé en machine code avec nuitka (Linux) - **Hellebore-jpg**
     >python -m nuitka --standalone --onefile --enable-plugin=pyqt6 --windows-disable-console --windows-icon-from-ico=./assets/img/favicon.ico --include-data-dir=assets=./assets app.py
-- [ ] Derniers fix & Publication - **Hellebore-jpg**
+- [x] Derniers fix & Publication - **Hellebore-jpg**
+- [ ] Release Github
 
 # V2.0
 >13/11/2026 +
