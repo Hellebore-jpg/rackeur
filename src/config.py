@@ -28,7 +28,6 @@ FONT_PATH: Path = BASE_DIR / "assets/font/Kablammo/Kablammo-Regular-VariableFont
 #=============================================================================#
 
 # GESTION DE LA BASE DE DONNÉE CSV
-HEADERT: list[type] | None = None # Header de la base de données
 CATALOG: csv_utils.Database | sqlite_utils.Database | None = None # Base de données en CSV/SQLite
 
 # CONFIGURATION GLOBALE

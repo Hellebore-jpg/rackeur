@@ -9,7 +9,6 @@ from ..utils.helpers import Page, make_global_background, make_big_card, Rounded
 from ..utils import csv_utils, sqlite_utils, utils_config
 from .. import config
 
-PAGE_SIZE = 30
 class MainPage(Page):
     """Page principale affichée après la connexion.
     """
@@ -28,27 +27,41 @@ class MainPage(Page):
             self.database = csv_utils.Database("catalogue.csv")
         else:
             self.database = sqlite_utils.Database("catalogue.db")
+
         self.refresh()
     
-    def refresh(self, body = None) -> None:
+    def refresh(self) -> None:
         """Reconstruit toute la grille à partir des données actuelles."""
         for panneau in self._panneaux:
             panneau.deleteLater()
         self._panneaux = []
         self._details_ouvert = None
 
-        if body is None:
-            if utils_config.CSV:
-                reader = csv_utils.DB_Reader(self.database)
-            else:
-                reader = sqlite_utils.DB_Reader(self.database)
-            self.produits = reader.READ()
+        if utils_config.CSV:
+            reader = csv_utils.DB_Reader(self.database)
+        else:
+            reader = sqlite_utils.DB_Reader(self.database)
+
+        nb_btn = 0
+        if config.SESSION.CHECK_PERM('CREATE'):
+            nb_btn += 1
+        if config.SESSION.CHECK_PERM('READ'):
+            nb_btn += 1
+        if config.SESSION.CHECK_PERM('USER'):
+            nb_btn += 1
+        if nb_btn == 3:
+            PAGE_SIZE = 24
+        elif nb_btn == 2:
+            PAGE_SIZE = 30
         else :
-            self.produits = body
+            PAGE_SIZE = 36
 
-        if self.produits and isinstance(self.produits[0], str):
-            self.produits = [self.produits]
-
+        needle = self.search_text.strip().lower()
+        self.produits = [
+                (id_, ligne)
+                for id_, ligne in reader.READ_WITH_ID()
+                if not needle or any(needle in str(ligne[c]).lower() for c in (0, 2))
+            ]
         total_pages = max(1, math.ceil(len(self.produits) / PAGE_SIZE))
         self.page = min(self.page, total_pages - 1)
         debut = self.page * PAGE_SIZE
@@ -68,7 +81,7 @@ class MainPage(Page):
         grille.setSpacing(10)
         colonnes = 6
 
-        for index, ligne in enumerate(self.produits[debut:fin], start=debut):
+        for position, (id_, ligne) in enumerate(self.produits[debut:fin]):
             bloc = QFrame()
             bloc.setProperty("class", "product-card")
             bloc.setFixedWidth(270)
@@ -147,19 +160,18 @@ class MainPage(Page):
 
             btn.clicked.connect(toggle_details)
 
-            if config.SESSION.CHECK_PERM('DELETE'):
-                btn_delete = QPushButton("Supprimer le produit")
-                btn_delete.setProperty("class", "product-button")
-                btn_delete.clicked.connect(lambda checked=False, i=index: self.delete_product(i))
-                bloc_layout.addWidget(btn_delete)
-
-            if config.SESSION.CHECK_PERM('EDIT'):
+            if config.SESSION.CHECK_PERM('UPDATE'):
                 btn_edit = QPushButton("Modifier le produit")
                 btn_edit.setProperty("class", "product-button")
                 bloc_layout.addWidget(btn_edit)
-                btn_edit.clicked.connect(lambda checked=False, i=index: self.edit_product(i))
+                btn_edit.clicked.connect(lambda checked=False, i=id_: self.edit_product(i))
 
-            position = index - debut
+            if config.SESSION.CHECK_PERM('DELETE'):
+                btn_delete = QPushButton("Supprimer le produit")
+                btn_delete.setProperty("class", "product-button")
+                btn_delete.clicked.connect(lambda checked=False, i=id_: self.delete_product(i))
+                bloc_layout.addWidget(btn_delete)
+
             rang = position // colonnes
             colonne = position % colonnes
             grille.addWidget(bloc, rang, colonne, Qt.AlignmentFlag.AlignTop)
@@ -193,14 +205,14 @@ class MainPage(Page):
         self.setCentralWidget(make_global_background(make_big_card(content), app_window=self.app_window, img=RoundedImage(config.USER_PLACEHOLDER_PATH), current_page="main", navbtns=[btn1, btn2]))
 
     def delete_product(self, index_product: int):
-    self.database.DELETE(index_product)
-    self.database.SAVE_FILE()
-    if utils_config.CSV:
-        self.database = csv_utils.Database("catalogue.csv")
-    else:
-        self.database = sqlite_utils.Database("catalogue.db")
-    self.refresh()
-    self._play_delete_gif()
+        self.database.DELETE(index_product)
+        self.database.SAVE_FILE()
+        if utils_config.CSV:
+            self.database = csv_utils.Database("catalogue.csv")
+        else:
+            self.database = sqlite_utils.Database("catalogue.db")
+        self.refresh()
+        self._play_delete_gif()
 
     def _play_delete_gif(self):
         # main_page.py est dans rackeur/src/ui -> parents[2] = rackeur/
@@ -221,16 +233,12 @@ class MainPage(Page):
             self._details_ouvert = None
 
     def search_products(self, text: str):
-        column = [
-            0, 2,
-        ]
         self.search_text = text
-        self.page = 0    
-        self.produits = self.database.READER().SEARCH(text, column).READ()
-        self.refresh(self.produits)
+        self.page = 0
+        self.refresh()
         self.search_bar.setFocus()
         self.search_bar.end(False)
 
     def change_page(self, delta: int) -> None:
         self.page += delta
-        self.refresh(self.produits)
+        self.refresh()
