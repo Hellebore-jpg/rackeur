@@ -193,14 +193,23 @@ class MainPage(Page):
         self.setCentralWidget(make_global_background(make_big_card(content), app_window=self.app_window, img=RoundedImage(config.USER_PLACEHOLDER_PATH), current_page="main", navbtns=[btn1, btn2]))
 
     def delete_product(self, index_product: int):
-        self.database.DELETE(index_product)
-        self.database.SAVE_FILE()
-        if utils_config.CSV:
-            self.database = csv_utils.Database("catalogue.csv")
-        else:
-            self.database = sqlite_utils.Database("catalogue.db")
-        self.refresh()
+    self.database.DELETE(index_product)
+    self.database.SAVE_FILE()
+    if utils_config.CSV:
+        self.database = csv_utils.Database("catalogue.csv")
+    else:
+        self.database = sqlite_utils.Database("catalogue.db")
+    self.refresh()
+    self._play_delete_gif()
 
+    def _play_delete_gif(self):
+        # main_page.py est dans rackeur/src/ui -> parents[2] = rackeur/
+        gif_path = Path(__file__).resolve().parents[2] / "assets" / "img" / "gifsupp.gif"
+        if not gif_path.exists():
+            return  # pas de crash si le fichier manque
+        popup = GifPopup(gif_path, self)
+        popup.exec()  # bloque jusqu'à la fin du GIF, puis se ferme tout seul
+        
     def edit_product(self, index_product: int):
         self.app_window.switch_to("add_product", index_product)
 
