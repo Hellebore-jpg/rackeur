@@ -2,13 +2,13 @@ from __future__ import annotations
 
 from PyQt6.QtCore import Qt, QPoint
 from PyQt6.QtWidgets import (
-    QMainWindow, QVBoxLayout, QWidget, QGridLayout, QFrame, QLabel, QHBoxLayout, QPushButton, QSizePolicy,
+    QMainWindow, QVBoxLayout, QWidget, QGridLayout, QFrame, QLabel, QHBoxLayout, QPushButton, QSizePolicy, QCheckBox, QComboBox, QListWidget, QAbstractItemView, QMessageBox,
 )
 
-from ..utils.helpers import Page, make_global_background, make_big_card, RoundedImage, NavBtn
+from ..utils.helpers import Page, make_global_background, make_big_card, RoundedImage, NavBtn, CheckableComboBox
 from ..utils.csv_utils import DB_Reader, Database
 from .. import config
-
+from ..utils.session_utils import PERMISSIONS
 from .main_page import MainPage
 from .add_product import AddProductPage
 
@@ -22,47 +22,117 @@ class GestionUserPage(Page):
         super().__init__()
         self.app_window = app_window
         self.setWindowTitle("users")
-        self.setWindowTitle("users")
         self._details_ouvert = None
         self._panneaux = []
-        self.database = Database("utilisateurs.csv")
+        self.user_database = Database("utilisateurs.csv")
+        self.checkboxes = []
+        self.user_widgets = []
         self.refresh()
 
     def refresh(self) -> None:
-        """Reconstruit toute la grille à partir des données actuelles."""
+        self.user_widgets.clear()
         for panneau in self._panneaux:
             panneau.deleteLater()
         self._panneaux = []
         self._details_ouvert = None
 
-        reader = DB_Reader(self.database)
-        users = reader.READ()
+        reader = DB_Reader(self.user_database)
+        users = reader.BODY
 
         content = QWidget()
         layout = QVBoxLayout(content)
         liste = QVBoxLayout()
 
-        for index, ligne in enumerate(users):
-            row = QHBoxLayout()
-            for valeur in ligne:
-                row.addWidget(QLabel(str(valeur)))
-            btn_delete = QPushButton("Supprimer")
-            btn_delete.setProperty("class", "product-button")
-            btn_delete.clicked.connect(lambda checked=False, i=index: self.delete_user(i))
-            row.addWidget(btn_delete)
-            liste.addLayout(row)
+        liste = QGridLayout()
+        liste.setHorizontalSpacing(15)
+        liste.setVerticalSpacing(8)
+
+        for colonne, nom in enumerate(self.user_database.HEAD):
+            label = QLabel(nom.capitalize())
+            label.setProperty("class", "table-header")
+            liste.addWidget(label, 0, colonne)
+        nb_colonnes = len(self.user_database.HEAD)
+        label_suppr = QLabel("Supprimer")
+        label_suppr.setProperty("class", "table-header")
+        liste.addWidget(label_suppr, 0, nb_colonnes)
+
+        self.user_widgets = []
+        for position, (real_id, ligne) in enumerate(users):
+            rang = position + 1  # la ligne 0 est l'en-tête
+            widgets = {"id": real_id, "role": None, "perm": None, "delete": None}
+
+            for colonne, valeur in enumerate(ligne):
+                if colonne == 2:
+                    role = QComboBox()
+                    role.addItems(["editor", "visiteur", "admin"])
+                    index_role = role.findText(str(valeur).strip())
+                    if index_role >= 0:
+                        role.setCurrentIndex(index_role)
+                    widgets["role"] = role
+                    liste.addWidget(role, rang, colonne)
+
+                elif colonne == 3:
+                    perm = CheckableComboBox(PERMISSIONS, bits_to_liste(valeur))
+                    perm.setFixedWidth(150)
+                    widgets["perm"] = perm
+                    liste.addWidget(perm, rang, colonne)
+
+                else:
+                    liste.addWidget(QLabel(str(valeur)), rang, colonne)
+
+            check_delete = QCheckBox()
+            widgets["delete"] = check_delete
+            liste.addWidget(check_delete, rang, nb_colonnes, Qt.AlignmentFlag.AlignCenter)
+
+            self.user_widgets.append(widgets)
+
+            liste.setRowStretch(len(users) + 1, 1)
 
         layout.addLayout(liste)
+
+        valid_btn = QPushButton("Valider les modifications")
+        valid_btn.clicked.connect(self.on_valid_clicked)
+        layout.addWidget(valid_btn)
 
         btn1: NavBtn = {"title": "main", "btn_title": "Catalogue"}
         btn2: NavBtn = {"title": "add_product", "btn_title": "Ajouter un produit"}
         self.setCentralWidget(make_global_background(make_big_card(content), app_window=self.app_window, img=RoundedImage(config.USER_PLACEHOLDER_PATH), current_page="gestion_user", navbtns=[btn1, btn2]))
-        
 
-    def delete_user(self, index_product: int):
-        self.database.DELETE(index_product)
-        self.database.SAVE_FILE()
+    def on_valid_clicked(self) -> None:
+        if self.show_popup():
+            self.valid_user()
+
+    def valid_user(self) -> None:
+        to_delete = []
+        for w in self.user_widgets:
+            real_id = w["id"]
+            if w["delete"].isChecked():
+                to_delete.append(real_id)
+                continue
+            self.user_database.UPDATE(w["role"].currentText(), [real_id, 2])
+            self.user_database.UPDATE(liste_to_bits(w["perm"].selected_items()), [real_id, 3])
+
+        for real_id in sorted(to_delete, reverse=True):
+            self.user_database.DELETE(real_id)
+
+        self.user_database.SAVE_FILE()
+        self.user_database = Database("utilisateurs.csv")
         self.refresh()
+
+    def show_popup(self) -> bool:
+        """Demande confirmation. Renvoie True si l'utilisateur accepte."""
+        popup = QMessageBox(self)
+        popup.setObjectName("popupConfirmation")
+        popup.setWindowTitle("Confirmation")
+        popup.setIcon(QMessageBox.Icon.Question)
+        popup.setText("Les informations des utilisateurs vont être modifiées. Continuer ?")
+
+        btn_confirm = popup.addButton("Confirmer", QMessageBox.ButtonRole.AcceptRole)
+        popup.addButton("Annuler", QMessageBox.ButtonRole.RejectRole)
+        popup.setDefaultButton(popup.buttons()[1])  # « Annuler » par défaut, plus sûr
+        popup.exec()
+
+        return popup.clickedButton() == btn_confirm
 
     def resizeEvent(self, event):
         super().resizeEvent(event)
@@ -70,3 +140,12 @@ class GestionUserPage(Page):
             self._details_ouvert[0].hide()
             self._details_ouvert[1].setText("Voir les détails")
             self._details_ouvert = None
+
+def bits_to_liste(bits: str) -> list[str]:
+        """'1010' -> ['CREATE', 'UPDATE']"""
+        bits = str(bits).strip().zfill(len(PERMISSIONS))
+        return [nom for nom, bit in zip(PERMISSIONS, bits) if bit == "1"]
+
+def liste_to_bits(cochees: list[str]) -> str:
+    """['CREATE', 'UPDATE'] -> '1010'"""
+    return "".join("1" if nom in cochees else "0" for nom in PERMISSIONS)

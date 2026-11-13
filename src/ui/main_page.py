@@ -23,7 +23,7 @@ class MainPage(Page):
         self._panneaux = []
         self.database = Database("catalogue.csv")
         self.refresh()
-
+    
     def refresh(self) -> None:
         """Reconstruit toute la grille à partir des données actuelles."""
         for panneau in self._panneaux:
@@ -141,6 +141,7 @@ class MainPage(Page):
     def delete_product(self, index_product: int):
         self.database.DELETE(index_product)
         self.database.SAVE_FILE()
+        self.database = Database("catalogue.csv")
         self.refresh()
 
     def resizeEvent(self, event):

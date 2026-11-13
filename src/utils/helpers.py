@@ -1,12 +1,12 @@
 from __future__ import annotations # Gère l'annotation des classes dans leurs propres fonctions
 
 # Importation de Qt et de ses Widgets
-from PyQt6.QtCore import Qt, QRectF
+from PyQt6.QtCore import Qt, QRectF, QEvent, pyqtSignal
 from PyQt6.QtGui import (
-    QColor, QPainter, QPainterPath, QPaintEvent, QPixmap, QResizeEvent,
+    QColor, QPainter, QPainterPath, QPaintEvent, QPixmap, QResizeEvent, QStandardItem, QStandardItemModel
 )
 from PyQt6.QtWidgets import (
-    QFrame, QGraphicsDropShadowEffect, QLabel, QVBoxLayout, QWidget, QHBoxLayout, QPushButton,
+    QFrame, QGraphicsDropShadowEffect, QLabel, QVBoxLayout, QWidget, QHBoxLayout, QPushButton, QComboBox, 
 )
 
 from pathlib import Path # Gère les chemins de fichiers
@@ -216,7 +216,7 @@ def make_global_background(card: QFrame, app_window, img: QWidget | None = None,
     for e in navbtns:
         btn = QPushButton(e["btn_title"])
         btn.setProperty("class", "onglet-button")
-        btn.clicked.connect(lambda: app_window.switch_to(e["title"]))
+        btn.clicked.connect(lambda checked=False, page_title=e["title"]: app_window.switch_to(page_title))
         navbar_layout.addWidget(btn)
 
     header.addLayout(title_layout)
@@ -255,3 +255,79 @@ class Page(QWidget):
             if item.widget() is not None:
                 item.widget().deleteLater()
         self._root_layout.addWidget(widget)
+
+class CheckableComboBox(QComboBox):
+    """Menu déroulant avec des cases à cocher (sélection multiple)."""
+
+    selectionChanged = pyqtSignal(list)  # émis à chaque changement, avec la liste des éléments cochés
+
+    def __init__(self, options, selected=(), parent=None):
+        super().__init__(parent)
+        self._placeholder = "Permissions"
+
+        self.setModel(QStandardItemModel(self))
+        self.setEditable(True)
+        self.lineEdit().setReadOnly(True)
+        self.lineEdit().setPlaceholderText(self._placeholder)
+        self.setMaxVisibleItems(len(options))
+
+        for option in options:
+            item = QStandardItem(option)
+            item.setFlags(Qt.ItemFlag.ItemIsEnabled | Qt.ItemFlag.ItemIsUserCheckable)
+            item.setData(
+                Qt.CheckState.Checked if option in selected else Qt.CheckState.Unchecked,
+                Qt.ItemDataRole.CheckStateRole,
+            )
+            self.model().appendRow(item)
+
+        self.setCurrentIndex(-1)
+
+        # Les clics sur le champ texte et sur la liste sont gérés par eventFilter
+        self.lineEdit().installEventFilter(self)
+        self.view().viewport().installEventFilter(self)
+
+        self.model().dataChanged.connect(self._on_data_changed)
+        self.update_text()
+
+    def eventFilter(self, obj, event):
+        # Clic sur le texte : ouvre ou ferme la liste
+        if obj is self.lineEdit() and event.type() == QEvent.Type.MouseButtonRelease:
+            if self.view().isVisible():
+                self.hidePopup()
+            else:
+                self.showPopup()
+            return True
+
+        # Clic sur un élément de la liste : coche/décoche sans fermer la liste
+        if obj is self.view().viewport() and event.type() == QEvent.Type.MouseButtonRelease:
+            index = self.view().indexAt(event.position().toPoint())
+            if index.isValid():
+                self.toggle_item(index)
+            return True  # empêche la fermeture automatique
+
+        return super().eventFilter(obj, event)
+
+    def toggle_item(self, index):
+        item = self.model().itemFromIndex(index)
+        if item is None:
+            return
+        item.setCheckState(
+            Qt.CheckState.Unchecked
+            if item.checkState() == Qt.CheckState.Checked
+            else Qt.CheckState.Checked
+        )
+
+    def _on_data_changed(self, *args):
+        self.update_text()
+        self.selectionChanged.emit(self.selected_items())
+
+    def update_text(self):
+        # Texte vide si rien n'est coché : le placeholder s'affiche alors tout seul
+        self.lineEdit().setText(", ".join(self.selected_items()))
+
+    def selected_items(self) -> list[str]:
+        return [
+            self.model().item(i).text()
+            for i in range(self.model().rowCount())
+            if self.model().item(i).checkState() == Qt.CheckState.Checked
+        ]

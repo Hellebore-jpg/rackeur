@@ -4,6 +4,7 @@ from .gestion_user import GestionUserPage
 from .add_product import AddProductPage
 from .main_page import MainPage
 from .auth_window import AuthWindow
+from ..utils.csv_utils import Database
 
 
 class AppWindow(QMainWindow):
@@ -30,5 +31,11 @@ class AppWindow(QMainWindow):
 
         if page is None:
             raise ValueError(f"Page inconnue : {title_page}")
+        
+        self.database = Database("catalogue.csv")
+        if title_page in ("main", "gestion_user", "add_product"):
+            page.database = Database("catalogue.csv")
+            page.user_database = Database("utilisateurs.csv")
+            page.refresh()
 
         self.stack.setCurrentWidget(page)
