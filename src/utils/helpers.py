@@ -3,10 +3,10 @@ from __future__ import annotations # Gère l'annotation des classes dans leurs p
 # Importation de Qt et de ses Widgets
 from PyQt6.QtCore import Qt, QRectF, QEvent, pyqtSignal
 from PyQt6.QtGui import (
-    QColor, QPainter, QPainterPath, QPaintEvent, QPixmap, QResizeEvent, QStandardItem, QStandardItemModel
+    QColor, QPainter, QPainterPath, QPaintEvent, QPixmap, QResizeEvent, QStandardItem, QStandardItemModel,
 )
 from PyQt6.QtWidgets import (
-    QFrame, QGraphicsDropShadowEffect, QLabel, QVBoxLayout, QWidget, QHBoxLayout, QPushButton, QComboBox, 
+    QFrame, QGraphicsDropShadowEffect, QLabel, QVBoxLayout, QWidget, QHBoxLayout, QPushButton, QComboBox, QScrollArea, QSizePolicy,
 )
 
 from pathlib import Path # Gère les chemins de fichiers
@@ -80,8 +80,9 @@ def make_big_card(content: QWidget) -> QFrame:
     """
     card = QFrame()
     card.setObjectName("card")
-    card.setFixedWidth(config.BIG_CARD_WIDTH)
-    card.setFixedHeight(config.BIG_CARD_HEIGHT)
+    card.setMaximumWidth(config.BIG_CARD_WIDTH)
+    card.setMaximumHeight(config.BIG_CARD_HEIGHT)
+    card.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
  
     layout = QVBoxLayout(card)
     layout.setContentsMargins(10, 10, 10, 10)
@@ -222,8 +223,22 @@ def make_global_background(card: QFrame, app_window, img: QWidget | None = None,
     header.addLayout(title_layout)
     header.addLayout(navbar_layout)
     global_layout.addLayout(header)
-    global_layout.addWidget(card, alignment=Qt.AlignmentFlag.AlignHCenter)
-    global_layout.addStretch()
+
+    row = QHBoxLayout()
+    row.addStretch()
+    row.addWidget(card)
+    row.addStretch()
+    container = QWidget()
+    container.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+    container.setLayout(row)
+
+    scroll = QScrollArea()
+    scroll.setWidgetResizable(True)
+    scroll.setFrameShape(QFrame.Shape.NoFrame)
+    scroll.setStyleSheet("QScrollArea, QScrollArea > QWidget > QWidget { background: transparent; }")
+    scroll.setWidget(container)
+
+    global_layout.addWidget(scroll, 1)
     return root
 
 def make_header(title: str, subtitle: str) -> tuple[QLabel, QLabel]:

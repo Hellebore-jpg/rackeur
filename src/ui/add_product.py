@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from PyQt6.QtCore import Qt, QPoint
 from PyQt6.QtWidgets import (
-    QMainWindow, QVBoxLayout, QWidget, QGridLayout, QFrame, QLabel, QHBoxLayout, QPushButton, QSizePolicy, QLineEdit, QComboBox, QMessageBox,
+    QMainWindow, QVBoxLayout, QWidget, QGridLayout, QFrame, QLabel, QHBoxLayout, QPushButton, QSizePolicy, QLineEdit, QComboBox, QMessageBox, QTextEdit,
     )
 from PyQt6.QtGui import QIntValidator, QDoubleValidator
 
@@ -49,7 +49,8 @@ class AddProductPage(Page):
 
         bloc = QFrame()
         bloc.setProperty("class", "create-card")
-        bloc.setFixedWidth(1600)
+        bloc.setMaximumWidth(1600)
+        bloc.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
         bloc_layout = QVBoxLayout(bloc)
         bloc_layout.setContentsMargins(8, 4, 8, 4)
         bloc_layout.setSpacing(10)
@@ -86,11 +87,13 @@ class AddProductPage(Page):
 
         bloc_description = QFrame()
         bloc_description.setProperty("class", "create-card")
-        bloc_description.setFixedHeight(300)
+        bloc_description.setMinimumHeight(150)
+        bloc_description.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
         bloc_description_layout = QVBoxLayout(bloc_description)
-        self.description = QLineEdit()
+        self.description = QTextEdit()
+        self.description.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         if is_edit:
-            self.description.setText(self.product[2])
+            self.description.setPlainText(self.product[2])
         else : 
             self.description.setPlaceholderText("Description du produit")
         bloc_description_layout.addWidget(self.description)
@@ -103,7 +106,7 @@ class AddProductPage(Page):
             save_btn.clicked.connect(self.save_product)
         bloc_layout.addWidget(save_btn)
         
-        layout.addWidget(bloc, alignment=Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(bloc)
 
         btn1: NavBtn = {"title": "gestion_user", "btn_title": "Gérer les utilisateurs"}
         btn2: NavBtn = {"title": "main", "btn_title": "Catalogue"}
@@ -115,7 +118,7 @@ class AddProductPage(Page):
         price: str = self.price.text()
         stock: str = self.stock.text()
         quality: str = self.quality.currentText()
-        description: str = self.description.text()
+        description: str = self.description.toPlainText()
         liste: list = [name, price, description, stock, quality]
         if(self.verif_form(liste)):
             return
@@ -130,7 +133,7 @@ class AddProductPage(Page):
         price: str = self.price.text()
         stock: str = self.stock.text()
         quality: str = self.quality.currentText()
-        description: str = self.description.text()
+        description: str = self.description.toPlainText()
         liste: list = [name, price, description, stock, quality]
         if self.verif_form(liste):
             return
