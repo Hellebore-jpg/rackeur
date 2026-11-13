@@ -105,7 +105,7 @@
     - [x] Affichage de la liste des produits - **Purple-key-0** 
     - [ ] Recherche d'un produit en fonction d'un ou plusieurs mots-clés - **Purple-key-0** 
     - [x] Ajout d'un produit - **Purple-key-0** 
-    - [ ] Modification d'un produit - **Purple-key-0** 
+    - [x] Modification d'un produit - **Purple-key-0** 
     - [x] Suppression d'un produit - **Purple-key-0**  
 - [ ] Navigation par catégories dans l'interface - **Purple-key-0**
 - [x] Panel de gestion des utilisateurs admins et de leur permissions - **Purple-key-0**
