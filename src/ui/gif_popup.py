@@ -7,7 +7,7 @@ from PyQt6.QtWidgets import QDialog, QLabel, QVBoxLayout
 class GifPopup(QDialog):
     """Popup sans bordure, au premier plan, qui joue un GIF une seule fois."""
 
-    def __init__(self, gif_path: Path, parent=None):
+    def __init__(self, gif_path: Path, position, parent=None):
         super().__init__(parent)
         self.setWindowFlags(
             Qt.WindowType.Dialog
@@ -15,7 +15,7 @@ class GifPopup(QDialog):
             | Qt.WindowType.WindowStaysOnTopHint
         )
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
-        self.setModal(True)  # bloque les clics pendant l'animation
+        self.setModal(False)  # bloque les clics pendant l'animation
 
         self.label = QLabel(self)
         layout = QVBoxLayout(self)
@@ -28,6 +28,7 @@ class GifPopup(QDialog):
         # Taille de la fenêtre = taille du GIF
         self.movie.jumpToFrame(0)
         self.resize(self.movie.currentPixmap().size())
+        self.move(position - self.rect().center())
 
         self.movie.frameChanged.connect(self._on_frame_changed)
         self.movie.finished.connect(self.accept)  # si le GIF est déjà "1 boucle"
@@ -40,10 +41,4 @@ class GifPopup(QDialog):
 
     def showEvent(self, event):
         super().showEvent(event)
-        # Centrer sur la fenêtre principale
-        if self.parent():
-            center = self.parent().window().frameGeometry().center()
-            geo = self.frameGeometry()
-            geo.moveCenter(center)
-            self.move(geo.topLeft())
         self.movie.start()
