@@ -9,7 +9,7 @@ from ..utils.helpers import Page, make_global_background, make_big_card, Rounded
 from ..utils import csv_utils, sqlite_utils, utils_config
 from .. import config
 
-PAGE_SIZE = 30
+PAGE_SIZE = 24
 class MainPage(Page):
     """Page principale affichée après la connexion.
     """
@@ -153,7 +153,7 @@ class MainPage(Page):
                 btn_delete.clicked.connect(lambda checked=False, i=index: self.delete_product(i))
                 bloc_layout.addWidget(btn_delete)
 
-            if config.SESSION.CHECK_PERM('EDIT'):
+            if config.SESSION.CHECK_PERM('UPDATE'):
                 btn_edit = QPushButton("Modifier le produit")
                 btn_edit.setProperty("class", "product-button")
                 bloc_layout.addWidget(btn_edit)
@@ -194,8 +194,8 @@ class MainPage(Page):
 
     def delete_product(self, index_product: int):
         self.database.DELETE(index_product)
-        self.database.SAVE_FILE()
         if utils_config.CSV:
+            self.database.SAVE_FILE()
             self.database = csv_utils.Database("catalogue.csv")
         else:
             self.database = sqlite_utils.Database("catalogue.db")
