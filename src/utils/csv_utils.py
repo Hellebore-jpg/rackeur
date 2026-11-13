@@ -24,7 +24,7 @@ class CSVTable(TypedDict):
     
 DATA_DIR: Path = Path('assets/data/') # Dossier des fichiers CSV
 
-def CREATE_FILE(path: str | Path = 'catalogue.csv', header: list[str] | None = None, delimeter: str = ',', overwrite: bool = False, body: list[str] | None = None) -> Path:
+def CREATE_FILE(path: str | Path = 'catalogue.csv', header: list[str] | None = None, delimeter: str = ',', overwrite: bool = False) -> Path:
     """Crée un fichier CSV vide (avec l'entête si elle est fournie) dans "assets/data/".
 
     Args:
@@ -43,8 +43,6 @@ def CREATE_FILE(path: str | Path = 'catalogue.csv', header: list[str] | None = N
     with open(full_path, 'w', newline='', encoding='utf-8') as f:
         if header:
             csv.writer(f, delimiter=delimeter).writerow(header)
-        if body:
-            csv.writer(f, delimiter=delimeter).writerows(body)
     return full_path
 
 @contextmanager
