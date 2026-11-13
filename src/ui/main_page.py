@@ -4,10 +4,11 @@ from PyQt6.QtCore import Qt, QPoint
 from PyQt6.QtWidgets import (
     QVBoxLayout, QWidget, QGridLayout, QFrame, QLabel, QHBoxLayout, QPushButton, QSizePolicy, QLineEdit,
 )
-
+from pathlib import Path
 from ..utils.helpers import Page, make_global_background, make_big_card, RoundedImage, NavBtn
 from ..utils import csv_utils, sqlite_utils, utils_config
 from .. import config
+from src.ui.gif_popup import GifPopup
 
 class MainPage(Page):
     """Page principale affichée après la connexion.
@@ -169,7 +170,7 @@ class MainPage(Page):
             if config.SESSION.CHECK_PERM('DELETE'):
                 btn_delete = QPushButton("Supprimer le produit")
                 btn_delete.setProperty("class", "product-button")
-                btn_delete.clicked.connect(lambda checked=False, i=id_: self.delete_product(i))
+                btn_delete.clicked.connect(lambda checked=False, i=id_, btn=btn_delete: self.delete_product(i, btn))
                 bloc_layout.addWidget(btn_delete)
 
             rang = position // colonnes
@@ -204,7 +205,7 @@ class MainPage(Page):
         btn2: NavBtn = {"title": "add_product", "btn_title": "Ajouter un produit"}
         self.setCentralWidget(make_global_background(make_big_card(content), app_window=self.app_window, img=RoundedImage(config.USER_PLACEHOLDER_PATH), current_page="main", navbtns=[btn1, btn2]))
 
-    def delete_product(self, index_product: int):
+    def delete_product(self, index_product: int, button):
         self.database.DELETE(index_product)
         if utils_config.CSV:
             self.database.SAVE_FILE()
@@ -212,7 +213,17 @@ class MainPage(Page):
         else:
             self.database = sqlite_utils.Database("catalogue.db")
         self.refresh()
+        self._play_delete_gif(button.mapToGlobal(button.rect().center()))
 
+    def _play_delete_gif(self, position):
+        # main_page.py est dans rackeur/src/ui -> parents[2] = rackeur/
+        gif_path = Path(__file__).resolve().parents[2] / "assets" / "img" / "gifsupp.gif"
+        if not gif_path.exists():
+            return  # pas de crash si le fichier manque
+        popup = GifPopup(gif_path, position, self)
+        popup.move(position - popup.rect().center())
+        popup.show()  # bloque jusqu'à la fin du GIF, puis se ferme tout seul
+        
     def edit_product(self, index_product: int):
         self.app_window.switch_to("add_product", index_product)
 
