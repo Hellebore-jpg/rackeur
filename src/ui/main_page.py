@@ -160,7 +160,25 @@ class MainPage(Page):
         self.refresh()
 
     def edit_product(self, index_product: int):
-        pass
+        name: str = self.name.text()
+        price: str = self.price.text()
+        stock: str = self.stock.text()
+        quality: str = self.quality.currentText()
+        description: str = self.description.text()
+        liste: list = [name, price, description, stock, quality]
+        if self.verif_form(liste):
+            return
+        for col, valeur in enumerate(liste):
+            self.database.UPDATE(valeur, [self.index_product, col])
+        self.database.SAVE_FILE()
+        if utils_config.CSV:
+            self.database = csv_utils.Database("catalogue.csv")
+        else:
+            self.database = sqlite_utils.Database("catalogue.db")
+
+        self.clear_form()
+        self.index_product = -1
+        self.show_popup()
 
     def resizeEvent(self, event):
         super().resizeEvent(event)
