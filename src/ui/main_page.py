@@ -120,6 +120,10 @@ class MainPage(Page):
             btn_delete = QPushButton("Supprimer le produit")
             btn_delete.setProperty("class", "product-button")
             bloc_layout.addWidget(btn_delete)
+
+            btn_edit = QPushButton("Modifier le produit")
+            btn_edit.setProperty("class", "product-button")
+            bloc
             btn_delete.clicked.connect(lambda checked=False, i=index: self.delete_product(i))
 
             rang = index // colonnes
