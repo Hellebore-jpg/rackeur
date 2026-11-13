@@ -114,6 +114,8 @@ class AuthWindow(Page):
                 page.show_message("Conseil :", [f"Ce mot de passe a déjà fuité {leaks} fois dans des bases piratées. Changez-le !"])
                 self.login_page.submit_button.setText("Se connecter quand même")
                 self.login_page.submit_button.setStyleSheet("background-color: #e74c3c")
+            else:
+                self.open_main_page()
             self.next = False
         else:
             page.inputs["password"].clear()
