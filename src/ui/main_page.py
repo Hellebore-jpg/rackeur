@@ -6,7 +6,7 @@ from PyQt6.QtWidgets import (
 )
 
 from ..utils.helpers import Page, make_global_background, make_big_card, RoundedImage, NavBtn
-from ..utils.csv_utils import DB_Reader, Database
+from ..utils import csv_utils, sqlite_utils, utils_config
 from .. import config
 
 class MainPage(Page):
@@ -21,7 +21,10 @@ class MainPage(Page):
         self.setWindowTitle("Produits")
         self._details_ouvert = None
         self._panneaux = []
-        self.database = Database("catalogue.csv")
+        if utils_config.CSV:
+            self.database = csv_utils.Database("catalogue.csv")
+        else:
+            self.database = sqlite_utils.Database("catalogue.db")
         self.refresh()
     
     def refresh(self) -> None:
@@ -31,7 +34,11 @@ class MainPage(Page):
         self._panneaux = []
         self._details_ouvert = None
 
-        reader = DB_Reader(self.database)
+        
+        if utils_config.CSV:
+            reader = csv_utils.DB_Reader(self.database)
+        else:
+            reader = sqlite_utils.DB_Reader(self.database)
         produits = reader.READ()
 
         content = QWidget()
@@ -137,7 +144,10 @@ class MainPage(Page):
     def delete_product(self, index_product: int):
         self.database.DELETE(index_product)
         self.database.SAVE_FILE()
-        self.database = Database("catalogue.csv")
+        if utils_config.CSV:
+            self.database = csv_utils.Database("catalogue.csv")
+        else:
+            self.database = sqlite_utils.Database("catalogue.db")
         self.refresh()
 
     def resizeEvent(self, event):
