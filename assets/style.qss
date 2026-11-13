@@ -135,7 +135,34 @@ QLineEdit:disabled {
     color: #6f5f8c;
 }
 
-/* ============ Dropdowns ============ */
+QTextEdit {
+    background-color: #170629;
+    border: 2px solid #3b1a66;
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: #f3ecff;
+    font-size: 14px;
+    selection-background-color: #7c3aed;
+    selection-color: white;
+    placeholder-text-color: #6f5f8c;
+}
+
+QTextEdit:hover {
+    border-color: #6d3fc0;
+}
+
+QTextEdit:focus {
+    border-color: #a78bfa;
+    background-color: #1d0835;
+}
+
+QTextEdit:disabled {
+    background-color: #100320;
+    border-color: #26103f;
+    color: #6f5f8c;
+}
+
+/* Dropdowns */
 QComboBox {
     background-color: #170629;
     border: 2px solid #3b1a66;

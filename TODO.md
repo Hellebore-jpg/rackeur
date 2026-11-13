@@ -101,13 +101,12 @@
 >Implémentation des différents composants de l'interface utilisateur.
 - [x] Création d'un compte utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer - **Purple-key-0** - **Hellebore-jpg**
 - [x] Authentification - **Purple-key-0** - **Hellebore-jpg**
-- [ ] Gestion de produits
+- [x] Gestion de produits
     - [x] Affichage de la liste des produits - **Purple-key-0** 
-    - [ ] Recherche d'un produit en fonction d'un ou plusieurs mots-clés - **Purple-key-0** 
+    - [x] Recherche d'un produit en fonction d'un ou plusieurs mots-clés - **Purple-key-0** 
     - [x] Ajout d'un produit - **Purple-key-0** 
-    - [x] Modification d'un produit - **Purple-key-0**
-    - [x] Suppression d'un produit - **Purple-key-0**
-- [ ] Navigation par catégories dans l'interface - **Purple-key-0**
+    - [x] Modification d'un produit - **Purple-key-0** 
+    - [x] Suppression d'un produit - **Purple-key-0**  
 - [x] Panel de gestion des utilisateurs admins et de leur permissions - **Purple-key-0**
 
 ### Jeux & Bases de données
@@ -144,6 +143,7 @@
 >13/11/2026 +
 
 ## Objectifs
+- [ ] Navigation par catégories dans l'interface - **Purple-key-0**
 - [ ] Profil utilisateur pour changer ses informations - **Hellebore-jpg**
 - [ ] Système de commandes des produits - **Hellebore-jpg**
 - [ ] Historique des commandes - **Hellebore-jpg**

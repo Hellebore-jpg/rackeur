@@ -1,14 +1,15 @@
 from __future__ import annotations 
-
+import math
 from PyQt6.QtCore import Qt, QPoint
 from PyQt6.QtWidgets import (
-    QMainWindow, QVBoxLayout, QWidget, QGridLayout, QFrame, QLabel, QHBoxLayout, QPushButton, QSizePolicy,
+    QMainWindow, QVBoxLayout, QWidget, QGridLayout, QFrame, QLabel, QHBoxLayout, QPushButton, QSizePolicy, QLineEdit,
 )
 
 from ..utils.helpers import Page, make_global_background, make_big_card, RoundedImage, NavBtn
 from ..utils import csv_utils, sqlite_utils, utils_config
 from .. import config
 
+PAGE_SIZE = 30
 class MainPage(Page):
     """Page principale affichée après la connexion.
     """
@@ -18,37 +19,56 @@ class MainPage(Page):
         """
         super().__init__()
         self.app_window = app_window
-        self.setWindowTitle("Produits")
+        self.setWindowTitle("self.produits")
         self._details_ouvert = None
         self._panneaux = []
+        self.page = 0
+        self.search_text = ""
         if utils_config.CSV:
             self.database = csv_utils.Database("catalogue.csv")
         else:
             self.database = sqlite_utils.Database("catalogue.db")
         self.refresh()
     
-    def refresh(self) -> None:
+    def refresh(self, body = None) -> None:
         """Reconstruit toute la grille à partir des données actuelles."""
         for panneau in self._panneaux:
             panneau.deleteLater()
         self._panneaux = []
         self._details_ouvert = None
 
-        
-        if utils_config.CSV:
-            reader = csv_utils.DB_Reader(self.database)
-        else:
-            reader = sqlite_utils.DB_Reader(self.database)
-        produits = reader.READ()
+        if body is None:
+            if utils_config.CSV:
+                reader = csv_utils.DB_Reader(self.database)
+            else:
+                reader = sqlite_utils.DB_Reader(self.database)
+            self.produits = reader.READ()
+        else :
+            self.produits = body
+
+        if self.produits and isinstance(self.produits[0], str):
+            self.produits = [self.produits]
+
+        total_pages = max(1, math.ceil(len(self.produits) / PAGE_SIZE))
+        self.page = min(self.page, total_pages - 1)
+        debut = self.page * PAGE_SIZE
+        fin = debut + PAGE_SIZE
 
         content = QWidget()
         layout = QVBoxLayout(content)
+
+        self.search_bar = QLineEdit()
+        self.search_bar.setPlaceholderText("Rechercher un produit...")
+        self.search_bar.setText(self.search_text)
+        self.search_bar.textChanged.connect(self.search_products)
+        layout.addWidget(self.search_bar)
+
         grille = QGridLayout()
         grille.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignLeft)
         grille.setSpacing(10)
         colonnes = 6
 
-        for index, ligne in enumerate(produits):
+        for index, ligne in enumerate(self.produits[debut:fin], start=debut):
             bloc = QFrame()
             bloc.setProperty("class", "product-card")
             bloc.setFixedWidth(270)
@@ -127,24 +147,46 @@ class MainPage(Page):
 
             btn.clicked.connect(toggle_details)
 
-            btn_delete = QPushButton("Supprimer le produit")
-            btn_delete.setProperty("class", "product-button")
-            bloc_layout.addWidget(btn_delete)
+            if config.SESSION.CHECK_PERM('DELETE'):
+                btn_delete = QPushButton("Supprimer le produit")
+                btn_delete.setProperty("class", "product-button")
+                btn_delete.clicked.connect(lambda checked=False, i=index: self.delete_product(i))
+                bloc_layout.addWidget(btn_delete)
 
-            btn_edit = QPushButton("Modifier le produit")
-            btn_edit.setProperty("class", "product-button")
-            bloc_layout.addWidget(btn_edit)
+            if config.SESSION.CHECK_PERM('EDIT'):
+                btn_edit = QPushButton("Modifier le produit")
+                btn_edit.setProperty("class", "product-button")
+                bloc_layout.addWidget(btn_edit)
+                btn_edit.clicked.connect(lambda checked=False, i=index: self.edit_product(i))
 
-            btn_edit.clicked.connect(lambda checked=False, i=index: self.edit_product(i))
-            btn_delete.clicked.connect(lambda checked=False, i=index: self.delete_product(i))
-
-            rang = index // colonnes
-            colonne = index % colonnes
+            position = index - debut
+            rang = position // colonnes
+            colonne = position % colonnes
             grille.addWidget(bloc, rang, colonne, Qt.AlignmentFlag.AlignTop)
 
-        grille.setRowStretch((len(produits) // colonnes) + 1, 1)
+        grille.setRowStretch((len(self.produits[debut:fin]) // colonnes) + 1, 1)
 
         layout.addLayout(grille)
+        if total_pages > 1:
+            nav = QHBoxLayout()
+            nav.addStretch()
+
+            btn_prev = QPushButton("◀ Précédent")
+            btn_prev.setProperty("class", "product-button")
+            btn_prev.setEnabled(self.page > 0)
+            btn_prev.clicked.connect(lambda: self.change_page(-1))
+            nav.addWidget(btn_prev)
+
+            nav.addWidget(QLabel(f"Page {self.page + 1} / {total_pages}"))
+
+            btn_next = QPushButton("Suivant ▶")
+            btn_next.setProperty("class", "product-button")
+            btn_next.setEnabled(self.page < total_pages - 1)
+            btn_next.clicked.connect(lambda: self.change_page(1))
+            nav.addWidget(btn_next)
+
+            nav.addStretch()
+            layout.addLayout(nav)
 
         btn1: NavBtn = {"title": "gestion_user", "btn_title": "Gérer les utilisateurs"}
         btn2: NavBtn = {"title": "add_product", "btn_title": "Ajouter un produit"}
@@ -168,3 +210,18 @@ class MainPage(Page):
             self._details_ouvert[0].hide()
             self._details_ouvert[1].setText("Voir les détails")
             self._details_ouvert = None
+
+    def search_products(self, text: str):
+        column = [
+            0, 2,
+        ]
+        self.search_text = text
+        self.page = 0    
+        self.produits = self.database.READER().SEARCH(text, column).READ()
+        self.refresh(self.produits)
+        self.search_bar.setFocus()
+        self.search_bar.end(False)
+
+    def change_page(self, delta: int) -> None:
+        self.page += delta
+        self.refresh(self.produits)
