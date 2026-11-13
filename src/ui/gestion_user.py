@@ -6,7 +6,7 @@ from PyQt6.QtWidgets import (
 )
 
 from ..utils.helpers import Page, make_global_background, make_big_card, RoundedImage, NavBtn, CheckableComboBox
-from ..utils.csv_utils import DB_Reader, Database
+from ..utils import csv_utils, sqlite_utils, utils_config
 from .. import config
 from ..utils.session_utils import PERMISSIONS
 from .main_page import MainPage
@@ -24,7 +24,10 @@ class GestionUserPage(Page):
         self.setWindowTitle("users")
         self._details_ouvert = None
         self._panneaux = []
-        self.user_database = Database("utilisateurs.csv")
+        if utils_config.CSV:
+            self.user_database = csv_utils.Database("utilisateurs.csv")
+        else:
+            self.user_database = sqlite_utils.Database("utilisateurs.db")
         self.checkboxes = []
         self.user_widgets = []
         self.refresh()
@@ -36,7 +39,10 @@ class GestionUserPage(Page):
         self._panneaux = []
         self._details_ouvert = None
 
-        reader = DB_Reader(self.user_database)
+        if utils_config.CSV:
+            reader = csv_utils.DB_Reader(self.user_database)
+        else:
+            reader = sqlite_utils.DB_Reader(self.user_database)
         users = reader.BODY
 
         content = QWidget()
@@ -116,7 +122,10 @@ class GestionUserPage(Page):
             self.user_database.DELETE(real_id)
 
         self.user_database.SAVE_FILE()
-        self.user_database = Database("utilisateurs.csv")
+        if utils_config.CSV:
+            self.user_database = csv_utils.Database("utilisateurs.csv")
+        else:
+            self.user_database = sqlite_utils.Database("utilisateurs.db")
         self.refresh()
 
     def show_popup(self) -> bool:

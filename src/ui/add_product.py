@@ -7,7 +7,7 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtGui import QIntValidator
 
 from ..utils.helpers import Page, make_global_background, make_big_card, RoundedImage, NavBtn
-from ..utils.csv_utils import DB_Reader, Database
+from ..utils import csv_utils, sqlite_utils, utils_config
 from .. import config
 
 
@@ -24,13 +24,14 @@ class AddProductPage(Page):
         self.setWindowTitle("Produits")
         self._details_ouvert = None
         self._panneaux = []
-        self.database = Database("catalogue.csv")
+        if utils_config.CSV:
+            self.database = csv_utils.Database("catalogue.csv")
+        else:
+            self.database = sqlite_utils.Database("catalogue.db")
         self.refresh()
 
     def refresh(self) -> None:
         self._details_ouvert = None
-
-        reader = DB_Reader(self.database)
 
         content = QWidget()
         layout = QVBoxLayout(content)
