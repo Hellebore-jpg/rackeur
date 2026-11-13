@@ -4,7 +4,7 @@ from PyQt6.QtCore import Qt, QPoint
 from PyQt6.QtWidgets import (
     QMainWindow, QVBoxLayout, QWidget, QGridLayout, QFrame, QLabel, QHBoxLayout, QPushButton, QSizePolicy, QLineEdit, QComboBox, QMessageBox,
     )
-from PyQt6.QtGui import QIntValidator
+from PyQt6.QtGui import QIntValidator, QDoubleValidator
 
 from ..utils.helpers import Page, make_global_background, make_big_card, RoundedImage, NavBtn
 from ..utils import csv_utils, sqlite_utils, utils_config
@@ -20,19 +20,30 @@ class AddProductPage(Page):
         """
         super().__init__()
         self.app_window = app_window
-        self.setWindowTitle("Produits")
-        self.setWindowTitle("Produits")
+        self.setWindowTitle("Ajouter/Modifier un produit")
         self._details_ouvert = None
         self._panneaux = []
         if utils_config.CSV:
             self.database = csv_utils.Database("catalogue.csv")
         else:
             self.database = sqlite_utils.Database("catalogue.db")
+        self.index_product = -1
         self.refresh()
 
     def refresh(self) -> None:
-        self._details_ouvert = None
+        if utils_config.CSV:
+            reader = csv_utils.DB_Reader(self.database)
+        else:
+            reader = sqlite_utils.DB_Reader(self.database)
 
+        index_product = self.index_product
+        is_edit = self.index_product >= 0
+        if is_edit:
+            print("index :", self.index_product, "| BODY base :", len(self.database.BODY))
+            self.product = reader.SELECT(index_product).READ()
+            print(self.product)
+
+        self._details_ouvert = None
         content = QWidget()
         layout = QVBoxLayout(content)
 
@@ -43,22 +54,34 @@ class AddProductPage(Page):
         bloc_layout.setContentsMargins(8, 4, 8, 4)
         bloc_layout.setSpacing(10)
 
+
         self.name = QLineEdit()
-        self.name.setPlaceholderText("Nom du produit")
+        if is_edit:
+            self.name.setText(self.product[0])
+        else :
+            self.name.setPlaceholderText("Nom du produit")
         bloc_layout.addWidget(self.name)
 
         self.price = QLineEdit()
-        self.price.setPlaceholderText("Prix du produit")
-        self.price.setValidator(QIntValidator(0, 999999, self.price))
+        self.price.setValidator(QDoubleValidator(0, 999999, 2, self.price))
+        if is_edit:
+            self.price.setText(str(self.product[1]))
+        else : 
+            self.price.setPlaceholderText("Prix du produit")
         bloc_layout.addWidget(self.price)
 
         self.stock = QLineEdit()
-        self.stock.setPlaceholderText("Nombre en stock")
         self.stock.setValidator(QIntValidator(0, 999999, self.stock))
+        if is_edit:
+            self.stock.setText(str(self.product[3]))
+        else : 
+            self.stock.setPlaceholderText("Nombre en stock")
         bloc_layout.addWidget(self.stock)
 
         self.quality = QComboBox()
         self.quality.addItems(["Neuf", "Bon État", "Correcte"])
+        if is_edit:
+            self.quality.setCurrentText(self.product[4])
         bloc_layout.addWidget(self.quality)
 
         bloc_description = QFrame()
@@ -66,12 +89,18 @@ class AddProductPage(Page):
         bloc_description.setFixedHeight(300)
         bloc_description_layout = QVBoxLayout(bloc_description)
         self.description = QLineEdit()
-        self.description.setPlaceholderText("Description du produit")
+        if is_edit:
+            self.description.setText(self.product[2])
+        else : 
+            self.description.setPlaceholderText("Description du produit")
         bloc_description_layout.addWidget(self.description)
         bloc_layout.addWidget(bloc_description)
 
         save_btn = QPushButton("Enregistrer le produit")
-        save_btn.clicked.connect(self.save_product)
+        if is_edit:
+            save_btn.clicked.connect(self.edit_product)
+        else :
+            save_btn.clicked.connect(self.save_product)
         bloc_layout.addWidget(save_btn)
         
         layout.addWidget(bloc, alignment=Qt.AlignmentFlag.AlignCenter)
@@ -94,6 +123,26 @@ class AddProductPage(Page):
         self.database.CREATE(liste)
         self.database.SAVE_FILE()
         self.clear_form()
+        self.show_popup()
+
+    def edit_product(self):
+        name: str = self.name.text()
+        price: str = self.price.text()
+        stock: str = self.stock.text()
+        quality: str = self.quality.currentText()
+        description: str = self.description.text()
+        liste: list = [name, price, description, stock, quality]
+        if self.verif_form(liste):
+            return
+        for col, valeur in enumerate(liste):
+            self.database.UPDATE(valeur, [self.index_product, col])
+        self.database.SAVE_FILE()
+        if utils_config.CSV:
+            self.database = csv_utils.Database("catalogue.csv")
+        else:
+            self.database = sqlite_utils.Database("catalogue.db")
+        self.clear_form()
+        self.index_product = -1
         self.show_popup()
 
     def verif_form(self, liste: list):
@@ -142,3 +191,13 @@ class AddProductPage(Page):
             self._details_ouvert[0].hide()
             self._details_ouvert[1].setText("Voir les détails")
             self._details_ouvert = None
+
+    def set_product_index(self, index_product: int) -> None:
+        self.index_product = index_product
+        self.refresh()
+
+    def verif_type_page(self, index_product:int):
+        if index_product == -1:
+            return True
+        else:
+            return False
