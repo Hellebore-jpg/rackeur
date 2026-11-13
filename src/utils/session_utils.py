@@ -63,9 +63,9 @@ class Session:
             self.DB = csv_utils.Database('utilisateurs.csv')
         else:
             self.DB = sqlite_utils.Database('utilisateurs.db')
-            if self.DB.BODY == [] :
-                self.DB.CREATE(["admin", _password("123456789"), 'admin', '11111'])
-                self.DB.CREATE(["editor", _password("123456789"), 'editor', '01100'])
+        if self.DB.BODY == [] :
+            self.DB.CREATE(["admin", _password("123456789"), 'admin', '11111'])
+            self.DB.CREATE(["editor", _password("123456789"), 'editor', '01100'])
         
         self.USER: list[str] = list(LOGGED_OUT)
         self.USER_ID: int | None = None
