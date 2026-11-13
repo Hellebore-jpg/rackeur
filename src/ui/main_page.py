@@ -79,9 +79,12 @@ class MainPage(Page):
                 valeur = ligne[i]
 
                 if nom_colonne == "price":
-                    prix = str(valeur).rstrip("0").rstrip(".")
-                    valeur = f"{prix} €"
-                    info = QLabel(f"Prix : {valeur}")
+                    nombre = float(valeur)
+                    if nombre.is_integer():
+                        prix = str(int(nombre))
+                    else:
+                        prix = f"{nombre:.2f}"
+                    info = QLabel(f"Prix : {prix} €")
 
                 elif nom_colonne == "description":
                     info = QLabel(str(valeur))
@@ -157,7 +160,7 @@ class MainPage(Page):
         self.refresh()
 
     def edit_product(self, index_product: int):
-        pass
+        self.app_window.switch_to("add_product", index_product)
 
     def resizeEvent(self, event):
         super().resizeEvent(event)

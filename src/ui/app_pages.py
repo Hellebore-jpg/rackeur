@@ -26,7 +26,7 @@ class AppWindow(QMainWindow):
         for page in self._pages.values():
             self.stack.addWidget(page)
 
-    def switch_to(self, title_page: str) -> None:
+    def switch_to(self, title_page: str, index_product: int = -1) -> None:
         page = self._pages.get(title_page)
 
         if page is None:
@@ -41,6 +41,10 @@ class AppWindow(QMainWindow):
                 page.user_database = csv_utils.Database("utilisateurs.csv")
             else:
                 page.user_database = sqlite_utils.Database("utilisateurs.db")
+
+            if title_page == "add_product":
+                page.set_product_index(index_product)
+
             page.refresh()
 
         self.stack.setCurrentWidget(page)
