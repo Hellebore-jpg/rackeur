@@ -37,13 +37,13 @@
 - [x] Création d'une direction artistique, d'un logo et d'un nom pour l'application - **chummel-ops**
 - [x] Maquettes finales des pages de l'application
 
-    <img src="md_files\title.png" alt="Titre" width="300"> <img src="md_files\login.png" alt="Connexion" width="300"> <img src="md_files\catalog.png" alt="Catalogue" width="300"> <img src="md_files\admin.png" alt="Panel Admin" width="300"> <img src="md_files\search.png" alt="Recherche" width="300"> <img src="md_files\add_product.png" alt="Ajout de produit" width="300"> <img src="md_files\del_product.png" alt="Suppression de produit" width="300">
+    <img src="md_files\title.png" alt="Titre" width="300"> <img src="md_files\login.png" alt="Connexion" width="300"> <img src="md_files\catalog.png" alt="Catalogue" width="300"> <img src="md_files\admin.png" alt="Panel administrateur" width="300"> <img src="md_files\search.png" alt="Recherche" width="300"> <img src="md_files\add_product.png" alt="Ajout de produit" width="300"> <img src="md_files\del_product.png" alt="Suppression de produit" width="300">
     
     - [x] Titre - **chummel-ops**
     - [x] Création d'un compte utilisateur et authentification - **chummel-ops**
     - [x] Gestion de produits
         - [x] Affichage de la liste des produits, avec critères de tri - **chummel-ops**
-        - [x] Affichage et modification de la liste des produits, pour les admins - **chummel-ops**
+        - [x] Affichage et modification de la liste des produits, pour les administrateurs - **chummel-ops**
         - [x] Recherche d'un produit en fonction d'un ou plusieurs mots-clés - **chummel-ops**
         - [x] Ajout d'un produit - **chummel-ops**
         - [x] Suppression d'un produit - **chummel-ops**
