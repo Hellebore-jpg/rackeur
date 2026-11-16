@@ -118,7 +118,7 @@
     | Batterie Pearl | 500.00 | Batterie acoustique Pearl, modèle classique avec un son riche et polyvalent.              | 15    | Bon état |
     | Basse Ibanez   | 500.00 | Basse électrique Ibanez, modèle classique avec un son riche et polyvalent.                | 15    | Correcte |
     | Contre-Basse   | 500.00 | Contre-basse acoustique, modèle classique avec un son riche et polyvalent.                | 15    | Bon état |
-- [x] Création manuelle d'un jeu d'essais (Données de tests) dans la table "utilisateur". - **Hellebore-jpg**
+- [x] Création manuelle d'un jeu d'essais (Données de tests) dans la table "utilisateur" - **Hellebore-jpg**
     | username      | password                                                        | role    |permissions |
     |---------------|-----------------------------------------------------------------|---------|------------|
     | admin         | \$2b\$12\$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe | admin   |1111        |
