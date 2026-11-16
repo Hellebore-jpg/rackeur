@@ -1,4 +1,4 @@
-# Rackeur V1.0
+# Rackeur
 Développement d'une application de gestion d'un catalogue de materiel de concerts et d'événements. Les visiteurs peuvent consulter le catalogue et acheter des produits. Un panel administrateur complet permet aux gestionnaires et éditeurs de gérer les données des produits.
 
 <img src="md_files\latest_app_screenshot.png" alt="Dernière capture d'écran de l'application" width="800">
@@ -12,7 +12,7 @@ Développement d'une application de gestion d'un catalogue de materiel de concer
     - [Installation](#installation)
     - [Administration & Edition](#administration--edition)
 - [Arborescence](#arborescence)
-- [Autheur](#autheur)
+- [Auteur](#auteur)
 - [Crédits](#crédits)
     - [APIs et Dépendences](#apis-et-dépendences)
 - [Licence](#licence)
@@ -94,7 +94,7 @@ rackeur/
 └── requirements.txt    → Dépendences de l'environement
 ```
 
-## Autheur
+## Auteur
 
 Fait par **4 collaborateurs** pour le projet **Développement Sécurisé** à Guardia CS, 2026 :
 
