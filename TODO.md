@@ -17,7 +17,7 @@
 ## Organisation
 - [x] Rôles dans le groupe
     > `Hellebore-jpg` : Chef de projet
-    > `chummel-ops` : Responsable de communication
+    > `chummel-ops` : Responsable de la communication
 - [x] Répartition du travail
 
 ## Configuration
@@ -34,8 +34,8 @@
 ## Objectifs
 
 ### Esthétique
-- [x] Création d'une Direction Artistique + Logo + Nom d'app - **chummel-ops**
-- [x] Maquette finale des pages de l'application
+- [x] Création d'une direction artistique, d'un logo et d'un nom pour l'application - **chummel-ops**
+- [x] Maquettes finales des pages de l'application
 
     <img src="md_files\title.png" alt="Titre" width="300"> <img src="md_files\login.png" alt="Connexion" width="300"> <img src="md_files\catalog.png" alt="Catalogue" width="300"> <img src="md_files\admin.png" alt="Panel Admin" width="300"> <img src="md_files\search.png" alt="Recherche" width="300"> <img src="md_files\add_product.png" alt="Ajout de produit" width="300"> <img src="md_files\del_product.png" alt="Suppression de produit" width="300">
     
@@ -145,7 +145,7 @@
     ```bash
     python -m nuitka --standalone --onefile --enable-plugin=pyqt6 --include-data-dir=assets=./assets app.py
     ```
-- [x] Derniers fix & Publication - **Hellebore-jpg**
+- [x] Dernières corrections & Publication - **Hellebore-jpg**
 - [x] Release GitHub
 
 # V2.0
@@ -157,4 +157,4 @@
 - [ ] Système de commandes des produits - **Hellebore-jpg**
 - [ ] Historique des commandes - **Hellebore-jpg**
 - [ ] Base de données MySQL en ligne - **Hellebore-jpg**
-- [ ] Derniers fix & Publication - **Hellebore-jpg**
+- [ ] Dernières corrections & Publication - **Hellebore-jpg**
