@@ -37,10 +37,10 @@
 - [x] Création d'une Direction Artistique + Logo + Nom d'app - **chummel-ops**
 - [x] Maquette finale des pages de l'application
 
-    <img src="md_files\title.png" alt="Titre" width="300"> <img src="md_files\login.png" alt="Connexion" width="300"> <img src="md_files\catalog.png" alt="Catalogue" width="300"> <img src="md_files\admin.png" alt="Panel Admin" width="300"> <img src="md_files\search.png" alt="Recherche" width="300"> <img src="md_files\add_product.png" alt="Ajout de produit" width="300"> <img src="md_files\del_product.png" alt="Supression de produit" width="300">
+    <img src="md_files\title.png" alt="Titre" width="300"> <img src="md_files\login.png" alt="Connexion" width="300"> <img src="md_files\catalog.png" alt="Catalogue" width="300"> <img src="md_files\admin.png" alt="Panel Admin" width="300"> <img src="md_files\search.png" alt="Recherche" width="300"> <img src="md_files\add_product.png" alt="Ajout de produit" width="300"> <img src="md_files\del_product.png" alt="Suppression de produit" width="300">
     
     - [x] Titre - **chummel-ops**
-    - [x] Création d'un compte utilisateur et autentification - **chummel-ops**
+    - [x] Création d'un compte utilisateur et authentification - **chummel-ops**
     - [x] Gestion de produits
         - [x] Affichage de la liste des produits, avec critères de tri - **chummel-ops**
         - [x] Affichage et modification de la liste des produits, pour les admins - **chummel-ops**
@@ -51,7 +51,7 @@
 ### Définitions & Recherches
 - [x] Définition de l'entité "utilisateur" avec prise en compte des différents rôles - **Hellebore-jpg**
     >- Visiteur : Consultation Publique
-    >- Utilisateur : Compte & Achâts
+    >- Utilisateur : Compte & Achats
     >- Administrateur : Gestion des données du catalogue
 - [x] Définition des sigles HMI, GUI, UI et UX - **Hellebore-jpg**
     >- HMI (Human-Machine Interface) : Interface homme-machine, souvent industrielle, pour le contrôle de systèmes.
