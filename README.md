@@ -28,17 +28,16 @@ Développement d'une application de gestion d'un catalogue de materiel de concer
 
 ## Technologies
 
-| Outil | Rôle | Téléchargement |
-|-------|------|----------------|
-| [![Python](https://img.shields.io/badge/Python-3.15.0-3776AB?logo=python&logoColor=white)](https://www.python.org/downloads/) | Langage de programmation | [python.org](https://www.python.org/downloads/) |
-| [![CSV](https://img.shields.io/badge/CSV-format_source-217346)](https://datatracker.ietf.org/doc/html/rfc4180) | Données d'entrée (import) | [RFC 4180](https://datatracker.ietf.org/doc/html/rfc4180) |
-| [![SQLite](https://img.shields.io/badge/SQLite-base_de_données-003B57?logo=sqlite&logoColor=white)](https://www.sqlite.org/download.html) | Stockage des données | [sqlite.org](https://www.sqlite.org/download.html) |
+- Python 3.15.0
+- CSV puis SQLite
 
 ## Setup
 
 ### Prerequis
 
-- [Python](https://www.python.org/downloads/) installé
+| Outil | Rôle | Téléchargement |
+|-------|------|----------------|
+| [![Python](https://img.shields.io/badge/Python-3.15.0-3776AB?logo=python&logoColor=white)](https://www.python.org/downloads/) | Langage de programmation | [python.org](https://www.python.org/downloads/) |
 
 ### Compatibilité
 
