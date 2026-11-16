@@ -4,11 +4,11 @@
 - [Kick off](#kick-off)
 - [v1.0](#v10)
     - [Esthétique](#esthétique)
-    - [Définitions & Recherches](#définitions--recherches)
+    - [Définitions et Recherches](#définitions-et-recherches)
     - [Programmation Backend](#programmation-backend)
     - [Programmation Frontend](#programmation-frontend)
-    - [Jeux & Bases de données](#jeux--bases-de-données)
-    - [Organisation & Finalisation](#organisation--finalisation)
+    - [Jeux et Bases de données](#jeux-et-bases-de-données)
+    - [Organisation et Finalisation](#organisation-et-finalisation)
 - [v2.0](#v20)
 
 # Kick off
@@ -21,7 +21,7 @@
 - [x] Répartition du travail
 
 ## Configuration
-- [x] Git & venv - **Hellebore-jpg**
+- [x] Git et venv - **Hellebore-jpg**
     >- Création du repo GitHub et de la base
     >- Ajout des collaborateurs : `Hellebore-jpg (Mathieu)` | `Purple-key-0 (Gabriel)` | `chummel-ops (Charles)` | `ylavallee-prog (Yanis)`
     >- Ajout de l'intervenant : `TheLegacy33`
@@ -48,7 +48,7 @@
         - [x] Ajout d'un produit - **chummel-ops**
         - [x] Suppression d'un produit - **chummel-ops**
 
-### Définitions & Recherches
+### Définitions et Recherches
 - [x] Définition de l'entité "utilisateur" avec prise en compte des différents rôles - **Hellebore-jpg**
     >- Visiteur : Consultation publique
     >- Utilisateur : Compte et achats
@@ -76,13 +76,13 @@
     - [x] Recherche par catégories - **Hellebore-jpg**
     - [x] Ajout, modification, et suppression d'un produit, en ligne de commande, via une ou plusieurs options ( C U D ) - **Hellebore-jpg**
 - [x] Scripts Python de gestion utilisateurs
-    - [x] Implémentation du mécanisme d'authentification (Connexion & Inscription) - **Hellebore-jpg**
+    - [x] Implémentation du mécanisme d'authentification (Connexion et Inscription) - **Hellebore-jpg**
     - [x] Hash des mots de passe en Bcrypt dans la base de données - **Hellebore-jpg**
     - [x] Gestion des autorisations, sur les 4 opérations sur le catalogue de produits, en ligne de commande, via une ou plusieurs options - **Hellebore-jpg**
     - [x] Implémentation de la création d'un nouvel utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer, au moyen de l'API RESTful "Have I Been Pwned", en ligne de commande, via une ou plusieurs options - **Hellebore-jpg**
     - [x] Implémentation d'un système de notification en cas de nouveaux compromis détectés pour un utilisateur - **Hellebore-jpg** 
 - [x] Passage du CSV à SQLite
-    - [x] Choix du type de base de données au démarrage & branches différentes pour le SQLite dans les scripts qui utilisent la BDD - **Hellebore-jpg**
+    - [x] Choix du type de base de données au démarrage et branches différentes pour le SQLite dans les scripts qui utilisent la BDD - **Hellebore-jpg**
         >Exemple :
         >```python
         >if format_bdd == True:
@@ -108,9 +108,9 @@
     - [x] Ajout d'un produit - **Purple-key-0** 
     - [x] Modification d'un produit - **Purple-key-0** 
     - [x] Suppression d'un produit - **Purple-key-0**  
-- [x] Panel de gestion des utilisateurs admins et de leur autorisations - **Purple-key-0**
+- [x] Panel de gestion des utilisateurs administrateurs et de leur autorisations - **Purple-key-0**
 
-### Jeux & Bases de données
+### Jeux et Bases de données
 - [x] Création du Catalogue / Tableau de données - **Purple-key-0**
     | product        | price  | description                                                                               | stock | quality  |
     |----------------|--------|-------------------------------------------------------------------------------------------|-------|----------|
@@ -130,13 +130,13 @@
     >Identique aux jeux de données présentés ci-dessus.
 - [x] Jeu de données de test CSV et SQLite à installer optionnellement pendant le setup de l'application - **chummel-ops**
 
-### Organisation & Finalisation
+### Organisation et Finalisation
 - [x] Relecture et analyse du Cahier des Charges - **chummel-ops** & **Purple-key-0**
 - [x] Création, organisation, écriture et mise à jour du [TODO](TODO.md) (backlogs) - **chummel-ops** & **Hellebore-jpg**
-- [x] Explication du code Python (commentaires & Types stricts) - **Hellebore-jpg**
+- [x] Explication du code Python (commentaires et types stricts) - **Hellebore-jpg**
 - [x] Rédaction du [README](README.md) - **Hellebore-jpg**
 - [x] Canva de présentation de fin de projet - **chummel-ops**
-- [x] Ajout des bases de données (CSV & SQLite) dans le [.gitignore](.gitignore) - **chummel-ops**
+- [x] Ajout des bases de données (CSV et SQLite) dans le [.gitignore](.gitignore) - **chummel-ops**
 - [x] Création d'un exécutable compilé en code machine avec Nuitka (Windows) - **Hellebore-jpg**
     ```bash
     python -m nuitka --standalone --onefile --enable-plugin=pyqt6 --windows-disable-console --windows-icon-from-ico=./assets/img/favicon.ico --include-data-dir=assets=./assets app.py
@@ -145,7 +145,7 @@
     ```bash
     python -m nuitka --standalone --onefile --enable-plugin=pyqt6 --include-data-dir=assets=./assets app.py
     ```
-- [x] Dernières corrections & Publication - **Hellebore-jpg**
+- [x] Dernières corrections et Publication - **Hellebore-jpg**
 - [x] Release GitHub
 
 # V2.0
@@ -157,4 +157,4 @@
 - [ ] Système de commandes des produits - **Hellebore-jpg**
 - [ ] Historique des commandes - **Hellebore-jpg**
 - [ ] Base de données MySQL en ligne - **Hellebore-jpg**
-- [ ] Dernières corrections & Publication - **Hellebore-jpg**
+- [ ] Dernières corrections et Publication - **Hellebore-jpg**
