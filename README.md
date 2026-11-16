@@ -178,8 +178,9 @@ rackeur/
 │   └── config.py               # Configuration globale
 │
 ├── app.py                      # Point d'entrée de l'application
-├── requirements.txt            # Dépendances Python
+├── CHANGELOG.md                # Historique des changements du projet
 ├── README.md                   # Documentation du projet
+├── requirements.txt            # Dépendances Python
 └── TODO.md                     # Backlog et suivi du projet
 ```
 
