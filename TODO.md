@@ -4,7 +4,7 @@
 - [Kick off](#kick-off)
 - [v1.0](#v10)
     - [Esthétique](#esthétique)
-    - [Définisions & Recherches](#définisions--recherches)
+    - [Définitions & Recherches](#définitions--recherches)
     - [Programmation Backend](#programmation-backend)
     - [Programmation Frontend](#programmation-frontend)
     - [Jeux & Bases de données](#jeux--bases-de-données)
@@ -34,8 +34,8 @@
 ## Objectifs
 
 ### Esthétique
-- [x] Création d'une Diréction Artistique + Logo + Nom d'app - **chummel-ops**
-- [x] Maquette finale des pages de l'aplication
+- [x] Création d'une Direction Artistique + Logo + Nom d'app - **chummel-ops**
+- [x] Maquette finale des pages de l'application
 
     <img src="md_files\title.png" alt="Titre" width="300"> <img src="md_files\login.png" alt="Connexion" width="300"> <img src="md_files\catalog.png" alt="Catalogue" width="300"> <img src="md_files\admin.png" alt="Panel Admin" width="300"> <img src="md_files\search.png" alt="Recherche" width="300"> <img src="md_files\add_product.png" alt="Ajout de produit" width="300"> <img src="md_files\del_product.png" alt="Supression de produit" width="300">
     
@@ -48,7 +48,7 @@
         - [x] Ajout d'un produit - **chummel-ops**
         - [x] Suppression d'un produit - **chummel-ops**
 
-### Définisions & Recherches
+### Définitions & Recherches
 - [x] Définition de l'entité "utilisateur" avec prise en compte des différents rôles - **Hellebore-jpg**
     >- Visiteur : Consultation Publique
     >- Utilisateur : Compte & Achâts
