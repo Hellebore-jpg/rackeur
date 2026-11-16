@@ -36,6 +36,7 @@
 ### Esthétique
 - [x] Création d'une Diréction Artistique + Logo + Nom d'app - **chummel-ops**
 - [x] Maquette finale des pages de l'aplication
+
     <img src="md_files\title.png" alt="Titre" width="300"> <img src="md_files\login.png" alt="Connexion" width="300"> <img src="md_files\catalog.png" alt="Catalogue" width="300"> <img src="md_files\admin.png" alt="Panel Admin" width="300"> <img src="md_files\search.png" alt="Recherche" width="300"> <img src="md_files\add_product.png" alt="Ajout de produit" width="300"> <img src="md_files\del_product.png" alt="Supression de produit" width="300">
     
     - [x] Titre - **chummel-ops**
