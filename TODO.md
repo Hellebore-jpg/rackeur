@@ -58,7 +58,7 @@
     >- GUI (Graphical User Interface) : Interface utilisateur graphique, axée sur les éléments visuels et graphiques.
     >- UI (User Interface) : Interface utilisateur, désignant les éléments visuels et interactifs d'un logiciel.
     >- UX (User Experience) : Expérience utilisateur, centrée sur la satisfaction et le parcours global de l'utilisateur.
-- [x] Recherches, analyses et synthèse autour du SGBD SQLite pour le passage CSV a SQLite - **ylavallee-prog** & **Hellebore-jpg**
+- [x] Recherches, analyses et synthèse autour du SGBD SQLite pour le passage CSV vers SQLite - **ylavallee-prog** & **Hellebore-jpg**
 - [x] Recherches, analyses et synthèse autour des solutions disponibles pour l'interface utilisateur en Python - **Purple-key-0** & **Hellebore-jpg**
     | Module  | Avantages                                                | Inconvénients                                                                               |
     |---------|----------------------------------------------------------|---------------------------------------------------------------------------------------------|
@@ -127,7 +127,7 @@
 
     >\$2b\$12\$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe = 123456789
 - [x] Création manuelle du catalogue de produits sous la forme d'une table SQLite (Première BDD SQLite) - **ylavallee-prog** & **Hellebore-jpg**
-    >Idem que les jeux de données visibles au-dessus.
+    >Identique aux jeux de données présentés ci-dessus.
 - [x] Jeu de données de test CSV/SQLite à installer optionnellement pendant le setup de l'application - **chummel-ops**
 
 ### Organisation & Finalisation
