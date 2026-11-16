@@ -15,7 +15,7 @@
 >03/11/2026
 
 ## Organisation
-- [x] Rôles dans le groupe - **Tout le monde**
+- [x] Rôles dans le groupe
     > `Hellebore-jpg` : Chef de projet
     > `chummel-ops` : Responsable de communication
 - [x] Répartition du travail
@@ -57,8 +57,8 @@
     >- GUI (Graphical User Interface) : Interface utilisateur graphique, axée sur les éléments visuels et graphiques.
     >- UI (User Interface) : Interface utilisateur, désignant les éléments visuels et interactifs d'un logiciel.
     >- UX (User Experience) : Expérience utilisateur, centrée sur la satisfaction et le parcours global de l'utilisateur.
-- [x] Recherches, analyses, et synthèse autour du SGBD SQLite pour le passage CSV a SQLite - **ylavallee-prog** - **Hellebore-jpg**
-- [x] Recherches, analyses, et synthèse autour des solutions disponibles pour l'interface utilisateur en Python - **Purple-key-0** - **Hellebore-jpg**
+- [x] Recherches, analyses, et synthèse autour du SGBD SQLite pour le passage CSV a SQLite - **ylavallee-prog** & **Hellebore-jpg**
+- [x] Recherches, analyses, et synthèse autour des solutions disponibles pour l'interface utilisateur en Python - **Purple-key-0** & **Hellebore-jpg**
     | Module  | Avantages                                                | Inconvénients                                                                               |
     |---------|----------------------------------------------------------|---------------------------------------------------------------------------------------------|
     | PyQt6   | Puissant, grande flexibilité, widgets riches.            | Courbe d'apprentissage plus raide et des contraintes de licence (Open source obligatoire).  |
@@ -90,17 +90,17 @@
         >   {code_spécifique_à_la_BDD_format_SQLite}
         >```
     - [x] Écriture du script d'interaction avec la BDD SQLite
-        - [x] Affichage de la liste des produits ( R ) - **ylavallee-prog** - **Hellebore-jpg**
-        - [x] Affichage, via une option, de la liste des produits, triés par nom, dans l'ordre alphabétique, et alphabétique inverse ( R ) - **ylavallee-prog** - **Hellebore-jpg**
-        - [x] Affichage, via une option, de la liste des produits, triés par prix, dans l'ordre croissant, et décroissant ( R ) - **ylavallee-prog** - **Hellebore-jpg**
-        - [x] Affichage, via une option, du ou des produits, en fonction d'un mot-clé (recherche d'un produit dans le catalogue) ( R ) - **ylavallee-prog** - **Hellebore-jpg**
-        - [x] Recherche par catégories - **ylavallee-prog** - **Hellebore-jpg**
-        - [x] Ajout, modification, et suppression d'un produit, via une ou plusieurs options ( C U D ) - **ylavallee-prog** - **Hellebore-jpg**
+        - [x] Affichage de la liste des produits ( R ) - **ylavallee-prog** & **Hellebore-jpg**
+        - [x] Affichage, via une option, de la liste des produits, triés par nom, dans l'ordre alphabétique, et alphabétique inverse ( R ) - **ylavallee-prog** & **Hellebore-jpg**
+        - [x] Affichage, via une option, de la liste des produits, triés par prix, dans l'ordre croissant, et décroissant ( R ) - **ylavallee-prog** & **Hellebore-jpg**
+        - [x] Affichage, via une option, du ou des produits, en fonction d'un mot-clé (recherche d'un produit dans le catalogue) ( R ) - **ylavallee-prog** & **Hellebore-jpg**
+        - [x] Recherche par catégories - **ylavallee-prog** & **Hellebore-jpg**
+        - [x] Ajout, modification, et suppression d'un produit, via une ou plusieurs options ( C U D ) - **ylavallee-prog** & **Hellebore-jpg**
 
 ### Programmation Frontend
 >Implémentation des différents composants de l'interface utilisateur.
-- [x] Création d'un compte utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer - **Purple-key-0** - **Hellebore-jpg**
-- [x] Authentification - **Purple-key-0** - **Hellebore-jpg**
+- [x] Création d'un compte utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer - **Purple-key-0** & **Hellebore-jpg**
+- [x] Authentification - **Purple-key-0** & **Hellebore-jpg**
 - [x] Gestion de produits
     - [x] Affichage de la liste des produits - **Purple-key-0** 
     - [x] Recherche d'un produit en fonction d'un ou plusieurs mots-clés - **Purple-key-0** 
@@ -130,8 +130,8 @@
 - [x] Jeu de données de test CSV/SQLite à installer optionellement pendant le setup de l'application - **chummel-ops**
 
 ### Organisation & Finalisation
-- [x] Relécture et analyse du Cahier des Charges - **chummel-ops** - **Purple-key-0**
-- [x] Creation, organisation, écriture et mise à jour du [TODO](TODO.md) (backlogs) - **chummel-ops** - **Hellebore-jpg**
+- [x] Relécture et analyse du Cahier des Charges - **chummel-ops** & **Purple-key-0**
+- [x] Creation, organisation, écriture et mise à jour du [TODO](TODO.md) (backlogs) - **chummel-ops** & **Hellebore-jpg**
 - [x] Explication du code Python (commentaires & Types strictes) - **Hellebore-jpg**
 - [x] Rédaction du [README](README.md) - **Hellebore-jpg**
 - [x] Canva de présentation de fin de projet - **chummel-ops**
@@ -151,7 +151,7 @@
 >13/11/2026 +
 
 ## Objectifs
-- [ ] Navigation par catégories dans l'interface - **Purple-key-0**
+- [ ] Navigation par catégories dans l'interface - **Hellebore-jpg**
 - [ ] Profil utilisateur pour changer ses informations - **Hellebore-jpg**
 - [ ] Système de commandes des produits - **Hellebore-jpg**
 - [ ] Historique des commandes - **Hellebore-jpg**
