@@ -50,16 +50,16 @@
 
 ### Définitions & Recherches
 - [x] Définition de l'entité "utilisateur" avec prise en compte des différents rôles - **Hellebore-jpg**
-    >- Visiteur : Consultation Publique
-    >- Utilisateur : Compte & Achats
+    >- Visiteur : Consultation publique
+    >- Utilisateur : Compte et achats
     >- Administrateur : Gestion des données du catalogue
 - [x] Définition des sigles HMI, GUI, UI et UX - **Hellebore-jpg**
     >- HMI (Human-Machine Interface) : Interface homme-machine, souvent industrielle, pour le contrôle de systèmes.
     >- GUI (Graphical User Interface) : Interface utilisateur graphique, axée sur les éléments visuels et graphiques.
     >- UI (User Interface) : Interface utilisateur, désignant les éléments visuels et interactifs d'un logiciel.
     >- UX (User Experience) : Expérience utilisateur, centrée sur la satisfaction et le parcours global de l'utilisateur.
-- [x] Recherches, analyses, et synthèse autour du SGBD SQLite pour le passage CSV a SQLite - **ylavallee-prog** & **Hellebore-jpg**
-- [x] Recherches, analyses, et synthèse autour des solutions disponibles pour l'interface utilisateur en Python - **Purple-key-0** & **Hellebore-jpg**
+- [x] Recherches, analyses et synthèse autour du SGBD SQLite pour le passage CSV a SQLite - **ylavallee-prog** & **Hellebore-jpg**
+- [x] Recherches, analyses et synthèse autour des solutions disponibles pour l'interface utilisateur en Python - **Purple-key-0** & **Hellebore-jpg**
     | Module  | Avantages                                                | Inconvénients                                                                               |
     |---------|----------------------------------------------------------|---------------------------------------------------------------------------------------------|
     | PyQt6   | Puissant, grande flexibilité, widgets riches.            | Courbe d'apprentissage plus raide et des contraintes de licence (Open source obligatoire).  |
