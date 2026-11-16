@@ -26,7 +26,7 @@
     >- Ajout des collaborateurs : `Hellebore-jpg (Mathieu)` | `Purple-key-0 (Gabriel)` | `chummel-ops (Charles)` | `ylavallee-prog (Yanis)`
     >- Ajout de l'intervenant : `TheLegacy33`
     >- Explications du fonctionnement de venv à tout le monde et setup sur tout les PC
-    >- Création du [.gitignore](.gitignore) et de [requirements.txt](requirement.txt) avec `pip freeze > requirements.txt`
+    >- Création du [.gitignore](.gitignore) et de [requirements.txt](requirements.txt) avec `pip freeze > requirements.txt`
 
 # V1.0
 >03/11/2026 - 13/11/2026
@@ -137,11 +137,11 @@
 - [x] Rédaction du [README](README.md) - **Hellebore-jpg**
 - [x] Canva de présentation de fin de projet - **chummel-ops**
 - [x] Ajout des bases de données (CSV & SQLite) dans le [.gitignore](.gitignore) - **chummel-ops**
-- [x] Création de l'exécutable compilé en machine code avec nuitka (Windows) - **Hellebore-jpg**
+- [x] Création d'un exécutable compilé en code machine avec Nuitka (Windows) - **Hellebore-jpg**
     ```bash
     python -m nuitka --standalone --onefile --enable-plugin=pyqt6 --windows-disable-console --windows-icon-from-ico=./assets/img/favicon.ico --include-data-dir=assets=./assets app.py
     ```
-- [x] Création de l'exécutable compilé en machine code avec nuitka (Linux) - **Hellebore-jpg**
+- [x] Création d'un exécutable compilé en code machine avec Nuitka (Linux) - **Hellebore-jpg**
     ```bash
     python -m nuitka --standalone --onefile --enable-plugin=pyqt6 --include-data-dir=assets=./assets app.py
     ```
