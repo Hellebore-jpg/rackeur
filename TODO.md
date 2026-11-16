@@ -2,14 +2,14 @@
 
 ## Sommaire
 - [Kick off](#kick-off)
-- [v1.0](#v10)
+- [v1.0.0](#v100)
     - [Esthétique](#esthétique)
     - [Définitions et Recherches](#définitions-et-recherches)
     - [Programmation Backend](#programmation-backend)
     - [Programmation Frontend](#programmation-frontend)
     - [Jeux et Bases de données](#jeux-et-bases-de-données)
     - [Organisation et Finalisation](#organisation-et-finalisation)
-- [v2.0](#v20)
+- [v1.1.0](#v110)
 
 # Kick off
 >03/11/2026
@@ -28,7 +28,7 @@
     >- Explications du fonctionnement de venv à tout le monde et setup sur tout les PC
     >- Création du [.gitignore](.gitignore) et de [requirements.txt](requirements.txt) avec `pip freeze > requirements.txt`
 
-# V1.0
+# V1.0.0
 >03/11/2026 - 13/11/2026
 
 ## Objectifs
@@ -148,7 +148,7 @@
 - [x] Dernières corrections et Publication - **Hellebore-jpg**
 - [x] Release GitHub
 
-# V2.0
+# V1.1.0
 >??? - ???
 
 ## Objectifs
