@@ -82,15 +82,15 @@
     - [x] Implémentation de la création d'un nouvel utilisateur avec détection de mots de passe compromis et proposition de suggestions pour les renforcer, au moyen de l'API RESTful "Have I Been Pwned", en ligne de commande, via une ou plusieurs options - **Hellebore-jpg**
     - [x] Implémentation d'un système de notification en cas de nouveaux compromis détectés pour un utilisateur - **Hellebore-jpg** 
 - [x] Passage du CSV à SQLite
-    - [x] Choix du type de base de données au démarrage et branches différentes pour le SQLite dans les scripts qui utilisent la BDD - **Hellebore-jpg**
+    - [x] Choix du type de base de données au démarrage et branches différentes pour le SQLite dans les scripts qui utilisent la base de données - **Hellebore-jpg**
         >Exemple :
         >```python
-        >if format_bdd == True:
-        >   {code_spécifique_à_la_BDD_format_CSV}
+        >if CSV == True:
+        >   `{gestion_BDD_format_CSV}`
         >else:
-        >   {code_spécifique_à_la_BDD_format_SQLite}
+        >   `{gestion_BDD_format_SQLite}`
         >```
-    - [x] Écriture du script d'interaction avec la BDD SQLite
+    - [x] Écriture du script d'interaction avec la base de données SQLite
         - [x] Affichage de la liste des produits ( R ) - **ylavallee-prog** & **Hellebore-jpg**
         - [x] Affichage, via une option, de la liste des produits, triés par nom, dans l'ordre alphabétique, et alphabétique inverse ( R ) - **ylavallee-prog** & **Hellebore-jpg**
         - [x] Affichage, via une option, de la liste des produits, triés par prix, dans l'ordre croissant, et décroissant ( R ) - **ylavallee-prog** & **Hellebore-jpg**
@@ -126,7 +126,7 @@
     | remitatouille | \$2b\$12\$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe | visitor |0100        |
 
     >\$2b\$12\$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe = 123456789
-- [x] Création manuelle du catalogue de produits sous la forme d'une table SQLite (Première BDD SQLite) - **ylavallee-prog** & **Hellebore-jpg**
+- [x] Création manuelle du catalogue de produits sous la forme d'une table SQLite (Première base de données SQLite) - **ylavallee-prog** & **Hellebore-jpg**
     >Identique aux jeux de données présentés ci-dessus.
 - [x] Jeu de données de test CSV et SQLite à installer optionnellement pendant le setup de l'application - **chummel-ops**
 
