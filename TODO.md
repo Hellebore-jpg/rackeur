@@ -86,9 +86,9 @@
         >Exemple :
         >```python
         >if CSV == True:
-        >   `{gestion_BDD_format_CSV}`
+        >   # gestion de la base de données format CSV
         >else:
-        >   `{gestion_BDD_format_SQLite}`
+        >   # gestion de la base de données format SQLite
         >```
     - [x] Écriture du script d'interaction avec la base de données SQLite
         - [x] Affichage de la liste des produits ( R ) - **ylavallee-prog** & **Hellebore-jpg**
