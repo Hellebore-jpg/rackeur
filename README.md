@@ -129,7 +129,7 @@ D'autres environnements peuvent fonctionner, mais n'ont pas nécessairement ét�
 
 ### Données de démonstration
 
-Il est possible d'installer un jeu de données de test afin de découvrir l'application avec un catalogue et des utilisateurs préremplis.
+Il est possible d'installer un jeu de données de test afin de découvrir l'application avec un catalogue prérempli.
 
 > **Attention :** cette opération peut remplacer les données existantes. Pensez à sauvegarder vos fichiers avant de procéder.
 
@@ -146,6 +146,8 @@ Le panneau d'administration est accessible aux utilisateurs disposant des permis
 Les fonctionnalités disponibles dans ce panneau dépendent des autorisations attribuées à chaque utilisateur, conformément au principe du moindre privilège.
 
 #### Comptes de démonstration
+
+> Notez que ces 2 utilisateurs sont automatiquement créés si la base de données utilisateurs n'existe pas.
 
 | Nom d'utilisateur | Mot de passe | Rôle |
 |---|---|---|
