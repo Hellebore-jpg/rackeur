@@ -28,7 +28,7 @@
     >- Explications du fonctionnement de venv à tout le monde et setup sur tout les PC
     >- Création du [.gitignore](.gitignore) et de [requirements.txt](requirements.txt) avec `pip freeze > requirements.txt`
 
-# V1.0.0
+# v1.0.0
 >03/11/2026 - 13/11/2026
 
 ## Objectifs
@@ -37,7 +37,7 @@
 - [x] Création d'une direction artistique, d'un logo et d'un nom pour l'application - **chummel-ops**
 - [x] Maquettes finales des pages de l'application
 
-    <img src="md_files\title.png" alt="Titre" width="300"> <img src="md_files\login.png" alt="Connexion" width="300"> <img src="md_files\catalog.png" alt="Catalogue" width="300"> <img src="md_files\admin.png" alt="Panel administrateur" width="300"> <img src="md_files\search.png" alt="Recherche" width="300"> <img src="md_files\add_product.png" alt="Ajout de produit" width="300"> <img src="md_files\del_product.png" alt="Suppression de produit" width="300">
+    <img src="md_files/title.png" alt="Titre" width="300"> <img src="md_files/login.png" alt="Connexion" width="300"> <img src="md_files/catalog.png" alt="Catalogue" width="300"> <img src="md_files/admin.png" alt="Panel administrateur" width="300"> <img src="md_files/search.png" alt="Recherche" width="300"> <img src="md_files/add_product.png" alt="Ajout de produit" width="300"> <img src="md_files/del_product.png" alt="Suppression de produit" width="300">
     
     - [x] Titre - **chummel-ops**
     - [x] Création d'un compte utilisateur et authentification - **chummel-ops**
@@ -148,7 +148,7 @@
 - [x] Dernières corrections et Publication - **Hellebore-jpg**
 - [x] Release GitHub
 
-# V1.1.0
+# v1.1.0
 >??? - ???
 
 ## Objectifs
