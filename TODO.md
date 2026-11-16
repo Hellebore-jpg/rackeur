@@ -67,12 +67,12 @@
 - [x] Choix d'une solution pour l'interface utilisateur de l'application de gestion du catalogue de produits. - **chummel-ops**
 
 ### Programmation Backend
->Implémentation de toutes les fonctionnalitées de l'application à assigner aux boutons de l'interface.
+>Implémentation de toutes les fonctionnalités de l'application à assigner aux boutons de l'interface.
 - [x] Script Python d'interaction CSV CRUD
-    - [x] 1ère affichage, en ligne de commande, de la liste des produits ( R ) - **Hellebore-jpg**
-    - [x] 1ère affichage, en ligne de commande, via une option, de la liste des produits, triés par nom, dans l'ordre alphabétique, et alphabétique inverse ( R ) - **Hellebore-jpg**
-    - [x] 1ère affichage, en ligne de commande, via une option, de la liste des produits, triés par prix, dans l'ordre croissant, et décroissant ( R ) - **Hellebore-jpg**
-    - [x] 1ère affichage, en ligne de commande, via une option, du ou des produits, en fonction d'un mot-clé (recherche d'un produit dans le catalogue) ( R ) - **Hellebore-jpg**
+    - [x] Premier affichage, en ligne de commande, de la liste des produits ( R ) - **Hellebore-jpg**
+    - [x] Premier affichage, en ligne de commande, via une option, de la liste des produits, triés par nom, dans l'ordre alphabétique, et alphabétique inverse ( R ) - **Hellebore-jpg**
+    - [x] Premier affichage, en ligne de commande, via une option, de la liste des produits, triés par prix, dans l'ordre croissant, et décroissant ( R ) - **Hellebore-jpg**
+    - [x] Premier affichage, en ligne de commande, via une option, du ou des produits, en fonction d'un mot-clé (recherche d'un produit dans le catalogue) ( R ) - **Hellebore-jpg**
     - [x] Recherche par catégories - **Hellebore-jpg**
     - [x] Ajout, modification, et suppression d'un produit, en ligne de commande, via une ou plusieurs options ( C U D ) - **Hellebore-jpg**
 - [x] Scripts Python de gestion utilisateurs
@@ -131,17 +131,17 @@
 - [x] Jeu de données de test CSV/SQLite à installer optionellement pendant le setup de l'application - **chummel-ops**
 
 ### Organisation & Finalisation
-- [x] Relécture et analyse du Cahier des Charges - **chummel-ops** & **Purple-key-0**
-- [x] Creation, organisation, écriture et mise à jour du [TODO](TODO.md) (backlogs) - **chummel-ops** & **Hellebore-jpg**
-- [x] Explication du code Python (commentaires & Types strictes) - **Hellebore-jpg**
+- [x] Relecture et analyse du Cahier des Charges - **chummel-ops** & **Purple-key-0**
+- [x] Création, organisation, écriture et mise à jour du [TODO](TODO.md) (backlogs) - **chummel-ops** & **Hellebore-jpg**
+- [x] Explication du code Python (commentaires & Types stricts) - **Hellebore-jpg**
 - [x] Rédaction du [README](README.md) - **Hellebore-jpg**
 - [x] Canva de présentation de fin de projet - **chummel-ops**
 - [x] Ajout des bases de données (CSV & SQLite) dans le [.gitignore](.gitignore) - **chummel-ops**
-- [x] Création de l'executable compilé en machine code avec nuitka (Windows) - **Hellebore-jpg**
+- [x] Création de l'exécutable compilé en machine code avec nuitka (Windows) - **Hellebore-jpg**
     ```bash
     python -m nuitka --standalone --onefile --enable-plugin=pyqt6 --windows-disable-console --windows-icon-from-ico=./assets/img/favicon.ico --include-data-dir=assets=./assets app.py
     ```
-- [x] Création de l'executable compilé en machine code avec nuitka (Linux) - **Hellebore-jpg**
+- [x] Création de l'exécutable compilé en machine code avec nuitka (Linux) - **Hellebore-jpg**
     ```bash
     python -m nuitka --standalone --onefile --enable-plugin=pyqt6 --include-data-dir=assets=./assets app.py
     ```
