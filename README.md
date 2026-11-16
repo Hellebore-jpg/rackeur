@@ -28,6 +28,13 @@ Développement d'une application de gestion d'un catalogue de materiel de concer
 
 ## Technologies
 
+| Outil | Rôle | Téléchargement |
+|-------|------|----------------|
+| [![Python](https://img.shields.io/badge/VirtualBox-7.2.22-183A61?logo=virtualbox&logoColor=white)](https://www.virtualbox.org/wiki/Downloads) | Hyperviseur | [virtualbox.org](https://www.virtualbox.org/wiki/Downloads) |
+| [![CSV](https://img.shields.io/badge/OPNsense-26.7-D94F00)](https://opnsense.org/download/) | Pare-feu / routeur (VM) | [opnsense.org](https://opnsense.org/download/) |
+| [![SQLite](https://img.shields.io/badge/OPNsense-26.7-D94F00)](https://opnsense.org/download/) | Pare-feu / routeur (VM) | [opnsense.org](https://opnsense.org/download/) |
+
+
 - Python 3.15.0
 - CSV puis SQLite
 
