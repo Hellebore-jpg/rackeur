@@ -128,7 +128,7 @@
     >\$2b\$12\$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe = 123456789
 - [x] Création manuelle du catalogue de produits sous la forme d'une table SQLite (Première BDD SQLite) - **ylavallee-prog** & **Hellebore-jpg**
     >Identique aux jeux de données présentés ci-dessus.
-- [x] Jeu de données de test CSV/SQLite à installer optionnellement pendant le setup de l'application - **chummel-ops**
+- [x] Jeu de données de test CSV et SQLite à installer optionnellement pendant le setup de l'application - **chummel-ops**
 
 ### Organisation & Finalisation
 - [x] Relecture et analyse du Cahier des Charges - **chummel-ops** & **Purple-key-0**
