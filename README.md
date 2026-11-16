@@ -1,4 +1,4 @@
-# Rackeur Alpha
+# Rackeur V1.0
 Développement d'une application de gestion d'un catalogue de materiel de concerts et d'événements. Les visiteurs peuvent consulter le catalogue et acheter des produits. Un panel administrateur complet permet aux gestionnaires et éditeurs de gérer les données des produits.
 
 <img src="md_files\latest_app_screenshot.png" alt="Dernière capture d'écran de l'application" width="800">
