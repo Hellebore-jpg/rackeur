@@ -22,7 +22,7 @@
 
 ## Configuration
 - [x] Git & venv - **Hellebore-jpg**
-    >- Création du repo Github et de la base
+    >- Création du repo GitHub et de la base
     >- Ajout des collaborateurs : `Hellebore-jpg (Mathieu)` | `Purple-key-0 (Gabriel)` | `chummel-ops (Charles)` | `ylavallee-prog (Yanis)`
     >- Ajout de l'intervenant : `TheLegacy33`
     >- Explications du fonctionnement de venv à tout le monde et setup sur tout les PC
@@ -108,7 +108,7 @@
     - [x] Ajout d'un produit - **Purple-key-0** 
     - [x] Modification d'un produit - **Purple-key-0** 
     - [x] Suppression d'un produit - **Purple-key-0**  
-- [x] Panel de gestion des utilisateurs admins et de leur permissions - **Purple-key-0**
+- [x] Panel de gestion des utilisateurs admins et de leur autorisations - **Purple-key-0**
 
 ### Jeux & Bases de données
 - [x] Création du Catalogue / Tableau de données - **Purple-key-0**
@@ -146,7 +146,7 @@
     python -m nuitka --standalone --onefile --enable-plugin=pyqt6 --include-data-dir=assets=./assets app.py
     ```
 - [x] Derniers fix & Publication - **Hellebore-jpg**
-- [x] Release Github
+- [x] Release GitHub
 
 # V2.0
 >13/11/2026 +
