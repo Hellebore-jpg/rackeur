@@ -149,12 +149,11 @@
 - [x] Release GitHub
 
 # V2.0
->13/11/2026 +
+>??? - ???
 
 ## Objectifs
 - [ ] Navigation par catégories dans l'interface - **Hellebore-jpg**
 - [ ] Profil utilisateur pour changer ses informations - **Hellebore-jpg**
 - [ ] Système de commandes des produits - **Hellebore-jpg**
 - [ ] Historique des commandes - **Hellebore-jpg**
-- [ ] Base de données MySQL en ligne - **Hellebore-jpg**
 - [ ] Dernières corrections et Publication - **Hellebore-jpg**
