@@ -13,11 +13,11 @@ Elle permet de consulter, rechercher et gérer un catalogue de produits à trave
 - [Fonctionnalités](#fonctionnalités)
 - [Technologies](#technologies)
 - [Installation et configuration](#installation-et-configuration)
-  - [Prérequis](#prérequis)
-  - [Compatibilité](#compatibilité)
-  - [Installation](#installation)
-  - [Données de démonstration](#données-de-démonstration)
-  - [Administration](#administration)
+    - [Prérequis](#prérequis)
+    - [Compatibilité](#compatibilité)
+    - [Installation](#installation)
+    - [Données de démonstration](#données-de-démonstration)
+    - [Administration](#administration)
 - [Arborescence](#arborescence)
 - [Équipe](#équipe)
 - [Crédits et dépendances](#crédits-et-dépendances)
@@ -31,7 +31,6 @@ Elle permet de consulter, rechercher et gérer un catalogue de produits à trave
 - Consultation du catalogue et des informations associées aux produits.
 - Recherche de produits par mots-clés.
 - Tri des produits par nom et par prix.
-- Recherche par catégories.
 
 ### Gestion et administration
 - Création et authentification des comptes utilisateurs.
@@ -53,14 +52,14 @@ Elle permet de consulter, rechercher et gérer un catalogue de produits à trave
 
 ## Technologies
 
-| Technologie | Utilisation |
-|---|---|
-| Python 3.15.0 | Langage de programmation |
-| PyQt6 | Interface graphique |
-| CSV | Stockage des données au format CSV |
-| SQLite | Gestion de la base de données |
-| bcrypt | Hachage des mots de passe |
-| Requests | Requêtes HTTP vers les API |
+| Technologie   | Utilisation                        |
+|---------------|------------------------------------|
+| Python 3.15.0 | Langage de programmation           |
+| PyQt6         | Interface graphique                |
+| CSV           | Stockage des données au format CSV |
+| SQLite        | Gestion de la base de données      |
+| bcrypt        | Hachage des mots de passe          |
+| Requests      | Requêtes HTTP vers les API         |
 
 ---
 
@@ -70,19 +69,19 @@ Elle permet de consulter, rechercher et gérer un catalogue de produits à trave
 
 Les outils suivants sont nécessaires pour installer et exécuter le projet.
 
-| Outil | Utilisation | Téléchargement |
-|---|---|---|
+| Outil         | Utilisation                | Téléchargement                                  |
+|---------------|----------------------------|-------------------------------------------------|
 | Python 3.15.0 | Exécution de l'application | [python.org](https://www.python.org/downloads/) |
-| Git | Récupération du dépôt | [git-scm.com](https://git-scm.com/downloads) |
+| Git           | Récupération du dépôt      | [git-scm.com](https://git-scm.com/downloads)    |
 
 ### Compatibilité
 
 Environnement actuellement testé :
 
-| Composant | Version |
-|---|---|
+| Composant              | Version         |
+|------------------------|-----------------|
 | Système d'exploitation | Windows 11 26H2 |
-| Python | 3.15.0 |
+| Python                 | 3.15.0          |
 
 D'autres environnements peuvent fonctionner, mais n'ont pas nécessairement été testés.
 
@@ -149,10 +148,10 @@ Les fonctionnalités disponibles dans ce panneau dépendent des autorisations at
 
 > Notez que ces 2 utilisateurs sont automatiquement créés si la base de données utilisateurs n'existe pas.
 
-| Nom d'utilisateur | Mot de passe | Rôle |
-|---|---|---|
-| `admin` | `123456789` | Administrateur |
-| `editor` | `123456789` | Éditeur |
+| Nom d'utilisateur | Mot de passe | Rôle           |
+|-------------------|--------------|----------------|
+| `admin`           | `123456789`  | Administrateur |
+| `editor`          | `123456789`  | Éditeur        |
 
 > **Avertissement :** ces identifiants sont exclusivement destinés aux tests. Ne les utilisez jamais dans un environnement réel et remplacez-les avant toute utilisation en dehors d'un environnement de démonstration.
 
@@ -168,6 +167,7 @@ rackeur/
 │   │   ├── catalogue.db        # Catalogue au format SQLite
 │   │   ├── utilisateurs.csv    # Utilisateurs au format CSV
 │   │   └── utilisateurs.db     # Utilisateurs au format SQLite
+│   │
 │   ├── font/                   # Polices de caractères
 │   ├── img/                    # Images et icônes
 │   └── style.qss               # Feuille de style PyQt
@@ -189,12 +189,12 @@ rackeur/
 
 Projet réalisé par quatre collaborateurs dans le cadre du module **Développement Sécurisé** à **Guardia CS**, en 2026.
 
-| Collaborateur | Rôle | GitHub |
-|---|---|---|
-| Mathieu | Chef de projet | [@Hellebore-jpg](https://github.com/Hellebore-jpg) |
-| Charles | Communication | [@chummel-ops](https://github.com/chummel-ops) |
-| Yanis | Développement | [@ylavallee-prog](https://github.com/ylavallee-prog) |
-| Gabriel | Développement | [@Purple-key-0](https://github.com/Purple-key-0) |
+| Collaborateur | Rôle           | GitHub                                               |
+|---------------|----------------|------------------------------------------------------|
+| Mathieu       | Chef de projet | [@Hellebore-jpg](https://github.com/Hellebore-jpg)   |
+| Charles       | Communication  | [@chummel-ops](https://github.com/chummel-ops)       |
+| Yanis         | Développement  | [@ylavallee-prog](https://github.com/ylavallee-prog) |
+| Gabriel       | Développement  | [@Purple-key-0](https://github.com/Purple-key-0)     |
 
 ---
 
@@ -202,12 +202,12 @@ Projet réalisé par quatre collaborateurs dans le cadre du module **Développem
 
 Ce projet utilise plusieurs bibliothèques et services externes :
 
-| Dépendance | Utilisation | Documentation |
-|---|---|---|
-| PyQt6 | Interface graphique | [Documentation PyQt6](https://pypi.org/project/PyQt6/) |
-| Requests | Requêtes HTTP | [Documentation Requests](https://pypi.org/project/requests/) |
-| bcrypt | Hachage des mots de passe | [Documentation bcrypt](https://pypi.org/project/bcrypt/) |
-| Have I Been Pwned | Vérification des mots de passe compromis | [Documentation API](https://haveibeenpwned.com/API/v3) |
+| Dépendance        | Utilisation                              | Documentation                                                |
+|-------------------|------------------------------------------|--------------------------------------------------------------|
+| PyQt6             | Interface graphique                      | [Documentation PyQt6](https://pypi.org/project/PyQt6/)       |
+| Requests          | Requêtes HTTP                            | [Documentation Requests](https://pypi.org/project/requests/) |
+| bcrypt            | Hachage des mots de passe                | [Documentation bcrypt](https://pypi.org/project/bcrypt/)     |
+| Have I Been Pwned | Vérification des mots de passe compromis | [Documentation API](https://haveibeenpwned.com/API/v3)       |
 
 ---
 
