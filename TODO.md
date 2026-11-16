@@ -25,7 +25,7 @@
     >- Création du repo Github et de la base
     >- Ajout des collaborateurs : `Hellebore-jpg (Mathieu)` | `Purple-key-0 (Gabriel)` | `chummel-ops (Charles)` | `ylavallee-prog (Yanis)`
     >- Ajout de l'intervenant : `TheLegacy33`
-    >- Explications du fonctionnement de venv à tout le monde et setup sur tout les PCs
+    >- Explications du fonctionnement de venv à tout le monde et setup sur tout les PC
     >- Création du [.gitignore](.gitignore) et de [requirements.txt](requirement.txt) avec `pip freeze > requirements.txt`
 
 # V1.0
@@ -127,8 +127,8 @@
 
     >\$2b\$12\$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe = 123456789
 - [x] Création manuelle du catalogue de produits sous la forme d'une table SQLite (Première BDD SQLite) - **ylavallee-prog** & **Hellebore-jpg**
-    >Idem que les jeux de données visibles au dessus.
-- [x] Jeu de données de test CSV/SQLite à installer optionellement pendant le setup de l'application - **chummel-ops**
+    >Idem que les jeux de données visibles au-dessus.
+- [x] Jeu de données de test CSV/SQLite à installer optionnellement pendant le setup de l'application - **chummel-ops**
 
 ### Organisation & Finalisation
 - [x] Relecture et analyse du Cahier des Charges - **chummel-ops** & **Purple-key-0**
