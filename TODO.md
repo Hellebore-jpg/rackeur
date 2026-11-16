@@ -52,6 +52,7 @@
 - [x] Définition de l'entité "utilisateur" avec prise en compte des différents rôles - **Hellebore-jpg**
     >- Visiteur : Consultation publique
     >- Utilisateur : Compte et achats
+    >- Éditeur : Modifications de produits
     >- Administrateur : Gestion des données du catalogue
 - [x] Définition des sigles HMI, GUI, UI et UX - **Hellebore-jpg**
     >- HMI (Human-Machine Interface) : Interface homme-machine, souvent industrielle, pour le contrôle de systèmes.
