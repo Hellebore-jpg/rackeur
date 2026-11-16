@@ -125,7 +125,7 @@
     | remitatouille | \$2b\$12\$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe | visitor |0100        |
 
     >\$2b\$12\$ruxeVHj1j5e3UPwHvbCMyufY/qinDTxo2liFTlvcr7nXEva.qqhKe = 123456789
-- [x] Création manuelle du catalogue de produits sous la forme d'une table SQLite (Première BDD SQLite) - **ylavallee-prog** - **Hellebore-jpg**
+- [x] Création manuelle du catalogue de produits sous la forme d'une table SQLite (Première BDD SQLite) - **ylavallee-prog** & **Hellebore-jpg**
     >Idem que les jeux de données visibles au dessus.
 - [x] Jeu de données de test CSV/SQLite à installer optionellement pendant le setup de l'application - **chummel-ops**
 
